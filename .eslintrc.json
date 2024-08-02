@@ -29,8 +29,7 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "plugin:@next/next/recommended",
-    "next",
-    "next/core-web-vitals"
+    "next"
   ],
   "ignorePatterns": ["tailwind.config.js", "/src/app/i18next.js"],
   "rules": {

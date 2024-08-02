@@ -1,9 +1,7 @@
 'use client';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 
 const Home = () => {
-    const { t } = useTranslation();
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <header className="bg-primary text-text py-4">
