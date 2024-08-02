@@ -32,7 +32,7 @@
     "next",
     "next/core-web-vitals"
   ],
-  "ignorePatterns": ["tailwind.config.js", "/src/app/i18next.js"],
+  "ignorePatterns": ["tailwind.config.js"],
   "rules": {
   }
 }

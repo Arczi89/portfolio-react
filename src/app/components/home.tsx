@@ -3,37 +3,27 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 const Home = () => {
-    const { t } = useTranslation();
+  const { t } = useTranslation();
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <header className="bg-primary text-text py-4">
         <div className="container mx-auto text-center">
-          <h1 className="text-3xl font-bold">Witaj na mojej stronie głównej!</h1>
-          <p className="mt-2">Jestem programistą z pasją do tworzenia aplikacji webowych.</p>
+        <h1 className="text-3xl font-bold">{t('welcome')}</h1>
+        <p className="mt-2">{t('aboutMe')}</p>
         </div>
       </header>
       <main className="container mx-auto py-6 flex-grow bg">
         <section className="mb-8">
-          <h2 className="text-2xl font-bold">O mnie</h2>
-          <p className="mt-2">
-            Jestem entuzjastą technologii i pasjonatem pisania kodu. Moje zainteresowania obejmują frontend, backend oraz wszystko, co związane z aplikacjami internetowymi.
-          </p>
-        </section>
-        <section className="mb-8">
-          <h2 className="text-2xl font-bold">Projekty</h2>
-          <p className="mt-2">
-            Tutaj możesz zaprezentować swoje projekty lub plany na przyszłość.
-          </p>
+        <h2 className="text-2xl font-bold">{t('projects')}</h2>
+        <p className="mt-2">{t('projectsDescription')}</p>
         </section>
         <section>
-          <h2 className="text-2xl font-bold">Kontakt</h2>
-          <p className="mt-2">
-            Masz pytania lub chcesz się skontaktować? Skorzystaj z formularza kontaktowego lub odwiedź moje profile na mediach społecznościowych.
-          </p>
+        <h2 className="text-2xl font-bold">{t('contact')}</h2>
+        <p className="mt-2">{t('contactDescription')}</p>
         </section>
       </main>
       <footer className="bg-primary text-text py-4 text-center">
-        <p>&copy; 2024 Moja Strona. Wszelkie prawa zastrzeżone.</p>
+      <p>{t('footerText')}</p>
       </footer>
     </div>
   );
