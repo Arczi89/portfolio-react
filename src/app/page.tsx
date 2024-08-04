@@ -1,6 +1,6 @@
 import React from 'react';
 import Home from './components/home';
-import MainPageSection from '@/lib/db';
+import MainPageSection from '@/models/mainPageSection';
 
 async function getchSections(): Promise<MainPageSection[]> {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/content`);

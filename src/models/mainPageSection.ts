@@ -1,5 +1,5 @@
 import { DataTypes, Model, Optional } from 'sequelize';
-import sequelize from './dbConnection';
+import sequelize from '../lib/dbConnection';
 
 interface SectionAttributes {
   id: number;

@@ -1,4 +1,4 @@
-import MainPageSection from '../lib/db';
+import MainPageSection from '../models/mainPageSection';
 
 interface SectionAttributes {
   id: number;

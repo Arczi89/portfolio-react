@@ -1,0 +1,13 @@
+.align-with-image p {
+    display: flex;
+    align-items: flex-start;
+    img {
+        width: 20%;
+        margin: 1rem;
+    }
+    .body {
+        display: block;
+        width: 70%;
+        margin: 1rem;
+    }
+}
