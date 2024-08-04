@@ -12,8 +12,7 @@ const Home: React.FC<HomeProps> = ({ sections }) => {
     <div className="flex flex-col min-h-screen bg-background">
       <header className="bg-primary text-text py-4">
         <div className="container mx-auto text-center">
-          <h1 className="text-3xl font-bold">Witaj na mojej stronie głównej!</h1>
-          <p className="mt-2">Jestem programistą z pasją do tworzenia aplikacji webowych.</p>
+          <h1 className="text-3xl font-bold">szwagrzak.pl</h1>
         </div>
       </header>
       <main className="container mx-auto py-6 flex-grow bg">
@@ -23,8 +22,8 @@ const Home: React.FC<HomeProps> = ({ sections }) => {
               {section.title}
             </h2>
             <p className="mt-2">
-              {section.id === 1 && <Image src='/images/me.png' alt='' width={100} height={100} />}
               <span className={styles.body}>{section.body}</span>
+              {section.id === 1 && <Image src='/images/me.png' alt='' width={100} height={100} />}
             </p>
             <small>~ updated: {new Date(section.updated_at).toLocaleString()} ~</small>
           </section>

@@ -3,11 +3,12 @@
     align-items: flex-start;
     img {
         width: 20%;
-        margin: 1rem;
+        margin-left: 2rem;
+        max-width: 200px;
+        border-radius: 1rem;
     }
     .body {
         display: block;
-        width: 70%;
-        margin: 1rem;
+        width: 80%;
     }
 }
