@@ -51,3 +51,10 @@ body {
   display: inline-block;
   text-align: center;
 }
+
+@font-face {
+  font-family: 'sakuna';
+  src: url('/fonts/sakuna.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}

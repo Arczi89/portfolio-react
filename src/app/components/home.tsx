@@ -10,9 +10,9 @@ interface HomeProps {
 const Home: React.FC<HomeProps> = ({ sections }) => {
   return (
     <div className="flex flex-col min-h-screen bg-background">
-      <header className="bg-primary text-text py-4">
+      <header className={"bg-primary text-text py-4 " + styles.header}>
         <div className="container mx-auto text-center">
-          <h1 className="text-3xl font-bold">szwagrzak.pl</h1>
+          <h1 className={styles.logo}>szwagrzak.pl</h1>
         </div>
       </header>
       <main className="container mx-auto py-6 flex-grow bg">
