@@ -23,7 +23,7 @@ const Home: React.FC<HomeProps> = ({ sections }) => {
             </h2>
             <p className="mt-2">
               <span className={styles.body}>{section.body}</span>
-              {section.id === 1 && <Image src='/images/me.png' alt='' width={100} height={100} />}
+              {section.id === 1 && <Image src='/images/me2.png' alt='' width={100} height={100} />}
             </p>
             <small>~ updated: {new Date(section.updated_at).toLocaleString()} ~</small>
           </section>
