@@ -13,34 +13,37 @@
     .container {
         scroll-snap-type: y mandatory;
         overflow-y: auto;
-        height: 100vh;
         scrollbar-width: thin;
-
+        
         .section {
-            height: 100vh;
+            display: flex;
+            flex-direction: row;
+            padding: 5rem 0;
+            height: calc(100vh - 10rem);
             scroll-snap-align: start;
-            padding: 0;
 
-            .me {
-                border: solid 0.25rem orange;
-            }
-    
-            .align-with-image p {
+            .section-inner {
                 display: flex;
+                flex-direction: column;
                 align-items: flex-start;
+                width: 80%;
+            }
+
+            .section-image {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 20%;
                 img {
-                    width: 20%;
-                    margin-left: 2rem;
-                    max-width: 200px;
                     border-radius: 1rem;
                 }
-                .body {
-                    display: block;
-                    width: 80%;
-                }
+
+                .me {
+                    border: solid 0.25rem orange;
+                    width: 20rem;
+                }   
             }
         }
-    
     }
 
     .header {

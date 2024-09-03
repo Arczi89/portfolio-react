@@ -17,15 +17,16 @@ const Home: React.FC<HomeProps> = ({ sections }) => {
       </header>
       <main className={`mx-auto py-6 flex-grow ${styles.container}`}>
         {sections.map(section => (
-          <section key={section.id} className={`mb-8 ${styles.section} ${section.id === 1 ? styles['align-with-image'] : ''}`}>
-            <h2 className="text-2xl font-bold">
-              {section.title}
-            </h2>
-            <p className="mt-2">
-              <span className={styles.body}>{section.body}</span>
+          <section key={section.id} className={`mb-8 ${styles.section}`}>
+            <div className={styles["section-image"]}>
               {section.id === 1 && <Image className={styles.me} src='/images/me2.png' alt='' width={100} height={100} />}
-            </p>
-            <small>~ updated: {new Date(section.updated_at).toLocaleString()} ~</small>
+            </div>
+            <div className={styles["section-inner"]}>
+              <h2 className="text-2xl font-bold">
+                {section.title}
+              </h2>
+              <span className={styles.body}>{section.body}</span>
+            </div>
           </section>
         ))}
       </main>
