@@ -9,21 +9,21 @@ interface HomeProps {
 
 const Home: React.FC<HomeProps> = ({ sections }) => {
   return (
-    <div className="flex flex-col min-h-screen bg-background">
-      <header className={"bg-primary text-text py-4 " + styles.header}>
+    <div className={`flex flex-col min-h-screen bg-background ${styles.home}`}>
+      <header className={`bg-primary text-text py-4 ${styles.header}`}>
         <div className="container mx-auto text-center">
           <h1 className={styles.logo}>szwagrzak.pl</h1>
         </div>
       </header>
-      <main className="container mx-auto py-6 flex-grow bg">
+      <main className={`mx-auto py-6 flex-grow ${styles.container}`}>
         {sections.map(section => (
-          <section key={section.id} className={`mb-8 ${section.id === 1 ? styles['align-with-image'] : ''}`}>
+          <section key={section.id} className={`mb-8 ${styles.section} ${section.id === 1 ? styles['align-with-image'] : ''}`}>
             <h2 className="text-2xl font-bold">
               {section.title}
             </h2>
             <p className="mt-2">
               <span className={styles.body}>{section.body}</span>
-              {section.id === 1 && <Image src='/images/me2.png' alt='' width={100} height={100} />}
+              {section.id === 1 && <Image className={styles.me} src='/images/me2.png' alt='' width={100} height={100} />}
             </p>
             <small>~ updated: {new Date(section.updated_at).toLocaleString()} ~</small>
           </section>

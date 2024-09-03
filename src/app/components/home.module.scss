@@ -1,23 +1,63 @@
-.align-with-image p {
-    display: flex;
-    align-items: flex-start;
-    img {
-        width: 20%;
-        margin-left: 2rem;
-        max-width: 200px;
-        border-radius: 1rem;
-    }
-    .body {
-        display: block;
-        width: 80%;
-    }
+@keyframes animatedBackground {
+    0% { background-position: 0 0; }
+    100% { background-position: -100% 0; }
 }
 
-.header {
-    background-image: url('/images/azul1.png');
+.home {
+    background-image: url('/images/coffee-bg.jpg');
+    background-repeat: repeat-y;
+    background-size: 100% auto;
+    padding-top: 6.5rem;
+    height: calc(100vh - 6.5rem);
 
-    h1.logo {
-        font-family: sakuna;
-        font-size: 3rem;
+    .container {
+        scroll-snap-type: y mandatory;
+        overflow-y: auto;
+        height: 100vh;
+        scrollbar-width: thin;
+
+        .section {
+            height: 100vh;
+            scroll-snap-align: start;
+            padding: 0;
+
+            .me {
+                border: solid 0.25rem orange;
+            }
+    
+            .align-with-image p {
+                display: flex;
+                align-items: flex-start;
+                img {
+                    width: 20%;
+                    margin-left: 2rem;
+                    max-width: 200px;
+                    border-radius: 1rem;
+                }
+                .body {
+                    display: block;
+                    width: 80%;
+                }
+            }
+        }
+    
     }
+
+    .header {
+        background-image: url('/images/kafel1.jpg');
+        background-size: 19.5rem;
+        animation: animatedBackground 100s linear alternate infinite;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        height: 6.5rem;
+    
+        h1.logo {
+            font-family: sakuna;
+            font-size: 4rem;
+        }
+    }
+    
 }
