@@ -23,7 +23,7 @@ const Home: React.FC<HomeProps> = ({ sections }) => {
     <div className={`flex flex-col min-h-screen bg-background ${styles.home}`}>
       <header className={`bg-primary text-text py-4 ${styles.header}`}>
         <div className="container mx-auto text-center">
-          <h1 className={styles.logo}><span>szwagrzak.pl</span></h1>
+          <h1 className={styles.logo}><span>&lt;szwagrzak_pl/&gt;</span></h1>
         </div>
       </header>
       <main className={`mx-auto py-6 flex-grow ${styles.container}`}>
