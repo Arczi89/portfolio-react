@@ -19,7 +19,7 @@ const Home: React.FC<HomeProps> = ({ sections }) => {
         {sections.map(section => (
           <section key={section.id} className={`mb-8 ${styles.section}`}>
             <div className={styles["section-image"]}>
-              {section.id === 1 && <Image className={styles.me} src='/images/me2.png' alt='' width={100} height={100} />}
+              {section.id === 1 && <Image className={styles.me} src='/images/me2.png' alt='' width={200} height={200} />}
             </div>
             <div className={styles["section-inner"]}>
               <h2 className="text-2xl font-bold">
