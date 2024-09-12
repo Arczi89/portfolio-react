@@ -60,13 +60,19 @@
         background-color: transparent;
         position: fixed;
         top: 0;
-        left: 40%;
+        left: 35%;
         z-index: 1000;
         height: 6.5rem;
     
         h1.logo {
             font-family: sakuna;
             font-size: 4rem;
+            padding: 0 1rem;
+            border: 0.25rem solid #6F4E37;
+            border-radius: 1rem;
+            -webkit-box-shadow: 8px 8px 5px 0px #6F4E37;
+            -moz-box-shadow: 8px 8px 5px 0px #6F4E37;
+            box-shadow: 8px 8px 5px 0px #6F4E37;
         }
     }
     
