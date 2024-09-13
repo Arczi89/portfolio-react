@@ -3,9 +3,13 @@ import { getSections } from '../../lib/content';
 
 interface SectionAttributes {
   id: number;
-  section: string;
-  title: string;
+  tag: string;
+  item_order: number;
+  title?: string;
   body: string;
+  created_at?: Date;
+  updated_at?: Date;
+  image?: string;
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {

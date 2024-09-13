@@ -39,14 +39,16 @@ const Home: React.FC<HomeProps> = ({ sections }) => {
                 <h2 className="text-4xl font-bold">
                   {firstSection.title}
                 </h2>
-                {group.map(section => (
-                  <div key={section.id} className={styles.paragraph}>
-                    {firstSection.image !== section.image && section.image && <div className={styles["paragraph-image"]}>
-                      <Image className={styles.me} src={section.image} alt={section.body} width={400} height={400} />
-                    </div>}
-                    <div className={styles['paragraph-body']}>{section.body}</div>
-                  </div>
-                ))}
+                <div className={styles[tag]}>
+                  {group.map(section => (
+                    <div key={section.id} className={styles.paragraph}>
+                      {firstSection.image !== section.image && section.image && <div className={styles["paragraph-image"]}>
+                        <Image className={styles.me} src={section.image} alt={section.title} width={400} height={400} />
+                      </div>}
+                      <div className={styles['paragraph-body']}>{section.body}</div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </section>
           );

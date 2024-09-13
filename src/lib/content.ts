@@ -2,9 +2,13 @@ import MainPageSection from '../models/mainPageSection';
 
 interface SectionAttributes {
   id: number;
-  section: string;
-  title: string;
+  tag: string;
+  item_order: number;
+  title?: string;
   body: string;
+  created_at?: Date;
+  updated_at?: Date;
+  image?: string;
 }
 
 async function getSections(): Promise<SectionAttributes[]> {
