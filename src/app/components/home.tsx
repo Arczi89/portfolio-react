@@ -54,7 +54,7 @@ const Home: React.FC<HomeProps> = ({ sections }) => {
         })}
       </main>
       <footer className="bg-primary text-text py-4 text-center">
-        <p>&copy; 2024 Szwagrzak Artur. Wszelkie prawa zastrzeżone.</p>
+        <p>&copy; 2024 Szwagrzak Artur. Wszelkie prawa zastrzeżone. Kontakt: artur@szwagrzak.pl</p>
       </footer>
     </div>
   );
