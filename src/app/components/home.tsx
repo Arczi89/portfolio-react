@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import MainPageSection from '@/models/mainPageSection';
 import React from 'react';
 import styles from './home.module.scss';
@@ -33,7 +32,7 @@ const Home: React.FC<HomeProps> = ({ sections }) => {
           return (
             <section key={tag} className={`mb-8 ${styles.section}`}>
               {firstSection.image && <div className={styles["section-image"]}>
-                <Image className={styles.me} src={firstSection.image} alt='' width={400} height={400} />
+                <img className={styles.me} src={firstSection.image} alt='' width={400} height={400} />
               </div>}
               <div className={styles["section-inner"]}>
                 <h2 className="text-4xl font-bold">
@@ -43,7 +42,7 @@ const Home: React.FC<HomeProps> = ({ sections }) => {
                   {group.map(section => (
                     <div key={section.id} className={styles.paragraph}>
                       {firstSection.image !== section.image && section.image && <div className={styles["paragraph-image"]}>
-                        <Image className={styles.me} src={section.image} alt={section.title} width={400} height={400} />
+                        <img className={styles.me} src={section.image} alt={section.title} width={400} height={400} />
                       </div>}
                       <div className={styles['paragraph-body']}>{section.body}</div>
                     </div>
