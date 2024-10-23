@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    //output: 'export',
+    output: 'export',
     env: {
         DATABASE_URL: process.env.DATABASE_URL,
         NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
@@ -13,5 +13,6 @@ const nextConfig = {
         return config;
     },
 };
+
 
 export default nextConfig;
