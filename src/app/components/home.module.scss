@@ -4,6 +4,8 @@
     background-size: 100% auto;
     padding-top: 7.5rem;
     height: calc(100vh - 7.5rem);
+    display: flex;
+    align-items: center;
 
     .container {
         scroll-snap-type: y mandatory;
@@ -80,7 +82,6 @@
         background-color: transparent;
         position: fixed;
         top: 0;
-        left: 35%;
         z-index: 1000;
         height: 6.5rem;
 
@@ -98,6 +99,10 @@
             -webkit-box-shadow: 8px 8px 5px 0px #6F4E37;
             -moz-box-shadow: 8px 8px 5px 0px #6F4E37;
             box-shadow: 8px 8px 5px 0px #6F4E37;
+
+            @media (max-width: 599px) {
+                font-size: 2.5rem;
+            }
         }
     }
 }
