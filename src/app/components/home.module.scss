@@ -6,11 +6,13 @@
     height: calc(100vh - 7.5rem);
     display: flex;
     align-items: center;
+    width: 100%;
 
     .container {
         scroll-snap-type: y mandatory;
         overflow-y: auto;
         scrollbar-width: thin;
+        width: 100%;
         
         .section {
             display: flex;
@@ -18,6 +20,7 @@
             padding: 5rem 0;
             height: calc(100vh - 10rem);
             scroll-snap-align: start;
+            max-width: 100%;
 
             .section-inner {
                 display: flex;
@@ -102,6 +105,37 @@
 
             @media (max-width: 599px) {
                 font-size: 2.5rem;
+            }
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .container {
+            .section {
+                height: auto;
+                scroll-snap-align: unset;
+                flex-direction: column;
+
+                .section-image {
+                    width: 100%;
+                }
+
+                .section-inner .paragraph {
+                    flex-direction: column;
+                }
+                .paragraph-body {
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 599px) {
+        .container {
+            .section {
+                .paragraph-body {
+                    font-size: 0.8rem;
+                }
             }
         }
     }
