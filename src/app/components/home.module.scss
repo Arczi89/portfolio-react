@@ -24,7 +24,7 @@
 
             border: 4px orange solid;
             border-radius: 2rem;
-            margin: 1rem 10rem;
+            margin: 1rem 4.5rem;
             padding: 1rem;
             background: rgba(250, 238, 215, 0.7);
 
@@ -54,17 +54,16 @@
                         margin-right: 1rem;
                         color: black;
                         border-radius: 1rem;
+                        display: flex;
 
                         img {
-                            width: 15rem;
-                            height: 6.25rem;
-                            max-width: 20rem;
-                            max-height: 6.25rem;
+                            max-width: 22rem;
+                            max-height: 6rem;
                         }
                     }
 
                     .paragraph-body {
-                        font-size: 1.2rem;
+                        font-size: 1rem;
                         font-weight: 500;
                     }
                 }
@@ -121,13 +120,24 @@
                 height: auto;
                 scroll-snap-align: unset;
                 flex-direction: column;
+                margin: 1rem 4rem;
+                padding: 1rem;
 
                 .section-image {
                     width: 50%;
+                    align-self: center;
+                    margin: 1rem;
                 }
 
                 .section-inner .paragraph {
                     flex-direction: column;
+
+                    .paragraph-image {
+                        img {
+                            max-width: 12rem;
+                            max-height: 4rem;
+                        }
+                    }
                 }
                 .paragraph-body {
                     font-size: 1rem;
@@ -139,6 +149,8 @@
     @media (max-width: 599px) {
         .container {
             .section {
+                margin: 0.5rem;
+                padding: 0.5rem;
                 .paragraph-body {
                     font-size: 0.8rem;
                 }
