@@ -1,8 +1,10 @@
 import { Section } from "../models/Section";
 
+const BASE_URL = process.env.API_BASE_URL || 'http://localhost:3001/api';
+
 export const getSections = async (): Promise<Section[]> => {
   try {
-    const response = await fetch('http://localhost:3001/api/sections');
+    const response = await fetch(`${BASE_URL}/api/sections`);
     if (!response.ok) {
       throw new Error(`Error fetching sections: ${response.statusText}`);
     }
