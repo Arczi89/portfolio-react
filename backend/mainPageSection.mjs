@@ -1,5 +1,5 @@
 import { DataTypes, Model } from 'sequelize';
-import sequelize from './dbConnection.js';
+import sequelize from './dbConnection.mjs';
 
 class MainPageSection extends Model {}
 

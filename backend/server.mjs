@@ -2,8 +2,8 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import sequelize from './dbConnection.js';
-import MainPageSection from './mainPageSection.js';
+import sequelize from './dbConnection.mjs';
+import MainPageSection from './mainPageSection.mjs';
 
 dotenv.config();
 

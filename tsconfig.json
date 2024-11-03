@@ -21,7 +21,7 @@
   },
   "include": [
     "src/**/*", "backend/**/*.js"
-  ],
+, "backend/server.mjs", "backend/sync.mjs", "backend/mainPageSection.mjs", "backend/dbConnection.mjs"  ],
   "exclude": [
     "node_modules" 
   ]
