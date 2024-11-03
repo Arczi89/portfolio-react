@@ -1,29 +1,7 @@
-import { DataTypes, Model, Optional } from 'sequelize';
-import sequelize from '../lib/dbConnection';
+import { DataTypes, Model } from 'sequelize';
+import sequelize from './dbConnection.js';
 
-interface SectionAttributes {
-  id: number;
-  tag: string;
-  item_order: number;
-  title?: string;
-  body: string;
-  created_at?: Date;
-  updated_at?: Date;
-  image?: string;
-}
-
-interface SectionCreationAttributes extends Optional<SectionAttributes, 'id'> {}
-
-class MainPageSection extends Model<SectionAttributes, SectionCreationAttributes> implements SectionAttributes {
-  public id!: number;
-  public tag!: string;
-  public item_order!: number;
-  public title!: string;
-  public body!: string;
-  public created_at!: Date;
-  public updated_at!: Date;
-  public image!: string;
-}
+class MainPageSection extends Model {}
 
 MainPageSection.init({
   id: {

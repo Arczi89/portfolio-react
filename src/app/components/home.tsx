@@ -1,13 +1,10 @@
-import MainPageSection from '@/models/mainPageSection';
-import React from 'react';
-import styles from './home.module.scss';
+import { useState, useEffect } from "react";
+import styles from '../styles/home.module.scss';
+import { getSections } from "../services/sectionService";
+import { Section } from "../models/Section";
 
-interface HomeProps {
-  sections: MainPageSection[];
-}
-
-const groupByTag = (sections: MainPageSection[]) => {
-  return sections?.reduce((groups: { [key: string]: MainPageSection[] }, section) => {
+const groupByTag = (sections: Section[]) => {
+  return sections?.reduce((groups: { [key: string]: Section[] }, section) => {
     const tag = section.tag;
     if (!groups[tag]) {
       groups[tag] = [];
@@ -16,7 +13,24 @@ const groupByTag = (sections: MainPageSection[]) => {
     return groups;
   }, {});
 };
-const Home: React.FC<HomeProps> = ({ sections }) => {
+const Home: React.FC = () => {
+  const [sections, setSections] = useState<Section[]>([]);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchSections = async () => {
+      try {
+        const data = await getSections();
+        setSections(data);
+      } catch (error) {
+        console.error('Error fetching sections:', error);
+        setError("Failed to fetch sections");
+      }
+    };
+
+    void fetchSections();
+  }, []);
+
   const groupedSections = groupByTag(sections);
   return (
     <div className={`flex flex-col min-h-screen bg-background ${styles.home}`}>
@@ -26,6 +40,7 @@ const Home: React.FC<HomeProps> = ({ sections }) => {
         </div>
       </header>
       <main className={`mx-auto py-6 flex-grow ${styles.container}`}>
+      {error && <div className="text-red-500">{error}</div>} 
         {groupedSections && Object.keys(groupedSections).map(tag => {
           const group = groupedSections[tag];
           const firstSection = group[0];

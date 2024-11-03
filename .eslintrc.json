@@ -20,18 +20,16 @@
     "sourceType": "module"
   },
   "plugins": [
-    "@typescript-eslint",
-    "@next/eslint-plugin-next"
+    "@typescript-eslint"
   ],
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    "plugin:@next/next/recommended",
-    "next"
+    "plugin:@typescript-eslint/recommended-requiring-type-checking"
   ],
-  "ignorePatterns": ["tailwind.config.js", "/src/app/i18next.js"],
+  "ignorePatterns": ["tailwind.config.js"],
   "rules": {
+    "react/react-in-jsx-scope": "off"
   }
 }

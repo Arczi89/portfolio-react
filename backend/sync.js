@@ -1,4 +1,4 @@
-import sequelize from './lib/dbConnection'; 
+import sequelize from './dbConnection.js'; 
 
 async function syncDatabase() {
   try {
