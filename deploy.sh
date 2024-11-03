@@ -3,8 +3,8 @@
 USER='arturszwagrzak'
 HOST='arturszwagrzak.atthost24.pl'
 REMOTE_DIR='/home/arturszwagrzak/websites/szwagrzak_pl/'
+PORT=6022
 
-# Przesyłanie plików na serwer
-rsync -avz --delete build/ $USER@$HOST:$REMOTE_DIR
+rsync -avz -e "ssh -p $PORT" --delete build/ $USER@$HOST:$REMOTE_DIR
 
-ssh $USER@$HOST "cd $REMOTE_DIR && node backend/server.js"
+ssh -p $PORT $USER@$HOST "cd $REMOTE_DIR && node backend/server.js"
