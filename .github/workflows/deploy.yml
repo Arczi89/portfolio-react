@@ -3,7 +3,7 @@ name: Deploy to Atthost
 on:
   push:
     branches:
-      - main # lub inna gałąź, na której chcesz wdrażać
+      - release_build
 
 jobs:
   deploy:
@@ -15,7 +15,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14' # lub inna wersja Node.js
+          node-version: '14'
 
       - name: Install dependencies
         run: npm install
