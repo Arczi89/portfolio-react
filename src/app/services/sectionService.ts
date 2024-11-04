@@ -1,6 +1,6 @@
 import { Section } from "../models/Section";
 
-const BASE_URL = process.env.API_BASE_URL || 'http://localhost:3001/api';
+const BASE_URL = process.env.API_BASE_URL || 'http://localhost:3001';
 
 export const getSections = async (): Promise<Section[]> => {
   try {
