@@ -9,13 +9,16 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+console.log(process.env);
+console.log(process.env);
+console.log(process.env);
+console.log(process.env);
 
 app.use(cors({
-  origin: 'http://localhost:3000',
-  methods: 'GET,POST',
+  origin: ['http://localhost:3000', 'http://szwagrzak.pl', 'https://szwagrzak.pl'],
+  methods: ['OPTIONS', 'GET', 'POST', 'PUT', 'PATCH', 'DELETE'], 
   credentials: true
 }));
-
 
 app.use(bodyParser.json());
 
