@@ -8,8 +8,12 @@ PORT=6022
 
 echo "Przesyłanie plików do $USER@$HOST:$REMOTE_DIR"
 whoami
-rsync -avz -e "ssh -p $PORT" --delete build/ $USER@$HOST:$REMOTE_DIR
+rsync -az -e "ssh -p $PORT" --delete build/ $USER@$HOST:$REMOTE_DIR
 
 echo "Uruchamiam serwer w katalogu $REMOTE_DIR"
-rsync -avz -e "ssh -p $PORT" backend/ $USER@$HOST:$BACKEND_DIR
-ssh -p $PORT $USER@$HOST "cd $REMOTE_DIR && node backend/sync.js"
+rsync -az -e "ssh -p $PORT" --delete backend/ $USER@$HOST:$BACKEND_DIR
+
+echo "Przesyłanie node_modules do $REMOTE_DIR"
+rsync -az -e "ssh -p $PORT" --delete node_modules/ $USER@$HOST:$REMOTE_DIR/node_modules/
+ssh -p $PORT $USER@$HOST "cp $REMOTE_DIR/../.env $REMOTE_DIR"
+ssh -p $PORT $USER@$HOST "cd $REMOTE_DIR && node backend/sync.mjs"
