@@ -36,7 +36,7 @@ jobs:
       - name: Build React app
         run: npm run build
         env:
-          REACT_APP_API_BASE_URL: http://localhost:3001
+          REACT_APP_API_BASE_URL: https://server.szwagrzak.pl/api
 
       - name: Deploy to Atthost
         run: |

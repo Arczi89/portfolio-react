@@ -20,8 +20,7 @@
     "forceConsistentCasingInFileNames": true
   },
   "include": [
-    "src/**/*", "backend/**/*.js"
-, "backend/server.mjs", "backend/sync.mjs", "backend/mainPageSection.mjs", "backend/dbConnection.mjs"  ],
+    "src/**/*", "backend/**/*.js", "backend/**/*.mjs" ],
   "exclude": [
     "node_modules" 
   ]
