@@ -37,7 +37,6 @@ app.get('/api/sections', async (req, res) => {
   }
 });
 
-// Uruchamianie serwera
 app.listen(PORT, async () => {
   try {
     await sequelize.authenticate();

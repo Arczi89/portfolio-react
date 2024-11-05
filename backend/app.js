@@ -2,8 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const cors = require('cors');
-const sequelize = require('./dbConnection'); // Upewnij się, że masz plik z eksportem CommonJS
-const MainPageSection = require('./mainPageSection'); // Upewnij się, że masz plik z eksportem CommonJS
+const sequelize = require('./dbConnection');
+const MainPageSection = require('./mainPageSection');
 
 dotenv.config();
 
@@ -11,7 +11,7 @@ const app = express();
 const PORT = 3002;
 
 app.use(cors({
-  origin: 'https://szwagrzak.pl',
+  origin: ['https://szwagrzak.pl', 'http://szwagrzak.pl', 'http://localhost:3000', 'http://localhost:3002'],
   methods: ['OPTIONS', 'GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
   credentials: true
 }));
@@ -37,13 +37,11 @@ app.get('/api/sections', async (req, res) => {
   }
 });
 
-// Middleware do logowania
 app.use((req, res, next) => {
   console.log(`Request method: ${req.method}, Request URL: ${req.url}, Request Origin: ${req.get('origin')}`);
   next();
 });
 
-// Uruchamianie serwera
 app.listen(PORT, async () => {
   try {
     await sequelize.authenticate();
