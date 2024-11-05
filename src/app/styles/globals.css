@@ -12,6 +12,10 @@ html { font-size: 16px; }
   --background-end-rgb: 255, 255, 255;
 }
 
+bold {
+  font-weight: 900;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
