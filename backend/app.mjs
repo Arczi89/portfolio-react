@@ -11,7 +11,7 @@ const app = express();
 const PORT = 3002;
 
 app.use(cors({
-  origin: 'https://szwagrzak.pl',
+  origin: ['https://szwagrzak.pl', 'http://szwagrzak.pl', 'http://localhost:3000', 'http://localhost:3002'],
   methods: ['OPTIONS', 'GET', 'POST', 'PUT', 'PATCH', 'DELETE'], 
   credentials: true
 }));
