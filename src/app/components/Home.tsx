@@ -32,6 +32,15 @@ const Home: React.FC = () => {
   }, []);
 
   const groupedSections = groupByTag(sections);
+
+  const link = (text: string): string => {
+    const links = /(http|https|ftp):\/\/(\S*)/.exec(text);
+    return links?.length ? links[0] : '';
+  }
+  const woLink = (text: string): string => {
+    return text.replace(link(text), '');
+  } 
+
   return (
     <div className={`flex flex-col min-h-screen bg-background ${styles.home}`}>
       <header className={`bg-primary text-text py-4 ${styles.header}`}>
@@ -59,7 +68,7 @@ const Home: React.FC = () => {
                       {firstSection.image !== section.image && section.image && <div className={styles["paragraph-image"]}>
                         <img className={styles.me} src={section.image} alt={section.title} />
                       </div>}
-                      <div className={styles['paragraph-body']}>{section.body}</div>
+                      <div className={styles['paragraph-body']}><a className="bold" href={link(section.body)}>{link(section.body)}</a> {woLink(section.body)}</div>
                     </div>
                   ))}
                 </div>
