@@ -5,10 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "react-scripts start",
-    "server:dev": "nodemon backend/server.mjs",
+    "server:dev": "nodemon backend/app.mjs",
     "build": "react-scripts build",
     "start": "react-scripts start",
-    "server:start": "node backend/server.mjs",
+    "server:start": "node backend/app.mjs",
     "lint": "eslint .",
     "build:css": "tailwindcss -i ./src/app/styles/globals.css -o ./dist/styles.css --watch",
     "sync": "node backend/sync.js"
