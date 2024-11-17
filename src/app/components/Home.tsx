@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import styles from '../styles/home.module.scss';
+import styles from '../styles/home-page.module.scss';
 import { getSections } from "../services/sectionService";
-import { Section } from "../models/Section";
+import { SectionModel } from "../models/SectionModel";
+import Section from "./Section";
 
-const groupByTag = (sections: Section[]) => {
-  return sections?.reduce((groups: { [key: string]: Section[] }, section) => {
+const groupByTag = (sections: SectionModel[]) => {
+  return sections?.reduce((groups: { [key: string]: SectionModel[] }, section) => {
     const tag = section.tag;
     if (!groups[tag]) {
       groups[tag] = [];
@@ -13,8 +14,9 @@ const groupByTag = (sections: Section[]) => {
     return groups;
   }, {});
 };
+
 const Home: React.FC = () => {
-  const [sections, setSections] = useState<Section[]>([]);
+  const [sections, setSections] = useState<SectionModel[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -33,14 +35,6 @@ const Home: React.FC = () => {
 
   const groupedSections = groupByTag(sections);
 
-  const link = (text: string): string => {
-    const links = /(http|https|ftp):\/\/(\S*)/.exec(text);
-    return links?.length ? links[0] : '';
-  }
-  const woLink = (text: string): string => {
-    return text.replace(link(text), '');
-  } 
-
   return (
     <div className={`flex flex-col min-h-screen bg-background ${styles.home}`}>
       <header className={`bg-primary text-text py-4 ${styles.header}`}>
@@ -49,32 +43,10 @@ const Home: React.FC = () => {
         </div>
       </header>
       <main className={`mx-auto py-6 flex-grow ${styles.container}`}>
-      {error && <div className="text-red-500">{error}</div>} 
+        {error && <div className={styles.error}>{error}</div>}
         {groupedSections && Object.keys(groupedSections).map(tag => {
           const group = groupedSections[tag];
-          const firstSection = group[0];
-          return (
-            <section key={tag} className={`mb-8 ${styles.section}`}>
-              {firstSection.image && <div className={styles["section-image"]}>
-                <img className={styles.me} src={firstSection.image} alt='Artur' />
-              </div>}
-              <div className={styles["section-inner"]}>
-                <h2 className="text-4xl font-bold">
-                  {firstSection.title}
-                </h2>
-                <div className={styles[tag]}>
-                  {group.map(section => (
-                    <div key={section.id} className={styles.paragraph}>
-                      {firstSection.image !== section.image && section.image && <div className={styles["paragraph-image"]}>
-                        <img className={styles.me} src={section.image} alt={section.title} />
-                      </div>}
-                      <div className={styles['paragraph-body']}><a className="bold" href={link(section.body)}>{link(section.body)}</a> {woLink(section.body)}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </section>
-          );
+          return <Section group={group} tag={tag} key={tag} />;
         })}
       </main>
       <footer className="bg-primary text-text py-4 text-center">
