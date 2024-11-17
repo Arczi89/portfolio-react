@@ -49,7 +49,7 @@ const Home: React.FC = () => {
           return <Section group={group} tag={tag} key={tag} />;
         })}
       </main>
-      <footer className="bg-primary text-text py-4 text-center">
+      <footer className={styles.footer}>
         <p>&copy; 2024 Szwagrzak Artur. Wszelkie prawa zastrzeżone. Kontakt: artur@szwagrzak.pl</p>
       </footer>
     </div>

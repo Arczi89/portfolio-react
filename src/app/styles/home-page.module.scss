@@ -136,6 +136,13 @@
         }
     }
 
+    .footer {
+        text-align: center;
+        width: 100%;
+        border-top: 4px orange solid;
+        background: rgba(250, 238, 215, 0.7);
+    }
+
     @media (max-width: 1024px) {
         .container {
             .section {
