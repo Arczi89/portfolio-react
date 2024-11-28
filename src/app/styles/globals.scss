@@ -59,7 +59,23 @@ body {
 
 @font-face {
   font-family: 'sakuna';
-  src: url('/public/fonts/sakuna.ttf') format('truetype');
+  src: url('../../../public/fonts/sakuna.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
+}
+
+.btn {
+  background-color: transparent;
+  color: var(--primary);
+  @apply text-2xl font-bold;
+
+  &--nav {
+    padding: 1rem;
+    &.active {
+      font-weight: 900;
+      border: 4px orange solid;
+      border-radius: 1rem;
+      background: rgba(250, 238, 215, 0.7);
+    }
+  }
 }

@@ -1,0 +1,31 @@
+form.error {
+    color: red;
+    font-weight: bold;
+}
+
+.contact {
+    background-image: url('../../../public/images/coffee-bg.webp');
+    background-repeat: repeat-y;
+    background-size: 100% auto;
+    padding-top: 8.5rem;
+    height: calc(100vh - 8.5rem);
+    display: flex;
+    align-items: center;
+    width: 100%;
+    color: #6F4E37;
+
+    .container {
+        scroll-snap-type: y mandatory;
+        overflow-y: auto;
+        scrollbar-width: thin;
+        width: 100%;
+        height: calc(100vh - 10rem);
+    }
+
+    .footer {
+        text-align: center;
+        width: 100%;
+        border-top: 4px orange solid;
+        background: rgba(250, 238, 215, 0.7);
+    }
+}

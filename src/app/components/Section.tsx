@@ -1,5 +1,5 @@
 import { SectionModel } from '../models/SectionModel';
-import styles from '../styles/home-page.module.scss';
+import styles from '../styles/section.module.scss';
 
 interface SectionProps {
   group: SectionModel[];
@@ -17,20 +17,21 @@ const woLink = (text: string): string => {
 
 const Section: React.FC<SectionProps> = ({ group, tag }) => {
 
-  const firstSection = group[0];
+  const firstSection = group ? group[0] : null;
 
-  return (<section className={`mb-8 ${styles.section}`}>
-    {firstSection.image && <div className={styles["section-image"]}>
+  return (
+  <section className={`mb-8 ${styles.section}`}>
+    {firstSection?.image && <div className={styles["section-image"]}>
       <img className={styles.me} src={firstSection.image} alt='Artur' />
     </div>}
     <div className={styles["section-inner"]}>
       <h2 className="text-4xl font-bold">
-        {firstSection.title}
+        {firstSection && firstSection.title}
       </h2>
       <div className={styles[tag]}>
-        {group.map(sectionElement => (
+        {group?.map(sectionElement => (
           <div key={sectionElement.id} className={styles.paragraph}>
-            {firstSection.image !== sectionElement.image && sectionElement.image && <div className={styles["paragraph-image"]}>
+            {firstSection && firstSection.image !== sectionElement.image && sectionElement.image && <div className={styles["paragraph-image"]}>
               <img className={styles.me} src={sectionElement.image} alt={sectionElement.title} />
             </div>}
             <div className={styles['paragraph-body']}><a className="bold" href={link(sectionElement.body)}>{link(sectionElement.body)}</a> {woLink(sectionElement.body)}</div>
