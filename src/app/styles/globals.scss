@@ -2,9 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;700&display=swap");
 
-html { font-size: 16px; }
+html {
+  font-size: 16px;
+}
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -31,7 +33,12 @@ html { font-size: 16px; }
 }
 
 @layer components {
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-poppins text-heading;
   }
 }
@@ -51,15 +58,15 @@ body {
     text-wrap: balance;
   }
 }
- 
+
 .social {
   display: inline-block;
   text-align: center;
 }
 
 @font-face {
-  font-family: 'sakuna';
-  src: url('../../../public/fonts/sakuna.ttf') format('truetype');
+  font-family: "sakuna";
+  src: url("../../../public/fonts/sakuna.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }

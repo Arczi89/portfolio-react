@@ -1,17 +1,17 @@
 .header {
-    flex-direction: row;
-    background-color: transparent;
-    position: fixed;
-    top: 0;
-    left: 5rem;
-    z-index: 1000;
-    height: 6.5rem;
-    margin-top: 1rem;
-    display: flex;
-    align-items: center;
+  flex-direction: row;
+  background-color: transparent;
+  position: fixed;
+  top: 0;
+  left: 5rem;
+  z-index: 1000;
+  height: 6.5rem;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
 
-    nav {
-        display: flex;
-        margin-left: 2rem;
-    }
+  nav {
+    display: flex;
+    margin-left: 2rem;
+  }
 }

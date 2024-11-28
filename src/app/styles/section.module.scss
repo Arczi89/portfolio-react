@@ -1,113 +1,113 @@
 .section {
+  display: flex;
+  flex-direction: row;
+  height: calc(100vh - 12.5rem);
+  scroll-snap-align: start;
+  max-width: 100%;
+
+  border: 4px orange solid;
+  border-radius: 2rem;
+  margin: 1rem 4.5rem;
+  padding: 1rem;
+  background: rgba(250, 238, 215, 0.7);
+
+  .section-inner {
     display: flex;
-    flex-direction: row;
-    height: calc(100vh - 12.5rem);
-    scroll-snap-align: start;
-    max-width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 80%;
+    margin: 0 1.5rem;
 
-    border: 4px orange solid;
-    border-radius: 2rem;
-    margin: 1rem 4.5rem;
-    padding: 1rem;
-    background: rgba(250, 238, 215, 0.7);
-
-    .section-inner {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        width: 80%;
-        margin: 0 1.5rem;
-
-        .abilities {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-        }
-
-        .paragraph {
-            display: flex;
-            flex-direction: row;
-            margin-top: 1rem;
-
-            &:first-of-type {
-                width: 100%;
-            }
-
-            .paragraph-image {
-                margin-right: 1rem;
-                color: black;
-                border-radius: 1rem;
-                display: flex;
-
-                img {
-                    max-width: 22rem;
-                    max-height: 6rem;
-                }
-            }
-
-            .paragraph-body {
-                font-size: 1rem;
-                font-weight: 500;
-            }
-        }
+    .abilities {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
     }
 
-    .section-image {
+    .paragraph {
+      display: flex;
+      flex-direction: row;
+      margin-top: 1rem;
+
+      &:first-of-type {
+        width: 100%;
+      }
+
+      .paragraph-image {
+        margin-right: 1rem;
+        color: black;
+        border-radius: 1rem;
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 20%;
+
         img {
-            border-radius: 1rem;
+          max-width: 22rem;
+          max-height: 6rem;
         }
+      }
 
-        .me {
-            border: solid 0.25rem orange;
-            width: 20rem;
-        }   
+      .paragraph-body {
+        font-size: 1rem;
+        font-weight: 500;
+      }
     }
+  }
+
+  .section-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20%;
+    img {
+      border-radius: 1rem;
+    }
+
+    .me {
+      border: solid 0.25rem orange;
+      width: 20rem;
+    }
+  }
 }
 
 @media (max-width: 1024px) {
-    .container {
-        .section {
-            height: auto;
-            scroll-snap-align: unset;
-            flex-direction: column;
-            margin: 1rem 4rem;
-            padding: 1rem;
+  .container {
+    .section {
+      height: auto;
+      scroll-snap-align: unset;
+      flex-direction: column;
+      margin: 1rem 4rem;
+      padding: 1rem;
 
-            .section-image {
-                width: 50%;
-                align-self: center;
-                margin: 1rem;
-            }
+      .section-image {
+        width: 50%;
+        align-self: center;
+        margin: 1rem;
+      }
 
-            .section-inner .paragraph {
-                flex-direction: column;
+      .section-inner .paragraph {
+        flex-direction: column;
 
-                .paragraph-image {
-                    img {
-                        max-width: 12rem;
-                        max-height: 4rem;
-                    }
-                }
-            }
-            .paragraph-body {
-                font-size: 1rem;
-            }
+        .paragraph-image {
+          img {
+            max-width: 12rem;
+            max-height: 4rem;
+          }
         }
+      }
+      .paragraph-body {
+        font-size: 1rem;
+      }
     }
+  }
 }
 
 @media (max-width: 599px) {
-    .container {
-        .section {
-            margin: 0.5rem;
-            padding: 0.5rem;
-            .paragraph-body {
-                font-size: 0.8rem;
-            }
-        }
+  .container {
+    .section {
+      margin: 0.5rem;
+      padding: 0.5rem;
+      .paragraph-body {
+        font-size: 0.8rem;
+      }
     }
+  }
 }

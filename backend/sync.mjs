@@ -1,11 +1,11 @@
-import sequelize from './dbConnection.mjs'; 
+import sequelize from "./dbConnection.mjs";
 
 async function syncDatabase() {
   try {
     await sequelize.sync({ force: true });
-    console.log('Database synchronized');
+    console.log("Database synchronized");
   } catch (error) {
-    console.error('Error synchronizing database:', error);
+    console.error("Error synchronizing database:", error);
   }
 }
 
