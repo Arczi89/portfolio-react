@@ -7,7 +7,6 @@
   "scripts": {
     "dev": "react-scripts start",
     "server:dev": "nodemon backend/app.mjs",
-    "build": "react-scripts build",
     "start": "react-scripts start",
     "server:start": "node backend/app.mjs",
     "lint": "eslint .",
@@ -23,7 +22,9 @@
     "db:start": "docker-compose -f docker-compose.dev.yml up -d",
     "db:stop": "docker-compose -f docker-compose.dev.yml down",
     "db:reset": "docker-compose -f docker-compose.dev.yml down -v && docker-compose -f docker-compose.dev.yml up -d",
-    "dev:full": "npm run db:start && npm run server:dev"
+    "dev:full": "npm run db:start && concurrently \"npm run server:dev\" \"npm start\"",
+    "dev:backend": "npm run db:start && npm run server:dev",
+    "dev:frontend": "npm start"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
@@ -56,6 +57,7 @@
     "@typescript-eslint/eslint-plugin": "8.12.2",
     "@typescript-eslint/parser": "8.12.2",
     "autoprefixer": "^10.4.20",
+    "concurrently": "^8.2.2",
     "eslint-config-react-app": "^7.0.1",
     "nodemon": "^3.1.7",
     "postcss": "^8.4.47",
