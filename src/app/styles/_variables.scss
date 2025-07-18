@@ -1,0 +1,65 @@
+// Kolory podstawowe
+$color-primary: #1e40af;
+$color-text: #1f2937;
+$color-error: red;
+
+// Kolory gradientów
+$gradient-primary: linear-gradient(-45deg, #1759c3, #4006c9, #610582, #075f6f);
+$gradient-secondary: linear-gradient(
+  -45deg,
+  #3b82f6,
+  #8b5cf6,
+  #ec4899,
+  #06b6d4
+);
+$gradient-nav: linear-gradient(-45deg, #7297d1, #5f2ed1, #b15dd0, #2b91a3);
+
+// Kolory przezroczyste
+$color-primary-transparent-10: rgba(30, 64, 175, 0.1);
+$color-primary-transparent-20: rgba(30, 64, 175, 0.2);
+$color-blue-transparent-30: rgba(147, 197, 253, 0.3);
+
+// Rozmiary i spacing
+$header-height: 6.5rem;
+$footer-border-width: 4px;
+$border-radius-large: 2rem;
+$border-radius-medium: 1rem;
+$border-radius-small: 0.25rem;
+
+// Animacje
+$gradient-animation-duration: 15s;
+
+// Mixiny dla powtarzających się stylów
+@mixin page-container {
+  padding-top: 8.5rem;
+  height: calc(100vh - 8.5rem);
+  display: flex;
+  align-items: center;
+  width: 100%;
+  color: $color-text;
+}
+
+@mixin page-container-gradient {
+  background-size: 400% 400%;
+  animation: gradientShift $gradient-animation-duration ease infinite;
+}
+
+@mixin scroll-container {
+  scroll-snap-type: y mandatory;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  width: 100%;
+  height: calc(100vh - 10rem);
+}
+
+@mixin page-footer {
+  text-align: center;
+  width: 100%;
+  border-top: $footer-border-width $color-primary solid;
+  background: $color-primary-transparent-10;
+}
+
+@mixin error {
+  color: $color-error;
+  font-weight: bold;
+}

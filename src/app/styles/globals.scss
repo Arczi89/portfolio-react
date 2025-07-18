@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+@import 'variables';
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;700&display=swap');
 
 html {
@@ -64,6 +65,18 @@ body {
   text-align: center;
 }
 
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 @font-face {
   font-family: 'sakuna';
   src: url('../../../public/fonts/sakuna.ttf') format('truetype');
@@ -73,16 +86,17 @@ body {
 
 .btn {
   background-color: transparent;
-  color: #1e40af;
+  color: $color-text;
   @apply text-2xl font-bold;
 
   &--nav {
     padding: 1rem;
     &.active {
       font-weight: 900;
-      border: 4px #1e40af solid;
-      border-radius: 1rem;
-      background: rgba(30, 64, 175, 0.1);
+      border-radius: $border-radius-medium;
+      background: $gradient-nav;
+      background-size: 400% 400%;
+      animation: gradientShift $gradient-animation-duration ease infinite;
     }
   }
 }

@@ -1,3 +1,5 @@
+@import 'variables';
+
 @keyframes typing {
   from {
     width: 0;
@@ -8,7 +10,7 @@
 }
 @keyframes blink-caret {
   50% {
-    border-right-color: #1e40af;
+    border-right-color: $color-text;
   }
   to {
     border-right-color: transparent;
@@ -18,12 +20,12 @@
 h1.logo {
   font-family: sakuna;
   font-size: 4rem;
-  color: #1f2937;
+  color: $color-text;
   padding: 0 1rem;
 
   .animated {
     white-space: nowrap;
-    border-right: 0.5rem solid #1e40af;
+    border-right: 0.5rem solid $color-text;
     overflow: hidden;
     animation:
       typing 4s steps(30, end) forwards,

@@ -681,6 +681,20 @@ body {
   text-align: center;
 }
 
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 @font-face {
   font-family: 'sakuna';
 
@@ -693,7 +707,7 @@ body {
 
 .btn {
   background-color: transparent;
-  color: var(--primary);
+  color: $color-text;
   font-size: 1.5rem;
   line-height: 2rem;
   font-weight: 700;
@@ -701,9 +715,10 @@ body {
     padding: 1rem;
     &.active {
       font-weight: 900;
-      border: 4px orange solid;
-      border-radius: 1rem;
-      background: rgba(250, 238, 215, 0.7);
+      border-radius: $border-radius-medium;
+      background: $gradient-nav;
+      background-size: 400% 400%;
+      animation: gradientShift $gradient-animation-duration ease infinite;
     }
   }
 }

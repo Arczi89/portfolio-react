@@ -1,43 +1,15 @@
-form.error {
-  color: red;
-  font-weight: bold;
-}
+@import 'variables';
 
 .contact {
-  background: linear-gradient(-45deg, #3b82f6, #8b5cf6, #ec4899, #06b6d4);
-  background-size: 400% 400%;
-  animation: gradientShift 15s ease infinite;
-  padding-top: 8.5rem;
-  height: calc(100vh - 8.5rem);
-  display: flex;
-  align-items: center;
-  width: 100%;
-  color: #1f2937;
-
-  .container {
-    scroll-snap-type: y mandatory;
-    overflow-y: auto;
-    scrollbar-width: thin;
-    width: 100%;
-    height: calc(100vh - 10rem);
-  }
-
-  .footer {
-    text-align: center;
-    width: 100%;
-    border-top: 4px #1e40af solid;
-    background: rgba(30, 64, 175, 0.1);
-  }
+  @include page-container;
+  @include page-container-gradient;
+  background: $gradient-secondary;
 }
 
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+.container {
+  @include scroll-container;
+}
+
+.footer {
+  @include page-footer;
 }
