@@ -73,16 +73,16 @@ body {
 
 .btn {
   background-color: transparent;
-  color: var(--primary);
+  color: #1E40AF;
   @apply text-2xl font-bold;
 
   &--nav {
     padding: 1rem;
     &.active {
       font-weight: 900;
-      border: 4px orange solid;
+      border: 4px #1E40AF solid;
       border-radius: 1rem;
-      background: rgba(250, 238, 215, 0.7);
+      background: rgba(30, 64, 175, 0.1);
     }
   }
 }
