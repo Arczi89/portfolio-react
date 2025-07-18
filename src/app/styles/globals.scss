@@ -73,14 +73,14 @@ body {
 
 .btn {
   background-color: transparent;
-  color: #1E40AF;
+  color: #1e40af;
   @apply text-2xl font-bold;
 
   &--nav {
     padding: 1rem;
     &.active {
       font-weight: 900;
-      border: 4px #1E40AF solid;
+      border: 4px #1e40af solid;
       border-radius: 1rem;
       background: rgba(30, 64, 175, 0.1);
     }

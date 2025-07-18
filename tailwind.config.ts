@@ -10,13 +10,13 @@ const config: Config = {
       },
       colors: {
         // Fioletowa kolorystyka - kreatywna i nowoczesna
-        primary: '#8B5CF6',      // Główny fioletowy
-        accent: '#7C3AED',       // Ciemniejszy fioletowy (akcent)
-        background: '#FAFAFA',   // Jasny tło
-        heading: '#1F2937',      // Ciemny tekst dla nagłówków
-        text: '#374151',         // Ciemny szary dla tekstu
-        button: '#8B5CF6',       // Fioletowy dla przycisków
-        border: '#E5E7EB',       // Jasny szary dla obramowań
+        primary: '#8B5CF6', // Główny fioletowy
+        accent: '#7C3AED', // Ciemniejszy fioletowy (akcent)
+        background: '#FAFAFA', // Jasny tło
+        heading: '#1F2937', // Ciemny tekst dla nagłówków
+        text: '#374151', // Ciemny szary dla tekstu
+        button: '#8B5CF6', // Fioletowy dla przycisków
+        border: '#E5E7EB', // Jasny szary dla obramowań
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

@@ -4,7 +4,7 @@ form.error {
 }
 
 .contact {
-  background: linear-gradient(-45deg, #3B82F6, #8B5CF6, #EC4899, #06B6D4);
+  background: linear-gradient(-45deg, #3b82f6, #8b5cf6, #ec4899, #06b6d4);
   background-size: 400% 400%;
   animation: gradientShift 15s ease infinite;
   padding-top: 8.5rem;
@@ -12,7 +12,7 @@ form.error {
   display: flex;
   align-items: center;
   width: 100%;
-  color: #1F2937;
+  color: #1f2937;
 
   .container {
     scroll-snap-type: y mandatory;
@@ -25,7 +25,7 @@ form.error {
   .footer {
     text-align: center;
     width: 100%;
-    border-top: 4px #1E40AF solid;
+    border-top: 4px #1e40af solid;
     background: rgba(30, 64, 175, 0.1);
   }
 }
