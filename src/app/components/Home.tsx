@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
-import styles from "../styles/home.module.scss";
-import { getSections } from "../services/sectionService";
-import { SectionModel } from "../models/SectionModel";
-import Section from "./Section";
-import Header from "./Header";
+import { useState, useEffect } from 'react';
+import styles from '../styles/home.module.scss';
+import { getSections } from '../services/sectionService';
+import { SectionModel } from '../models/SectionModel';
+import Section from './Section';
+import Header from './Header';
 
 const groupByTag = (sections: SectionModel[]) => {
   return sections?.reduce(
@@ -15,7 +15,7 @@ const groupByTag = (sections: SectionModel[]) => {
       groups[tag].push(section);
       return groups;
     },
-    {},
+    {}
   );
 };
 
@@ -29,8 +29,8 @@ const Home: React.FC = () => {
         const data = await getSections();
         setSections(data);
       } catch (error) {
-        console.error("Error fetching sections:", error);
-        setError("Failed to fetch sections");
+        console.error('Error fetching sections:', error);
+        setError('Failed to fetch sections');
       }
     };
 
@@ -45,7 +45,7 @@ const Home: React.FC = () => {
       <main className={`mx-auto py-6 flex-grow ${styles.container}`}>
         {error && <div className={styles.error}>{error}</div>}
         {groupedSections &&
-          Object.keys(groupedSections).map((tag) => {
+          Object.keys(groupedSections).map(tag => {
             const group = groupedSections[tag];
             return <Section group={group} tag={tag} key={tag} />;
           })}

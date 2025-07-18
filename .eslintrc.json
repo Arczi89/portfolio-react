@@ -1,36 +1,9 @@
 {
-  "root": true,
-  "env": {
-    "browser": true,
-    "es6": true,
-    "node": true
-  },
-  "settings": {
-    "react": {
-      "version": "detect"
-    }
-  },
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "project": "./tsconfig.json",
-    "ecmaFeatures": {
-      "jsx": true
-    },
-    "ecmaVersion": 12,
-    "sourceType": "module"
-  },
-  "plugins": [
-    "@typescript-eslint"
-  ],
-  "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking"
-  ],
-  "ignorePatterns": ["tailwind.config.js"],
-  "rules": {
-    "react/react-in-jsx-scope": "off",
-    "react/prop-types": "off"
-  }
+  "extends": ["react-app", "react-app/jest"],
+  "ignorePatterns": [
+    "build/**/*",
+    "backend/**/*",
+    "postcss.config.js",
+    "tailwind.config.ts"
+  ]
 }

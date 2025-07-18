@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
-import styles from "../styles/interests.module.scss";
-import { getSections } from "../services/sectionService";
-import { SectionModel } from "../models/SectionModel";
-import Section from "./Section";
-import Header from "./Header";
+import { useState, useEffect } from 'react';
+import styles from '../styles/interests.module.scss';
+import { getSections } from '../services/sectionService';
+import { SectionModel } from '../models/SectionModel';
+import Section from './Section';
+import Header from './Header';
 
-const tag = "hobbies";
+const tag = 'hobbies';
 
 const groupByTag = (sections: SectionModel[]) => {
   return sections?.reduce(
@@ -17,7 +17,7 @@ const groupByTag = (sections: SectionModel[]) => {
       groups[tag].push(section);
       return groups;
     },
-    {},
+    {}
   );
 };
 
@@ -31,8 +31,8 @@ const Interests: React.FC = () => {
         const data = await getSections();
         setSections(data);
       } catch (error) {
-        console.error("Error fetching sections:", error);
-        setError("Failed to fetch sections");
+        console.error('Error fetching sections:', error);
+        setError('Failed to fetch sections');
       }
     };
 

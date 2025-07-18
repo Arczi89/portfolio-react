@@ -1,5 +1,5 @@
-const { DataTypes, Model } = require("sequelize");
-const sequelize = require("./dbConnection"); // Zmienione na require
+const { DataTypes, Model } = require('sequelize');
+const sequelize = require('./dbConnection'); // Zmienione na require
 
 class MainPageSection extends Model {}
 
@@ -29,12 +29,12 @@ MainPageSection.init(
     created_at: {
       type: DataTypes.TIME,
       defaultValue: DataTypes.NOW,
-      field: "created_at",
+      field: 'created_at',
     },
     updated_at: {
       type: DataTypes.TIME,
       defaultValue: DataTypes.NOW,
-      field: "updated_at",
+      field: 'updated_at',
     },
     image: {
       type: DataTypes.STRING,
@@ -43,10 +43,10 @@ MainPageSection.init(
   },
   {
     sequelize,
-    modelName: "MainPageSection",
-    tableName: "main_page_sections",
+    modelName: 'MainPageSection',
+    tableName: 'main_page_sections',
     timestamps: false,
-  },
+  }
 );
 
 module.exports = MainPageSection;

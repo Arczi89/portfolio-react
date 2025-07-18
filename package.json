@@ -11,8 +11,18 @@
     "start": "react-scripts start",
     "server:start": "node backend/app.mjs",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "type-check": "tsc --noEmit",
+    "test": "react-scripts test",
+    "test:coverage": "react-scripts test --coverage --watchAll=false",
     "build:css": "tailwindcss -i ./src/app/styles/globals.css -o ./dist/styles.css --watch",
-    "sync": "node backend/sync.js"
+    "sync": "node backend/sync.js",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,scss,css,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,scss,css,md}\"",
+    "db:start": "docker-compose -f docker-compose.dev.yml up -d",
+    "db:stop": "docker-compose -f docker-compose.dev.yml down",
+    "db:reset": "docker-compose -f docker-compose.dev.yml down -v && docker-compose -f docker-compose.dev.yml up -d",
+    "dev:full": "npm run db:start && npm run server:dev"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
