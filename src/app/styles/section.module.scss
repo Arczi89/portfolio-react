@@ -4,12 +4,12 @@
   height: calc(100vh - 12.5rem);
   scroll-snap-align: start;
   max-width: 100%;
-
-  border: 4px orange solid;
   border-radius: 2rem;
   margin: 1rem 4.5rem;
   padding: 1rem;
-  background: rgba(250, 238, 215, 0.7);
+  background: rgba(147, 197, 253, 0.3);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 8px 32px rgba(30, 64, 175, 0.2);
 
   .section-inner {
     display: flex;
@@ -62,7 +62,7 @@
     }
 
     .me {
-      border: solid 0.25rem orange;
+      border: solid 0.25rem #1E40AF;
       width: 20rem;
     }
   }
