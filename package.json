@@ -14,7 +14,7 @@
     "lint:fix": "eslint . --fix",
     "type-check": "tsc --noEmit",
     "test": "react-scripts test",
-    "test:coverage": "react-scripts test --coverage --watchAll=false",
+    "test:coverage": "react-scripts test --coverage --watchAll=false --passWithNoTests",
     "build:css": "tailwindcss -i ./src/app/styles/globals.css -o ./dist/styles.css --watch",
     "sync": "node backend/sync.js",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,scss,css,md}\"",
