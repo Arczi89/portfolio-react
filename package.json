@@ -8,6 +8,7 @@
     "dev": "react-scripts start",
     "server:dev": "nodemon backend/app.mjs",
     "start": "react-scripts start",
+    "build": "react-scripts build",
     "server:start": "node backend/app.mjs",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
