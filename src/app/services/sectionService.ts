@@ -11,7 +11,7 @@ const REQUEST_TIMEOUT = 5000;
 
 export const getSections = async (): Promise<SectionModel[]> => {
   const urls = [BASE_URL, FALLBACK_URL];
-  
+
   for (const url of urls) {
     try {
       const controller = new AbortController();
@@ -22,7 +22,7 @@ export const getSections = async (): Promise<SectionModel[]> => {
         signal: controller.signal,
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json; charset=utf-8',
+          Accept: 'application/json; charset=utf-8',
         },
       });
 
@@ -54,6 +54,6 @@ export const getSections = async (): Promise<SectionModel[]> => {
       continue;
     }
   }
-  
+
   throw new Error('All API endpoints failed');
 };

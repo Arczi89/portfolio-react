@@ -4,6 +4,8 @@
     "build/**/*",
     "backend/**/*",
     "postcss.config.js",
-    "tailwind.config.ts"
+    "tailwind.config.ts",
+    "dist/**/*",
+    "node_modules/**/*"
   ]
 }
