@@ -1,6 +1,4 @@
-*,
-::before,
-::after {
+*, ::before, ::after {
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
   --tw-translate-x: 0;
@@ -154,8 +152,7 @@ html,
   /* 3 */
   tab-size: 4;
   /* 3 */
-  font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
-    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   /* 4 */
   font-feature-settings: normal;
   /* 5 */
@@ -198,7 +195,7 @@ Add the correct text decoration in Chrome, Edge, and Safari.
 
 abbr:where([title]) {
   -webkit-text-decoration: underline dotted;
-  text-decoration: underline dotted;
+          text-decoration: underline dotted;
 }
 
 /*
@@ -244,8 +241,7 @@ code,
 kbd,
 samp,
 pre {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    'Liberation Mono', 'Courier New', monospace;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   /* 1 */
   font-feature-settings: normal;
   /* 2 */
@@ -501,7 +497,7 @@ Set the default cursor for buttons.
 */
 
 button,
-[role='button'] {
+[role="button"] {
   cursor: pointer;
 }
 
@@ -545,7 +541,7 @@ video {
 
 /* Make elements with the HTML hidden attribute stay hidden by default */
 
-[hidden]:where(:not([hidden='until-found'])) {
+[hidden]:where(:not([hidden="until-found"])) {
   display: none;
 }
 
@@ -590,11 +586,11 @@ body {
 }
 
 h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
   font-family: Poppins, sans-serif;
   --tw-text-opacity: 1;
   color: rgb(111 78 55 / var(--tw-text-opacity));
@@ -630,16 +626,6 @@ h6 {
   background-color: rgb(255 248 220 / var(--tw-bg-opacity));
 }
 
-.bg-primary {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 169 84 / var(--tw-bg-opacity));
-}
-
-.py-4 {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
-
 .py-6 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
@@ -658,16 +644,6 @@ h6 {
   font-weight: 700;
 }
 
-.text-red-500 {
-  --tw-text-opacity: 1;
-  color: rgb(239 68 68 / var(--tw-text-opacity));
-}
-
-.text-text {
-  --tw-text-opacity: 1;
-  color: rgb(128 0 0 / var(--tw-text-opacity));
-}
-
 html {
   font-size: 16px;
 }
@@ -676,6 +652,10 @@ html {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+}
+
+.bold {
+  font-weight: 900;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -704,9 +684,26 @@ body {
 @font-face {
   font-family: 'sakuna';
 
-  src: url('/public/fonts/sakuna.ttf') format('truetype');
+  src: url('../../../public/fonts/sakuna.ttf') format('truetype');
 
   font-weight: normal;
 
   font-style: normal;
+}
+
+.btn {
+  background-color: transparent;
+  color: var(--primary);
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+  &--nav {
+    padding: 1rem;
+    &.active {
+      font-weight: 900;
+      border: 4px orange solid;
+      border-radius: 1rem;
+      background: rgba(250, 238, 215, 0.7);
+    }
+  }
 }

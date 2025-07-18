@@ -1,0 +1,27 @@
+# Build outputs
+build/
+dist/
+node_modules/
+
+# Generated files
+*.min.js
+*.min.css
+*.map
+
+# Package files
+package-lock.json
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db 
