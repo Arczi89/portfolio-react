@@ -2,15 +2,19 @@ import express from "express";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import cors from "cors";
+import rateLimit from "express-rate-limit";
 import sequelize from "./dbConnection.mjs";
 import MainPageSection from "./mainPageSection.mjs";
+import ContactMessage from "./contactMessage.mjs";
+import { sendContactEmail, sendConfirmationEmail } from "./emailService.mjs";
+import { encryptContactData, decryptData } from "./encryptionService.mjs";
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3002;
 
-// Mock data jako fallback
+// Fallback data for when database is unavailable
 const fallbackSections = [
   {
     id: 1,
@@ -150,7 +154,6 @@ const fallbackSections = [
   }
 ];
 
-// Security headers
 app.use((req, res, next) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('X-Frame-Options', 'DENY');
@@ -171,15 +174,23 @@ app.use(
   }),
 );
 
+const contactLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 5, // max 5 messages per 15 minutes
+  message: {
+    success: false,
+    message: "Too many attempts. Try again in 15 minutes."
+  },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
 app.use(bodyParser.json({ limit: '10mb' }));
 
-// Set UTF-8 encoding for all responses
 app.use((req, res, next) => {
   res.setHeader('Content-Type', 'application/json; charset=utf-8');
   next();
 });
-
-// Request logging middleware
 app.use((req, res, next) => {
   console.log(
     `${new Date().toISOString()} - ${req.method} ${req.url} - ${req.get("origin") || 'unknown'}`,
@@ -198,19 +209,16 @@ app.get("/api/test", async (req, res) => {
 
 app.get("/api/sections", async (req, res) => {
   try {
-    // Próbuj pobrać z bazy danych
     const sections = await MainPageSection.findAll();
     res.setHeader('Content-Type', 'application/json; charset=utf-8');
     res.json(sections);
   } catch (error) {
     console.error("Database error, using fallback data:", error.message);
-    // Fallback na mock data
     res.setHeader('Content-Type', 'application/json; charset=utf-8');
     res.json(fallbackSections);
   }
 });
 
-// Health check endpoint
 app.get("/api/health", async (req, res) => {
   try {
     await sequelize.authenticate();
@@ -227,6 +235,115 @@ app.get("/api/health", async (req, res) => {
       database: "disconnected",
       version: "1.0.0",
       message: "Using fallback data"
+    });
+  }
+});
+
+app.post("/api/contact", contactLimiter, async (req, res) => {
+  try {
+    const { name, email, message } = req.body;
+    
+    if (!name || !email || !message) {
+      return res.status(400).json({
+        success: false,
+        message: "All fields are required"
+      });
+    }
+    
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid email format"
+      });
+    }
+    
+    const ipAddress = req.ip || req.connection.remoteAddress || req.headers['x-forwarded-for'];
+    const userAgent = req.headers['user-agent'];
+    
+    // Encrypt sensitive data before database storage
+    const encryptedData = encryptContactData({
+      name: name.trim(),
+      email: email.trim().toLowerCase(),
+      message: message.trim(),
+      ip_address: ipAddress,
+      user_agent: userAgent,
+    });
+    
+    const contactMessage = await ContactMessage.create(encryptedData);
+    
+    const emailResult = await sendContactEmail({
+      name: name.trim(),
+      email: email.trim(),
+      message: message.trim()
+    });
+    
+    const confirmationResult = await sendConfirmationEmail({
+      name: name.trim(),
+      email: email.trim(),
+      message: message.trim()
+    });
+    
+    console.log(`New contact message from: ${name} (${email})`);
+    console.log(`Email to you: ${emailResult.success ? 'sent' : 'error'}`);
+    console.log(`Confirmation email: ${confirmationResult.success ? 'sent' : 'error'}`);
+    
+    res.json({
+      success: true,
+      message: "Message sent successfully! Check your email.",
+      id: contactMessage.id
+    });
+    
+  } catch (error) {
+    console.error("Error processing contact message:", error);
+    res.status(500).json({
+      success: false,
+      message: "An error occurred while sending the message. Please try again later."
+    });
+  }
+});
+
+app.delete("/api/contact/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { email } = req.body;
+    
+    if (!email) {
+      return res.status(400).json({
+        success: false,
+        message: "Email is required for verification"
+      });
+    }
+    
+    const contactMessage = await ContactMessage.findByPk(id);
+    
+    if (!contactMessage) {
+      return res.status(404).json({
+        success: false,
+        message: "Message not found"
+      });
+    }
+    
+    const decryptedEmail = decryptData(contactMessage.email);
+    if (decryptedEmail !== email.toLowerCase()) {
+      return res.status(403).json({
+        success: false,
+        message: "No permission to delete this message"
+      });
+    }
+    
+    await contactMessage.destroy();
+    
+    res.json({
+      success: true,
+      message: "Data deleted successfully"
+    });
+    
+  } catch (error) {
+    console.error("Error deleting data:", error);
+    res.status(500).json({
+      success: false,
+      message: "An error occurred while deleting data"
     });
   }
 });

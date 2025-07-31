@@ -88,15 +88,27 @@ body {
   background-color: transparent;
   color: $color-text;
   @apply text-2xl font-bold;
+  transition: all 0.3s ease;
 
   &--nav {
     padding: 1rem;
+    border-radius: $border-radius-medium;
+
     &.active {
       font-weight: 900;
-      border-radius: $border-radius-medium;
       background: $gradient-nav;
       background-size: 400% 400%;
       animation: gradientShift $gradient-animation-duration ease infinite;
+      color: white;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    &:hover {
+      background: $gradient-nav;
+      background-size: 400% 400%;
+      animation: gradientShift $gradient-animation-duration ease infinite;
+      color: white;
+      transform: translateY(-2px);
     }
   }
 }

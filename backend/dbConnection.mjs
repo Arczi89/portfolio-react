@@ -8,7 +8,7 @@ const sequelize = new Sequelize({
   host: process.env.DB_HOST || "localhost",
   username: process.env.DB_USER || "root",
   password: process.env.DB_PASS || "",
-  database: process.env.DB_NAME || "portfolio",
+  database: process.env.DB_NAME || "17390_portfolio",
   logging: false,
   dialectOptions: {
     charset: "utf8mb4",
@@ -26,7 +26,6 @@ const sequelize = new Sequelize({
     charset: 'utf8mb4',
     collate: 'utf8mb4_unicode_ci'
   },
-  // Dodatkowe opcje połączenia
   pool: {
     max: 5,
     min: 0,

@@ -1,4 +1,4 @@
-# Portfolio React - Change Log
+# Portfolio React - Changelog
 
 ## Date: 2025-07-18
 

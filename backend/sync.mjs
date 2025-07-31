@@ -1,4 +1,5 @@
 import sequelize from "./dbConnection.mjs";
+import ContactMessage from "./contactMessage.mjs";
 
 async function syncDatabase() {
   try {
