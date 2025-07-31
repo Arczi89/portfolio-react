@@ -7,6 +7,6 @@ test('renders without crashing', () => {
 
 test('renders main elements', () => {
   render(<App />);
-  const linkElement = screen.getByText(/szwagrzak/i);
-  expect(linkElement).toBeInTheDocument();
+  const linkElements = screen.getAllByText(/szwagrzak/i);
+  expect(linkElements.length).toBeGreaterThan(0);
 });
