@@ -1,25 +1,10 @@
 import { useState, useEffect } from 'react';
 import styles from '../styles/interests.module.scss';
-import { getSections } from '../services/sectionService';
+import { getSectionsByTag, groupSectionsByTag } from '../services/sectionService';
 import { SectionModel } from '../models/SectionModel';
 import Section from './Section';
 import Header from './Header';
-
-const tag = 'hobbies';
-
-const groupByTag = (sections: SectionModel[]) => {
-  return sections?.reduce(
-    (groups: { [key: string]: SectionModel[] }, section) => {
-      const tag = section.tag;
-      if (!groups[tag]) {
-        groups[tag] = [];
-      }
-      groups[tag].push(section);
-      return groups;
-    },
-    {}
-  );
-};
+import { TAGS } from '../constants/tags';
 
 const Interests: React.FC = () => {
   const [sections, setSections] = useState<SectionModel[]>([]);
@@ -28,7 +13,7 @@ const Interests: React.FC = () => {
   useEffect(() => {
     const fetchSections = async () => {
       try {
-        const data = await getSections();
+        const data = await getSectionsByTag(TAGS.HOBBIES);
         setSections(data);
       } catch (error) {
         console.error('Error fetching sections:', error);
@@ -39,8 +24,8 @@ const Interests: React.FC = () => {
     void fetchSections();
   }, []);
 
-  const groupedSections = groupByTag(sections);
-  const group = groupedSections[tag] || [];
+  const groupedSections = groupSectionsByTag(sections);
+  const hobbiesGroup = groupedSections[TAGS.HOBBIES] || [];
 
   return (
     <div
@@ -49,7 +34,7 @@ const Interests: React.FC = () => {
       <Header />
       <main className={`mx-auto py-6 flex-grow ${styles.container}`}>
         {error && <div className={styles.error}>{error}</div>}
-        {group.length > 0 && <Section group={group} tag={tag} />}
+        {hobbiesGroup.length > 0 && <Section group={hobbiesGroup} tag={TAGS.HOBBIES} />}
       </main>
       <footer className={styles.footer}>
         <p>

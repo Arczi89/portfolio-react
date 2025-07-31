@@ -1,5 +1,7 @@
-import { SectionModel } from '../models/SectionModel';
+import React from 'react';
 import styles from '../styles/section.module.scss';
+import { SectionModel } from '../models/SectionModel';
+import { TAG_LABELS } from '../constants/tags';
 
 interface SectionProps {
   group: SectionModel[];
@@ -7,8 +9,9 @@ interface SectionProps {
 }
 
 const link = (text: string): string => {
-  const links = /(http|https|ftp):\/\/(\S*)/.exec(text);
-  return links?.length ? links[0] : '';
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+  const match = text.match(urlRegex);
+  return match ? match[0] : '';
 };
 
 const woLink = (text: string): string => {
@@ -17,12 +20,13 @@ const woLink = (text: string): string => {
 
 const Section: React.FC<SectionProps> = ({ group, tag }) => {
   const firstSection = group ? group[0] : null;
+  const tagLabel = TAG_LABELS[tag] || tag;
 
   return (
     <section className={`mb-8 ${styles.section}`}>
       {firstSection?.image && (
         <div className={styles['section-image']}>
-          <img className={styles.me} src={firstSection.image} alt="Artur" />
+          <img className={styles.me} src={firstSection.image} alt={tagLabel} />
         </div>
       )}
       <div className={styles['section-inner']}>
@@ -30,11 +34,18 @@ const Section: React.FC<SectionProps> = ({ group, tag }) => {
           {firstSection && firstSection.title}
         </h2>
         <div className={styles[tag]}>
-          {group?.map(sectionElement => (
-            <div key={sectionElement.id} className={styles.paragraph}>
-              {firstSection &&
-                firstSection.image !== sectionElement.image &&
-                sectionElement.image && (
+          {group?.map(sectionElement => {
+            const textContent = woLink(sectionElement.body).trim();
+            const hasLink = link(sectionElement.body);
+            const hasImage = sectionElement.image && firstSection?.image !== sectionElement.image;
+            
+            if (!hasImage && !textContent && !hasLink) {
+              return null;
+            }
+
+            return (
+              <div key={sectionElement.id} className={styles.paragraph}>
+                {hasImage && (
                   <div className={styles['paragraph-image']}>
                     <img
                       className={styles.me}
@@ -43,14 +54,22 @@ const Section: React.FC<SectionProps> = ({ group, tag }) => {
                     />
                   </div>
                 )}
-              <div className={styles['paragraph-body']}>
-                <a className="bold" href={link(sectionElement.body)}>
-                  {link(sectionElement.body)}
-                </a>{' '}
-                {woLink(sectionElement.body)}
+                <div className={styles['paragraph-body']}>
+                  {hasLink && (
+                    <a className="bold" href={hasLink}>
+                      {hasLink}
+                    </a>
+                  )}
+                  {textContent && (
+                    <>
+                      {hasLink && ' '}
+                      {textContent}
+                    </>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

@@ -1,15 +1,12 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders app without crashing', () => {
+test('renders without crashing', () => {
   render(<App />);
-  // Sprawdź czy aplikacja się renderuje bez błędów
-  expect(document.body).toBeInTheDocument();
 });
 
-test('app contains main content', () => {
+test('renders main elements', () => {
   render(<App />);
-  // Sprawdź czy główne elementy są obecne
-  const mainElement = screen.getByRole('main');
-  expect(mainElement).toBeInTheDocument();
+  const linkElement = screen.getByText(/szwagrzak/i);
+  expect(linkElement).toBeInTheDocument();
 });

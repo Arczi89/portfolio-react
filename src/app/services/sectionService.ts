@@ -52,3 +52,25 @@ export const getSections = async (): Promise<SectionModel[]> => {
 
   throw new Error('All API endpoints failed');
 };
+
+export const getSectionsByTag = async (tag: string): Promise<SectionModel[]> => {
+  const allSections = await getSections();
+  return allSections.filter(section => section.tag === tag);
+};
+
+export const getAvailableTags = async (): Promise<string[]> => {
+  const allSections = await getSections();
+  const tags = [...new Set(allSections.map(section => section.tag))];
+  return tags.sort();
+};
+
+export const groupSectionsByTag = (sections: SectionModel[]): { [key: string]: SectionModel[] } => {
+  return sections.reduce((groups: { [key: string]: SectionModel[] }, section) => {
+    const tag = section.tag;
+    if (!groups[tag]) {
+      groups[tag] = [];
+    }
+    groups[tag].push(section);
+    return groups;
+  }, {});
+};

@@ -1,23 +1,10 @@
 import { useState, useEffect } from 'react';
 import styles from '../styles/home.module.scss';
-import { getSections } from '../services/sectionService';
+import { getSections, groupSectionsByTag } from '../services/sectionService';
 import { SectionModel } from '../models/SectionModel';
 import Section from './Section';
 import Header from './Header';
-
-const groupByTag = (sections: SectionModel[]) => {
-  return sections?.reduce(
-    (groups: { [key: string]: SectionModel[] }, section) => {
-      const tag = section.tag;
-      if (!groups[tag]) {
-        groups[tag] = [];
-      }
-      groups[tag].push(section);
-      return groups;
-    },
-    {}
-  );
-};
+import { MAIN_PAGE_TAGS } from '../constants/tags';
 
 const Home: React.FC = () => {
   const [sections, setSections] = useState<SectionModel[]>([]);
@@ -37,7 +24,10 @@ const Home: React.FC = () => {
     void fetchSections();
   }, []);
 
-  const groupedSections = groupByTag(sections);
+  const filteredSections = sections.filter(section => 
+    MAIN_PAGE_TAGS.includes(section.tag as any)
+  );
+  const groupedSections = groupSectionsByTag(filteredSections);
 
   return (
     <div className={`flex flex-col min-h-screen bg-background ${styles.home}`}>

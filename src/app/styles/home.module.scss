@@ -3,17 +3,39 @@
 .home {
   @include page-container;
   @include page-container-gradient;
-  background: $gradient-primary;
+  background: $gradient-dark;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 70%, rgba(220, 38, 38, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 30%, rgba(220, 38, 38, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+  }
 }
 
 .container {
   @include scroll-container;
+  position: relative;
+  z-index: 1;
 }
 
 .error {
   @include error;
+  background: rgba(220, 38, 38, 0.1);
+  padding: 1rem;
+  border-radius: $border-radius-medium;
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  color: $color-primary-light;
 }
 
 .footer {
   @include page-footer;
+  position: relative;
+  z-index: 1;
 }

@@ -6,12 +6,19 @@
   height: calc(100vh - 12.5rem);
   scroll-snap-align: start;
   max-width: 100%;
-  border-radius: $border-radius-large;
+  border-radius: $border-radius-xl;
   margin: 1rem 4.5rem;
-  padding: 1rem;
-  background: $color-blue-transparent-30;
-  backdrop-filter: blur(15px);
-  box-shadow: 0 8px 32px $color-primary-transparent-20;
+  padding: 2rem;
+  @include glass-effect-dark;
+  box-shadow: $shadow-xl;
+  border: 1px solid rgba(220, 38, 38, 0.1);
+  transition: all $transition-medium;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-red;
+    border-color: rgba(220, 38, 38, 0.3);
+  }
 
   .section-inner {
     display: flex;
@@ -20,36 +27,104 @@
     width: 80%;
     margin: 0 1.5rem;
 
+    h2 {
+      color: $color-text-white;
+      margin-bottom: 1.5rem;
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      position: relative;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -0.5rem;
+        left: 0;
+        width: 3rem;
+        height: 3px;
+        background: $gradient-primary;
+        border-radius: 2px;
+      }
+    }
+
     .abilities {
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
+      gap: 1rem;
     }
 
     .paragraph {
       display: flex;
       flex-direction: row;
-      margin-top: 1rem;
+      margin-top: 1.5rem;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: $border-radius-medium;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all $transition-medium;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(220, 38, 38, 0.3);
+        transform: translateX(4px);
+      }
 
       &:first-of-type {
         width: 100%;
       }
 
       .paragraph-image {
-        margin-right: 1rem;
-        color: black;
+        margin-right: 1.5rem;
+        color: $color-text-white;
         border-radius: $border-radius-medium;
         display: flex;
+        overflow: hidden;
+        box-shadow: $shadow-md;
 
         img {
-          max-width: 22rem;
-          max-height: 6rem;
+          max-width: 6.25rem; // 100px
+          max-height: 6.25rem; // 100px
+          border-radius: $border-radius-small;
+          transition: all $transition-medium;
+          
+          &:hover {
+            transform: scale(1.05);
+          }
         }
       }
 
       .paragraph-body {
-        font-size: 1rem;
-        font-weight: 500;
+        font-size: 1.1rem;
+        font-weight: 400;
+        color: $color-text-white;
+        line-height: 1.6;
+        
+        a {
+          color: $color-primary-light;
+          text-decoration: none;
+          font-weight: 600;
+          position: relative;
+          
+          &::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: $gradient-primary;
+            transition: width $transition-medium;
+          }
+          
+          &:hover {
+            color: $color-primary;
+            
+            &::after {
+              width: 100%;
+            }
+          }
+        }
       }
     }
   }
@@ -59,13 +134,24 @@
     flex-direction: column;
     align-items: center;
     width: 20%;
+    
     img {
-      border-radius: 1rem;
+      border-radius: $border-radius-large;
+      transition: all $transition-medium;
     }
 
     .me {
-      border: solid 0.25rem $color-primary;
+      border: 3px solid $color-primary;
       width: 20rem;
+      border-radius: $border-radius-large;
+      box-shadow: $shadow-lg;
+      transition: all $transition-medium;
+      
+      &:hover {
+        transform: scale(1.02);
+        box-shadow: $shadow-red;
+        border-color: $color-primary-light;
+      }
     }
   }
 }
@@ -75,8 +161,8 @@
     height: auto;
     scroll-snap-align: unset;
     flex-direction: column;
-    margin: 1rem 4rem;
-    padding: 1rem;
+    margin: 1rem 2rem;
+    padding: 1.5rem;
 
     .section-image {
       width: 50%;
@@ -89,8 +175,8 @@
 
       .paragraph-image {
         img {
-          max-width: 12rem;
-          max-height: 4rem;
+          max-width: 6.25rem; // 100px
+          max-height: 6.25rem; // 100px
         }
       }
     }
@@ -103,9 +189,14 @@
 @media (max-width: 599px) {
   .section {
     margin: 0.5rem;
-    padding: 0.5rem;
+    padding: 1rem;
+    
+    .section-inner h2 {
+      font-size: 2rem;
+    }
+    
     .paragraph-body {
-      font-size: 0.8rem;
+      font-size: 0.9rem;
     }
   }
 }

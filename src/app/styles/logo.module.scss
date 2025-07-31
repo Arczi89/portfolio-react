@@ -10,7 +10,7 @@
 }
 @keyframes blink-caret {
   50% {
-    border-right-color: $color-text;
+    border-right-color: $color-text-white;
   }
   to {
     border-right-color: transparent;
@@ -20,12 +20,13 @@
 h1.logo {
   font-family: sakuna;
   font-size: 4rem;
-  color: $color-text;
+  color: $color-text-white;
   padding: 0 1rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 
   .animated {
     white-space: nowrap;
-    border-right: 0.5rem solid $color-text;
+    border-right: 0.5rem solid $color-text-white;
     overflow: hidden;
     animation:
       typing 4s steps(30, end) forwards,

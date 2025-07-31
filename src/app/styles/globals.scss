@@ -3,16 +3,17 @@
 @tailwind utilities;
 
 @import 'variables';
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap');
 
 html {
   font-size: 16px;
+  scroll-behavior: smooth;
 }
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 17, 24, 39;
+  --background-end-rgb: 15, 23, 42;
 }
 
 .bold {
@@ -22,14 +23,17 @@ html {
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background-start-rgb: 17, 24, 39;
+    --background-end-rgb: 15, 23, 42;
   }
 }
 
 @layer base {
   body {
     @apply font-roboto text-text;
+    background: $gradient-dark;
+    color: $color-text-white;
+    overflow-x: hidden;
   }
 }
 
@@ -41,6 +45,7 @@ html {
   h5,
   h6 {
     @apply font-poppins text-heading;
+    color: $color-text-white;
   }
 }
 
@@ -52,6 +57,7 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+  min-height: 100vh;
 }
 
 @layer utilities {
@@ -86,29 +92,53 @@ body {
 
 .btn {
   background-color: transparent;
-  color: $color-text;
+  color: $color-text-white;
   @apply text-2xl font-bold;
-  transition: all 0.3s ease;
+  transition: all $transition-medium;
 
   &--nav {
-    padding: 1rem;
+    padding: 1rem 1.5rem;
     border-radius: $border-radius-medium;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: $gradient-primary;
+      transition: left $transition-medium;
+      z-index: -1;
+    }
 
     &.active {
       font-weight: 900;
       background: $gradient-nav;
-      background-size: 400% 400%;
+      background-size: 200% 200%;
       animation: gradientShift $gradient-animation-duration ease infinite;
-      color: white;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      color: $color-text-white;
+      box-shadow: $shadow-red;
+      transform: translateY(-2px);
+      
+      &::before {
+        left: 0;
+      }
     }
 
     &:hover {
       background: $gradient-nav;
-      background-size: 400% 400%;
+      background-size: 200% 200%;
       animation: gradientShift $gradient-animation-duration ease infinite;
-      color: white;
-      transform: translateY(-2px);
+      color: $color-text-white;
+      transform: translateY(-3px);
+      box-shadow: $shadow-red;
+      
+      &::before {
+        left: 0;
+      }
     }
   }
 }
