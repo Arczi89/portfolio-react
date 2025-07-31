@@ -15,12 +15,12 @@
     bottom: 0;
     background: radial-gradient(
         circle at 20% 80%,
-        rgba(220, 38, 38, 0.15) 0%,
+        $color-primary-transparent-15 0%,
         transparent 50%
       ),
       radial-gradient(
         circle at 80% 20%,
-        rgba(220, 38, 38, 0.1) 0%,
+        $color-primary-transparent-10 0%,
         transparent 50%
       );
     pointer-events: none;
@@ -36,10 +36,10 @@
 
 .error {
   @include error;
-  background: rgba(220, 38, 38, 0.1);
+  background: $color-primary-transparent-10;
   padding: 1rem;
   border-radius: $border-radius-medium;
-  border: 1px solid rgba(220, 38, 38, 0.3);
+  border: 1px solid $color-primary-transparent-30;
   color: $color-primary-light;
 }
 
@@ -55,11 +55,11 @@
   padding: 1.5rem;
   margin: 1rem 0;
   box-shadow: $shadow-lg;
-  border: 1px solid rgba(220, 38, 38, 0.2);
+  border: 1px solid $color-primary-transparent-20;
   transition: all $transition-medium;
 
   &:hover {
-    border-color: rgba(220, 38, 38, 0.4);
+    border-color: $color-primary-transparent-40;
     box-shadow: $shadow-red;
   }
 

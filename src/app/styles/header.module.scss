@@ -2,7 +2,7 @@
 
 .header {
   flex-direction: row;
-  background: rgba(17, 24, 39, 0.95);
+  background: $color-dark-transparent-95;
   backdrop-filter: blur(20px);
   position: static;
   z-index: 1000;
@@ -12,7 +12,7 @@
   align-items: center;
   justify-content: space-between;
   border-radius: $border-radius-xl;
-  border: 1px solid rgba(220, 38, 38, 0.2);
+  border: 1px solid $color-primary-transparent-20;
   box-shadow: $shadow-lg;
   transition: all $transition-medium;
   opacity: 1;
@@ -24,7 +24,7 @@
   }
 
   &:hover {
-    border-color: rgba(220, 38, 38, 0.4);
+    border-color: $color-primary-transparent-40;
     box-shadow: $shadow-red;
   }
 
