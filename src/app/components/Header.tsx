@@ -10,15 +10,17 @@ const Header: React.FC = () => {
     { url: '/contact', text: 'Kontakt' },
     { url: '/interests', text: 'Zainteresowania' },
   ];
+
   return (
     <header className={`${styles.header}`}>
       <Logo />
       <nav>
         {locationPaths.map(path => {
+          const isActive = location.pathname === path.url;
           return (
             <button
               key={path.url}
-              className={`btn btn--nav ${location.pathname === path.url ? 'active' : ''}`}
+              className={`btn btn--nav ${isActive ? 'active' : ''}`}
             >
               <Link to={path.url} className={styles.navLink}>
                 {path.text}

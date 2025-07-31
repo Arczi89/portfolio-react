@@ -141,3 +141,28 @@ body {
     }
   }
 }
+
+@media (hover: none) and (pointer: coarse) {
+  .btn--nav:hover {
+    background: transparent;
+    transform: none;
+    box-shadow: none;
+
+    &::before {
+      left: -100%;
+    }
+  }
+
+  .btn--nav.active:hover {
+    background: $gradient-nav;
+    background-size: 200% 200%;
+    animation: gradientShift $gradient-animation-duration ease infinite;
+    color: $color-text-white;
+    box-shadow: $shadow-red;
+    transform: translateY(-2px);
+
+    &::before {
+      left: 0;
+    }
+  }
+}

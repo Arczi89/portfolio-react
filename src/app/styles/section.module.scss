@@ -51,6 +51,7 @@
       flex-direction: row;
       flex-wrap: wrap;
       gap: 1rem;
+      width: 100%;
 
       .paragraph {
         flex: 0 0 calc(25% - 0.75rem);
@@ -86,6 +87,7 @@
       border-radius: $border-radius-medium;
       border: 1px solid $color-white-transparent-10;
       transition: all $transition-medium;
+      width: 100%;
 
       &:hover {
         background: $color-white-transparent-10;
@@ -186,6 +188,16 @@
     margin: 1rem 2rem;
     padding: 1.5rem;
 
+    .section-inner {
+      width: 100%;
+      margin: 0;
+      align-items: center;
+
+      h2 {
+        text-align: center;
+      }
+    }
+
     .section-image {
       width: 50%;
       align-self: center;
@@ -204,6 +216,7 @@
     }
 
     .abilities {
+      justify-content: center;
       .paragraph {
         flex: 0 0 calc(50% - 0.5rem);
         min-width: 150px;
@@ -216,20 +229,82 @@
   }
 }
 
-@media (max-width: 599px) {
+@media (max-width: 768px) {
   .section {
-    margin: 0.5rem;
+    margin: 0.5rem 1rem;
     padding: 1rem;
+    min-height: auto;
 
-    .section-inner h2 {
-      font-size: 2rem;
+    .section-inner {
+      width: 100%;
+      margin: 0;
+      align-items: center;
+
+      h2 {
+        font-size: 2rem;
+        text-align: center;
+      }
+    }
+
+    .section-image {
+      width: 60%;
+      margin: 0.5rem;
+
+      .me {
+        width: 15rem;
+      }
     }
 
     .abilities {
+      justify-content: center;
+      .paragraph {
+        flex: 0 0 calc(50% - 0.5rem);
+        min-width: 120px;
+      }
+    }
+
+    .paragraph {
+      padding: 1rem;
+      margin-top: 1rem;
+      flex-direction: column;
+    }
+  }
+}
+
+@media (max-width: 599px) {
+  .section {
+    margin: 0.5rem;
+    padding: 0.75rem;
+
+    .section-inner {
+      h2 {
+        font-size: 1.75rem;
+        text-align: center;
+      }
+    }
+
+    .section-image {
+      width: 80%;
+      margin: 0.5rem;
+
+      .me {
+        width: 12rem;
+      }
+    }
+
+    .abilities {
+      justify-content: center;
       .paragraph {
         flex: 0 0 100%;
         min-width: 100px;
+        max-width: 200px;
       }
+    }
+
+    .paragraph {
+      padding: 0.75rem;
+      margin-top: 0.75rem;
+      flex-direction: column;
     }
 
     .paragraph-body {

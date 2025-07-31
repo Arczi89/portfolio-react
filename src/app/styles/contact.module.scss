@@ -49,6 +49,13 @@
   z-index: 1;
 }
 
+.contactIntro {
+  color: $color-text-white;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
 .privacyNotice {
   @include glass-effect-dark;
   border-radius: $border-radius-large;
@@ -74,5 +81,17 @@
     &:last-child {
       margin-bottom: 0;
     }
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem 0;
+  }
+}
+
+@media (max-width: 599px) {
+  .container {
+    padding: 0.5rem 0;
   }
 }

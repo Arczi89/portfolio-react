@@ -33,7 +33,17 @@ h1.logo {
       blink-caret 5s step-end forwards;
   }
 
+  @media (max-width: 1024px) {
+    font-size: 3.5rem;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 3rem;
+    padding: 0 0.5rem;
+  }
+
   @media (max-width: 599px) {
     font-size: 2.5rem;
+    padding: 0 0.25rem;
   }
 }

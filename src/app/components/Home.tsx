@@ -32,7 +32,9 @@ const Home: React.FC = () => {
   return (
     <div className={`flex flex-col min-h-screen bg-background ${styles.home}`}>
       <Header />
-      <main className={`mx-auto py-6 flex-grow ${styles.container}`}>
+      <main
+        className={`mx-auto py-6 flex-grow px-4 sm:px-6 lg:px-8 ${styles.container}`}
+      >
         {error && <div className={styles.error}>{error}</div>}
         {groupedSections &&
           Object.keys(groupedSections).map(tag => {

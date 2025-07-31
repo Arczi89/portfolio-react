@@ -72,7 +72,9 @@ const Contact: React.FC = () => {
         <section className={`mb-8 ${stylesSections.section}`}>
           <div className={stylesSections['section-inner']}>
             <h2 className="text-4xl font-bold">Kontakt</h2>
-            <p>Masz pytania? Skontaktuj się ze mną:</p>
+            <p className={styles.contactIntro}>
+              Masz pytania? Skontaktuj się ze mną:
+            </p>
 
             <div className={styles.privacyNotice}>
               <p>
