@@ -148,9 +148,32 @@ NODE_ENV=development
 - **Format**: `npm run format`
 - **Type Check**: `npm run type-check`
 
-## Deployment
+## CI/CD Pipeline
 
-The project includes deployment scripts for production hosting. See `deploy.sh` for details.
+This project uses GitHub Actions for automated testing and deployment:
+
+### **Automated Testing** (`main` branch)
+- **Trigger**: Push to `main` branch or pull requests
+- **Tests**: Linting, type checking, formatting, unit tests
+- **Coverage**: Code coverage reports with Codecov
+- **Build**: Application build verification
+
+### **Automated Deployment** (`release_build` branch)
+- **Trigger**: Push to `release_build` branch
+- **Pipeline**: Test → Build → Deploy to production
+- **Security**: SSH key authentication for deployment
+- **Environment**: Production build with optimized settings
+
+### **Branch Protection**
+- **Main branch**: Protected with required status checks
+- **Release branch**: Automated deployment to production
+- **Access control**: Only repository owner can push to protected branches
+
+### **Deployment Process**
+1. **Testing**: All tests must pass before deployment
+2. **Building**: Production build with Tailwind CSS compilation
+3. **Deployment**: Automatic deployment to atthost.pl via SSH
+4. **Verification**: Health checks and monitoring
 
 ## License
 
