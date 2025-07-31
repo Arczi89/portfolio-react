@@ -3,11 +3,10 @@
 .section {
   display: flex;
   flex-direction: row;
-  height: calc(100vh - 12.5rem);
-  scroll-snap-align: start;
+  min-height: calc(100vh - 12.5rem);
   max-width: 100%;
   border-radius: $border-radius-xl;
-  margin: 1rem 4.5rem;
+  margin: 2rem 4.5rem;
   padding: 2rem;
   @include glass-effect-dark;
   box-shadow: $shadow-xl;
@@ -34,7 +33,7 @@
       font-weight: 700;
       text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
       position: relative;
-      
+
       &::after {
         content: '';
         position: absolute;
@@ -83,11 +82,11 @@
         box-shadow: $shadow-md;
 
         img {
-          max-width: 6.25rem; // 100px
-          max-height: 6.25rem; // 100px
+          width: 100%;
+          height: auto;
           border-radius: $border-radius-small;
           transition: all $transition-medium;
-          
+
           &:hover {
             transform: scale(1.05);
           }
@@ -99,13 +98,13 @@
         font-weight: 400;
         color: $color-text-white;
         line-height: 1.6;
-        
+
         a {
           color: $color-primary-light;
           text-decoration: none;
           font-weight: 600;
           position: relative;
-          
+
           &::after {
             content: '';
             position: absolute;
@@ -116,10 +115,10 @@
             background: $gradient-primary;
             transition: width $transition-medium;
           }
-          
+
           &:hover {
             color: $color-primary;
-            
+
             &::after {
               width: 100%;
             }
@@ -134,7 +133,7 @@
     flex-direction: column;
     align-items: center;
     width: 20%;
-    
+
     img {
       border-radius: $border-radius-large;
       transition: all $transition-medium;
@@ -146,7 +145,7 @@
       border-radius: $border-radius-large;
       box-shadow: $shadow-lg;
       transition: all $transition-medium;
-      
+
       &:hover {
         transform: scale(1.02);
         box-shadow: $shadow-red;
@@ -158,8 +157,7 @@
 
 @media (max-width: 1024px) {
   .section {
-    height: auto;
-    scroll-snap-align: unset;
+    min-height: auto;
     flex-direction: column;
     margin: 1rem 2rem;
     padding: 1.5rem;
@@ -175,8 +173,8 @@
 
       .paragraph-image {
         img {
-          max-width: 6.25rem; // 100px
-          max-height: 6.25rem; // 100px
+          width: 100%;
+          height: auto;
         }
       }
     }
@@ -190,11 +188,11 @@
   .section {
     margin: 0.5rem;
     padding: 1rem;
-    
+
     .section-inner h2 {
       font-size: 2rem;
     }
-    
+
     .paragraph-body {
       font-size: 0.9rem;
     }

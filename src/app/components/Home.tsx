@@ -24,7 +24,7 @@ const Home: React.FC = () => {
     void fetchSections();
   }, []);
 
-  const filteredSections = sections.filter(section => 
+  const filteredSections = sections.filter(section =>
     MAIN_PAGE_TAGS.includes(section.tag as any)
   );
   const groupedSections = groupSectionsByTag(filteredSections);

@@ -7,7 +7,6 @@
 
 html {
   font-size: 16px;
-  scroll-behavior: smooth;
 }
 
 :root {
@@ -122,7 +121,7 @@ body {
       color: $color-text-white;
       box-shadow: $shadow-red;
       transform: translateY(-2px);
-      
+
       &::before {
         left: 0;
       }
@@ -135,7 +134,7 @@ body {
       color: $color-text-white;
       transform: translateY(-3px);
       box-shadow: $shadow-red;
-      
+
       &::before {
         left: 0;
       }

@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import styles from '../styles/interests.module.scss';
-import { getSectionsByTag, groupSectionsByTag } from '../services/sectionService';
+import {
+  getSectionsByTag,
+  groupSectionsByTag,
+} from '../services/sectionService';
 import { SectionModel } from '../models/SectionModel';
 import Section from './Section';
 import Header from './Header';
@@ -34,7 +37,9 @@ const Interests: React.FC = () => {
       <Header />
       <main className={`mx-auto py-6 flex-grow ${styles.container}`}>
         {error && <div className={styles.error}>{error}</div>}
-        {hobbiesGroup.length > 0 && <Section group={hobbiesGroup} tag={TAGS.HOBBIES} />}
+        {hobbiesGroup.length > 0 && (
+          <Section group={hobbiesGroup} tag={TAGS.HOBBIES} />
+        )}
       </main>
       <footer className={styles.footer}>
         <p>

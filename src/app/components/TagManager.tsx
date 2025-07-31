@@ -26,7 +26,7 @@ const TagManager: React.FC = () => {
   const handleTagSelect = async (tag: string) => {
     setLoading(true);
     setSelectedTag(tag);
-    
+
     try {
       const tagSections = await getSectionsByTag(tag);
       setSections(tagSections);
@@ -40,7 +40,7 @@ const TagManager: React.FC = () => {
   return (
     <div className="p-6">
       <h2 className="text-2xl font-bold mb-4">Zarządzanie tagami</h2>
-      
+
       <div className="mb-6">
         <h3 className="text-lg font-semibold mb-2">Dostępne tagi:</h3>
         <div className="flex flex-wrap gap-2">
@@ -84,4 +84,4 @@ const TagManager: React.FC = () => {
   );
 };
 
-export default TagManager; 
+export default TagManager;

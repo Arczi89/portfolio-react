@@ -5,7 +5,7 @@
   @include page-container-gradient;
   background: $gradient-dark;
   position: relative;
-  
+
   &::before {
     content: '';
     position: absolute;
@@ -13,8 +13,16 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at 30% 70%, rgba(220, 38, 38, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 70% 30%, rgba(220, 38, 38, 0.1) 0%, transparent 50%);
+    background: radial-gradient(
+        circle at 30% 70%,
+        rgba(220, 38, 38, 0.15) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 70% 30%,
+        rgba(220, 38, 38, 0.1) 0%,
+        transparent 50%
+      );
     pointer-events: none;
   }
 }
@@ -23,6 +31,7 @@
   @include scroll-container;
   position: relative;
   z-index: 1;
+  padding: 2rem 0;
 }
 
 .error {

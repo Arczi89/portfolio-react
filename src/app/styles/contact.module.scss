@@ -5,7 +5,7 @@
   @include page-container-gradient;
   background: $gradient-dark;
   position: relative;
-  
+
   &::before {
     content: '';
     position: absolute;
@@ -13,8 +13,16 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at 20% 80%, rgba(220, 38, 38, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(220, 38, 38, 0.1) 0%, transparent 50%);
+    background: radial-gradient(
+        circle at 20% 80%,
+        rgba(220, 38, 38, 0.15) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 80% 20%,
+        rgba(220, 38, 38, 0.1) 0%,
+        transparent 50%
+      );
     pointer-events: none;
   }
 }
@@ -23,38 +31,48 @@
   @include scroll-container;
   position: relative;
   z-index: 1;
+  padding: 2rem 0;
 }
 
-.privacyNotice {
-  @include glass-effect-dark;
-  border-radius: $border-radius-large;
-  padding: 1.5rem;
-  margin: 1.5rem 0;
-  box-shadow: $shadow-lg;
-  border: 1px solid rgba(220, 38, 38, 0.2);
-  transition: all $transition-medium;
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: $shadow-red;
-    border-color: rgba(220, 38, 38, 0.4);
-  }
-
-  p {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.9);
-    margin: 0;
-  }
-
-  strong {
-    color: $color-primary-light;
-    font-weight: 600;
-  }
+.error {
+  @include error;
+  background: rgba(220, 38, 38, 0.1);
+  padding: 1rem;
+  border-radius: $border-radius-medium;
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  color: $color-primary-light;
 }
 
 .footer {
   @include page-footer;
   position: relative;
   z-index: 1;
+}
+
+.privacyNotice {
+  @include glass-effect-dark;
+  border-radius: $border-radius-large;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  box-shadow: $shadow-lg;
+  border: 1px solid rgba(220, 38, 38, 0.2);
+  transition: all $transition-medium;
+
+  &:hover {
+    border-color: rgba(220, 38, 38, 0.4);
+    box-shadow: $shadow-red;
+  }
+
+  p {
+    color: $color-text-white;
+    margin: 0.5rem 0;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 }

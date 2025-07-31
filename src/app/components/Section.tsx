@@ -37,8 +37,10 @@ const Section: React.FC<SectionProps> = ({ group, tag }) => {
           {group?.map(sectionElement => {
             const textContent = woLink(sectionElement.body).trim();
             const hasLink = link(sectionElement.body);
-            const hasImage = sectionElement.image && firstSection?.image !== sectionElement.image;
-            
+            const hasImage =
+              sectionElement.image &&
+              firstSection?.image !== sectionElement.image;
+
             if (!hasImage && !textContent && !hasLink) {
               return null;
             }
