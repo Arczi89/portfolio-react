@@ -14,5 +14,4 @@ ssh -p $PORT $USER@$HOST "cp $REMOTE_DIR/../.env-portfolio-react $REMOTE_DIR/.en
 echo "Uploading server and node_modules to $BACKEND_DIR"
 rsync -az -e "ssh -p $PORT" --delete backend/ $USER@$HOST:$BACKEND_DIR
 rsync -az -e "ssh -p $PORT" --delete node_modules/ $USER@$HOST:$BACKEND_DIR/node_modules/
-ssh -p $PORT $USER@$HOST "cp $BACKEND_DIR/../.env $BACKEND_DIR"
-ssh -p $PORT $USER@$HOST "cp $BACKEND_DIR/app.mjs $BACKEND_DIR/app.js"
+ssh -p $PORT $USER@$HOST "cp $BACKEND_DIR/../.env-portfolio-react $BACKEND_DIR/.env"

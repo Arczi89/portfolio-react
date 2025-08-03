@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const cors = require('cors');
-const rateLimit = require('express-rate-limit');
+// const rateLimit = require('express-rate-limit'); // Usunięte dla kompatybilności
 const sequelize = require('./dbConnection');
 const MainPageSection = require('./mainPageSection');
 const ContactMessage = require('./contactMessage');
@@ -13,6 +13,37 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3002;
+
+// Simple rate limiting for contact form
+const contactAttempts = new Map();
+
+const contactLimiter = (req, res, next) => {
+  const ip = req.ip || req.connection.remoteAddress;
+  const now = Date.now();
+  const windowMs = 15 * 60 * 1000; // 15 minutes
+  const maxAttempts = 5;
+
+  if (!contactAttempts.has(ip)) {
+    contactAttempts.set(ip, { count: 0, resetTime: now + windowMs });
+  }
+
+  const attempts = contactAttempts.get(ip);
+
+  if (now > attempts.resetTime) {
+    attempts.count = 0;
+    attempts.resetTime = now + windowMs;
+  }
+
+  if (attempts.count >= maxAttempts) {
+    return res.status(429).json({
+      success: false,
+      message: 'Too many attempts. Try again in 15 minutes.',
+    });
+  }
+
+  attempts.count++;
+  next();
+};
 
 // Fallback data for when database is unavailable
 const fallbackSections = [
@@ -161,29 +192,57 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(
-  cors({
-    origin: [
+// CORS configuration with logging
+const corsOptions = {
+  origin: function (origin, callback) {
+    console.log('=== CORS ORIGIN CHECK ===');
+    console.log(`🔍 Checking origin: ${origin || 'NO_ORIGIN'}`);
+
+    const allowedOrigins = [
       'https://szwagrzak.pl',
       'http://szwagrzak.pl',
+      'https://server.szwagrzak.pl',
+      'http://server.szwagrzak.pl',
       'http://localhost:3000',
       'http://localhost:3002',
-    ],
-    methods: ['OPTIONS', 'GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-    credentials: true,
-  })
-);
+      'https://localhost:3000',
+      'https://localhost:3002',
+    ];
 
-const contactLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 5, // max 5 messages per 15 minutes
-  message: {
-    success: false,
-    message: 'Too many attempts. Try again in 15 minutes.',
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) {
+      console.log('✅ Allowing request with no origin');
+      return callback(null, true);
+    }
+
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      console.log(`✅ Origin ${origin} is allowed`);
+      callback(null, true);
+    } else {
+      console.log(`❌ Origin ${origin} is NOT allowed`);
+      console.log(`📋 Allowed origins:`, allowedOrigins);
+      callback(new Error('Not allowed by CORS'));
+    }
+    console.log('========================');
   },
-  standardHeaders: true,
-  legacyHeaders: false,
-});
+  methods: ['OPTIONS', 'GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+  credentials: true,
+  allowedHeaders: [
+    'Content-Type',
+    'Authorization',
+    'Accept',
+    'Origin',
+    'X-Requested-With',
+  ],
+  exposedHeaders: [
+    'Content-Length',
+    'X-Content-Type-Options',
+    'X-Frame-Options',
+    'X-XSS-Protection',
+  ],
+};
+
+app.use(cors(corsOptions));
 
 app.use(bodyParser.json({ limit: '10mb' }));
 
@@ -192,10 +251,26 @@ app.use((req, res, next) => {
   next();
 });
 
+// CORS logging middleware
 app.use((req, res, next) => {
-  console.log(
-    `${new Date().toISOString()} - ${req.method} ${req.url} - ${req.get('origin') || 'unknown'}`
-  );
+  const origin = req.get('origin');
+  const method = req.method;
+  const url = req.url;
+  const userAgent = req.get('user-agent');
+  const referer = req.get('referer');
+
+  console.log('=== CORS REQUEST LOG ===');
+  console.log(`🕐 Time: ${new Date().toISOString()}`);
+  console.log(`🌐 Origin: ${origin || 'NO_ORIGIN'}`);
+  console.log(`📡 Method: ${method}`);
+  console.log(`🔗 URL: ${url}`);
+  console.log(`👤 User-Agent: ${userAgent || 'NO_USER_AGENT'}`);
+  console.log(`📄 Referer: ${referer || 'NO_REFERER'}`);
+  console.log(`🌍 Host: ${req.get('host') || 'NO_HOST'}`);
+  console.log(`🔒 Protocol: ${req.protocol}`);
+  console.log(`📊 Headers:`, JSON.stringify(req.headers, null, 2));
+  console.log('========================');
+
   next();
 });
 
@@ -351,16 +426,41 @@ app.delete('/api/contact/:id', async (req, res) => {
   }
 });
 
+// Response logging middleware
+app.use((req, res, next) => {
+  const originalSend = res.send;
+  res.send = function (data) {
+    console.log('=== RESPONSE LOG ===');
+    console.log(`📤 Response for: ${req.method} ${req.url}`);
+    console.log(`📊 Status: ${res.statusCode}`);
+    console.log(`🌐 Origin: ${req.get('origin') || 'NO_ORIGIN'}`);
+    console.log(`📄 Content-Type: ${res.get('Content-Type')}`);
+    console.log(`🔒 CORS Headers:`, {
+      'Access-Control-Allow-Origin': res.get('Access-Control-Allow-Origin'),
+      'Access-Control-Allow-Methods': res.get('Access-Control-Allow-Methods'),
+      'Access-Control-Allow-Headers': res.get('Access-Control-Allow-Headers'),
+      'Access-Control-Allow-Credentials': res.get(
+        'Access-Control-Allow-Credentials'
+      ),
+    });
+    console.log('===================');
+    originalSend.call(this, data);
+  };
+  next();
+});
+
 app.listen(PORT, async () => {
   try {
     await sequelize.authenticate();
     console.log(`🚀 Server is running on port ${PORT}`);
     console.log(`📊 Health check: http://localhost:${PORT}/api/health`);
     console.log(`✅ Database connected successfully`);
+    console.log(`🔍 CORS logging enabled - check console for detailed logs`);
   } catch (error) {
     console.error('❌ Unable to connect to the database:', error.message);
     console.log(`🔄 Server will run with fallback data`);
     console.log(`🚀 Server is running on port ${PORT}`);
     console.log(`📊 Health check: http://localhost:${PORT}/api/health`);
+    console.log(`🔍 CORS logging enabled - check console for detailed logs`);
   }
 });
