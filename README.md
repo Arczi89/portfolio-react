@@ -1,5 +1,15 @@
 # Portfolio React
 
+## License
+
+This project is licensed under a custom license. See [LICENSE.md](LICENSE.md) for details.
+
+**Key points:**
+
+- ✅ **Allowed**: Code review, analysis, educational use
+- ❌ **Prohibited**: Copying, redistribution, commercial use
+- 👔 **For recruiters**: Full permission to review and assess skills
+
 Portfolio website built with React, Node.js, and MySQL. Features a contact form with email notifications and GDPR-compliant data handling.
 
 ## Features
@@ -148,6 +158,199 @@ NODE_ENV=development
 - **Format**: `npm run format`
 - **Type Check**: `npm run type-check`
 
+## Deployment
+
+### Production Environment
+
+The application is deployed on **Atthost** with the following setup:
+
+- **Frontend**: `https://szwagrzak.pl` (React build)
+- **Backend API**: `https://server.szwagrzak.pl` (Node.js + Passenger)
+- **Database**: MySQL on Atthost
+- **Server**: Apache + Phusion Passenger
+
+### Deployment Process
+
+#### Automated Deployment (GitHub Actions)
+
+1. **Push to `release_build` branch** triggers deployment
+2. **Tests run** - linting, type checking, unit tests
+3. **Build process** - React production build
+4. **Deployment** - Files uploaded via SSH
+5. **Application restart** - Passenger restarts Node.js app
+6. **Health check** - Verifies deployment success
+
+#### Manual Deployment
+
+```bash
+# Deploy using deploy.sh script
+./deploy.sh
+
+# Or manually:
+# 1. Build frontend
+npm run build
+
+# 2. Upload files
+scp -P 6022 -r build/* arturszwagrzak@arturszwagrzak.atthost24.pl:~/websites/szwagrzak_pl/
+scp -P 6022 -r backend/* arturszwagrzak@arturszwagrzak.atthost24.pl:~/websites/server/
+
+# 3. Restart application
+ssh -p 6022 arturszwagrzak@arturszwagrzak.atthost24.pl "cd ~/websites/server && touch tmp/restart.txt"
+```
+
+### Environment Configuration
+
+#### Project-Specific Environment Files
+
+Each project has its own environment file:
+
+- **`.env-portfolio-react`** - Environment variables for portfolio-react project
+- **`.env-[project-name]`** - Future projects will have their own files
+
+#### Environment File Structure
+
+```env
+# Database Configuration
+DB_HOST=localhost
+DB_USER=your_db_user
+DB_PASS=your_db_password
+DB_NAME=your_db_name
+
+# Email Configuration
+EMAIL_USER=your_email@domain.com
+EMAIL_PASS=your_email_password
+
+# Security
+ENCRYPTION_KEY=your_32_character_encryption_key
+
+# Frontend API Configuration
+REACT_APP_API_BASE_URL=https://server.szwagrzak.pl/api
+
+# Server Configuration
+PORT=3002
+NODE_ENV=production
+```
+
+### Server Management
+
+#### Application Restart
+
+```bash
+# Method 1: Touch restart file (recommended)
+ssh -p 6022 arturszwagrzak@arturszwagrzak.atthost24.pl "cd ~/websites/server && touch tmp/restart.txt"
+
+# Method 2: Manual process management
+ssh -p 6022 arturszwagrzak@arturszwagrzak.atthost24.pl "pkill -f 'node app.js'"
+ssh -p 6022 arturszwagrzak@arturszwagrzak.atthost24.pl "cd ~/websites/server && nohup node app.js > app.log 2>&1 &"
+```
+
+#### Status Monitoring
+
+```bash
+# Check application health
+ssh -p 6022 arturszwagrzak@arturszwagrzak.atthost24.pl "curl -k -I https://server.szwagrzak.pl/api/health"
+
+# Check application logs
+ssh -p 6022 arturszwagrzak@arturszwagrzak.atthost24.pl "tail -f ~/websites/server/app.log"
+
+# Check running processes
+ssh -p 6022 arturszwagrzak@arturszwagrzak.atthost24.pl "ps aux | grep node"
+```
+
+### Troubleshooting
+
+#### Common Issues
+
+**1. CORS Errors**
+
+```
+Access to fetch at 'https://server.szwagrzak.pl/api/sections' has been blocked by CORS policy
+```
+
+**Solution:**
+
+- Check if application is running: `curl -k -I https://server.szwagrzak.pl/api/health`
+- Verify CORS configuration in `backend/app.js`
+- Restart application: `touch tmp/restart.txt`
+
+**2. Database Connection Issues**
+
+```
+Database connection failed, using fallback data
+```
+
+**Solution:**
+
+- Check database credentials in `.env` file
+- Verify database server is running
+- Check network connectivity
+
+**3. Passenger Application Errors**
+
+```
+Web application could not be started by the Phusion Passenger(R) application server
+```
+
+**Solution:**
+
+- Verify `.htaccess` file exists in `~/websites/server/`
+- Check Node.js version compatibility
+- Review application logs: `tail -f ~/websites/server/app.log`
+
+**4. Deployment Failures**
+
+**Check deployment status:**
+
+```bash
+# Verify files were uploaded
+ssh -p 6022 arturszwagrzak@arturszwagrzak.atthost24.pl "ls -la ~/websites/server/"
+
+# Check if .htaccess exists
+ssh -p 6022 arturszwagrzak@arturszwagrzak.atthost24.pl "cat ~/websites/server/.htaccess"
+
+# Verify environment file
+ssh -p 6022 arturszwagrzak@arturszwagrzak.atthost24.pl "ls -la ~/websites/server/.env"
+```
+
+#### Debug Commands
+
+```bash
+# Check server status
+curl -k -I https://server.szwagrzak.pl/api/health
+
+# Test CORS preflight
+curl -H 'Origin: https://szwagrzak.pl' -H 'Access-Control-Request-Method: GET' -X OPTIONS https://server.szwagrzak.pl/api/sections -v
+
+# Check application locally on server
+ssh -p 6022 arturszwagrzak@arturszwagrzak.atthost24.pl "curl -s http://localhost:3002/api/health"
+
+# View recent logs
+ssh -p 6022 arturszwagrzak@arturszwagrzak.atthost24.pl "tail -n 50 ~/websites/server/app.log"
+```
+
+### Configuration Files
+
+#### `.htaccess` (Passenger Configuration)
+
+```apache
+PassengerNodejs /usr/bin/node
+PassengerAppRoot /home/arturszwagrzak/websites/server
+PassengerAppType node
+PassengerStartupFile app.js
+PassengerAppEnv development
+PassengerFriendlyErrorPages on
+```
+
+#### `deploy.sh` (Deployment Script)
+
+```bash
+#!/bin/bash
+# Uploads frontend build and backend files
+# Copies environment files
+# Restarts application
+# Performs health check
+```
+
 ## CI/CD Pipeline
 
 This project uses GitHub Actions for automated testing and deployment:
@@ -178,16 +381,6 @@ This project uses GitHub Actions for automated testing and deployment:
 2. **Building**: Production build with Tailwind CSS compilation
 3. **Deployment**: Automatic deployment to atthost.pl via SSH
 4. **Verification**: Health checks and monitoring
-
-## License
-
-This project is licensed under a custom license. See [LICENSE.md](LICENSE.md) for details.
-
-**Key points:**
-
-- ✅ **Allowed**: Code review, analysis, educational use
-- ❌ **Prohibited**: Copying, redistribution, commercial use
-- 👔 **For recruiters**: Full permission to review and assess skills
 
 ## Support
 
