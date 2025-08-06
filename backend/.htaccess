@@ -1,0 +1,6 @@
+PassengerNodejs /usr/bin/node
+PassengerAppRoot /home/arturszwagrzak/websites/server
+PassengerAppType node
+PassengerStartupFile app.js
+PassengerAppEnv development
+PassengerFriendlyErrorPages on

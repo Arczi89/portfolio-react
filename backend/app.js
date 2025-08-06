@@ -195,21 +195,66 @@ app.use((req, res, next) => {
 // CORS configuration with logging
 const corsOptions = {
   origin: function (origin, callback) {
-    console.log('=== CORS ORIGIN CHECK ===');
-    console.log(`🔍 Checking origin: ${origin || 'NO_ORIGIN'}`);
-
     const allowedOrigins = [
+      // Produkcja - główna domena
       'https://szwagrzak.pl',
       'http://szwagrzak.pl',
+      'https://www.szwagrzak.pl',
+      'http://www.szwagrzak.pl',
+
+      // Produkcja - serwer API
       'https://server.szwagrzak.pl',
       'http://server.szwagrzak.pl',
+      'https://www.server.szwagrzak.pl',
+      'http://www.server.szwagrzak.pl',
+
+      // Lokalne środowisko deweloperskie
       'http://localhost:3000',
-      'http://localhost:3002',
       'https://localhost:3000',
+      'http://localhost:3002',
       'https://localhost:3002',
+      'http://127.0.0.1:3000',
+      'https://127.0.0.1:3000',
+      'http://127.0.0.1:3002',
+      'https://127.0.0.1:3002',
+
+      // Z portami (na wypadek)
+      'https://szwagrzak.pl:80',
+      'http://szwagrzak.pl:80',
+      'https://szwagrzak.pl:443',
+      'http://szwagrzak.pl:443',
+      'https://szwagrzak.pl:3000',
+      'http://szwagrzak.pl:3000',
+      'https://szwagrzak.pl:3002',
+      'http://szwagrzak.pl:3002',
+      'https://www.szwagrzak.pl:80',
+      'http://www.szwagrzak.pl:80',
+      'https://www.szwagrzak.pl:443',
+      'http://www.szwagrzak.pl:443',
+      'https://www.szwagrzak.pl:3000',
+      'http://www.szwagrzak.pl:3000',
+      'https://www.szwagrzak.pl:3002',
+      'http://www.szwagrzak.pl:3002',
+
+      // Serwer API z portami
+      'https://server.szwagrzak.pl:80',
+      'http://server.szwagrzak.pl:80',
+      'https://server.szwagrzak.pl:443',
+      'http://server.szwagrzak.pl:443',
+      'https://server.szwagrzak.pl:3000',
+      'http://server.szwagrzak.pl:3000',
+      'https://server.szwagrzak.pl:3002',
+      'http://server.szwagrzak.pl:3002',
+      'https://www.server.szwagrzak.pl:80',
+      'http://www.server.szwagrzak.pl:80',
+      'https://www.server.szwagrzak.pl:443',
+      'http://www.server.szwagrzak.pl:443',
+      'https://www.server.szwagrzak.pl:3000',
+      'http://www.server.szwagrzak.pl:3000',
+      'https://www.server.szwagrzak.pl:3002',
+      'http://www.server.szwagrzak.pl:3002',
     ];
 
-    // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin) {
       console.log('✅ Allowing request with no origin');
       return callback(null, true);
@@ -223,7 +268,6 @@ const corsOptions = {
       console.log(`📋 Allowed origins:`, allowedOrigins);
       callback(new Error('Not allowed by CORS'));
     }
-    console.log('========================');
   },
   methods: ['OPTIONS', 'GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
   credentials: true,
