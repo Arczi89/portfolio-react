@@ -43,6 +43,7 @@ next-env.d.ts
 .env.test.local
 .env.production.local
 .env.prod
+.env-portfolio-react
 
 # IDE
 .vscode/

@@ -1,10 +1,10 @@
 #!/bin/bash
 
-USER='arturszwagrzak'
-HOST='arturszwagrzak.atthost24.pl'
-REMOTE_DIR='/home/arturszwagrzak/websites/szwagrzak_pl/'
-BACKEND_DIR='/home/arturszwagrzak/websites/server'
-PORT=6022
+USER='dm77338'
+HOST='dm77338.domenomania.eu'
+REMOTE_DIR='/home/dm77338/szwagrzak.pl/'
+BACKEND_DIR='/home/dm77338/server.szwagrzak.pl/'
+PORT=22
 
 echo "Uploading files to $USER@$HOST:$REMOTE_DIR"
 whoami
