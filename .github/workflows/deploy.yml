@@ -41,13 +41,13 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Set up SSH key
-        run: |
-            mkdir -p ~/.ssh
-            echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-            chmod 400 ~/.ssh/id_rsa
-            ssh-keyscan dm77338.domenomania.eu >> ~/.ssh/known_hosts
-            ssh-add ~/.ssh/id_rsa
+      # - name: Set up SSH key
+      #   run: |
+      #       mkdir -p ~/.ssh
+      #       echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+      #       chmod 400 ~/.ssh/id_rsa
+      #       ssh-keyscan dm77338.domenomania.eu >> ~/.ssh/known_hosts
+      #       ssh-add ~/.ssh/id_rsa
 
       - name: Clear cache and install dependencies
         run: rm -rf node_modules
