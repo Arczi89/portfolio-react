@@ -162,11 +162,11 @@ NODE_ENV=development
 
 ### Production Environment
 
-The application is deployed on **Atthost** with the following setup:
+The application is deployed on **Domenomania** with the following setup:
 
 - **Frontend**: `https://szwagrzak.pl` (React build)
 - **Backend API**: `https://server.szwagrzak.pl` (Node.js + Passenger)
-- **Database**: MySQL on Atthost
+- **Database**: MySQL on Domenomania
 - **Server**: Apache + Phusion Passenger
 
 ### Deployment Process
@@ -176,7 +176,7 @@ The application is deployed on **Atthost** with the following setup:
 1. **Push to `release_build` branch** triggers deployment
 2. **Tests run** - linting, type checking, unit tests
 3. **Build process** - React production build
-4. **Deployment** - Files uploaded via SSH
+4. **Deployment** - Files uploaded via SSH to Domenomania
 5. **Application restart** - Passenger restarts Node.js app
 6. **Health check** - Verifies deployment success
 
@@ -191,11 +191,11 @@ The application is deployed on **Atthost** with the following setup:
 npm run build
 
 # 2. Upload files
-scp -P 6022 -r build/* arturszwagrzak@arturszwagrzak.atthost24.pl:~/websites/szwagrzak_pl/
-scp -P 6022 -r backend/* arturszwagrzak@arturszwagrzak.atthost24.pl:~/websites/server/
+scp -P 22 -r build/* dm77338@dm77338.domenomania.eu:/home/dm77338/szwagrzak.pl/
+scp -P 22 -r backend/* dm77338@dm77338.domenomania.eu:/home/dm77338/server.szwagrzak.pl/
 
 # 3. Restart application
-ssh -p 6022 arturszwagrzak@arturszwagrzak.atthost24.pl "cd ~/websites/server && touch tmp/restart.txt"
+ssh -p 22 dm77338@dm77338.domenomania.eu "cd /home/dm77338/server.szwagrzak.pl && touch tmp/restart.txt"
 ```
 
 ### Environment Configuration
@@ -206,6 +206,16 @@ Each project has its own environment file:
 
 - **`.env-portfolio-react`** - Environment variables for portfolio-react project
 - **`.env-[project-name]`** - Future projects will have their own files
+
+#### Domenomania Configuration
+
+The application is hosted on **Domenomania** with the following setup:
+
+- **SSH Access**: `dm77338@dm77338.domenomania.eu` (port 22)
+- **Frontend Directory**: `/home/dm77338/szwagrzak.pl/`
+- **Backend Directory**: `/home/dm77338/server.szwagrzak.pl/`
+- **SSH Key Management**: Managed through Domenomania panel
+- **Environment Files**: Copied from parent directory during deployment
 
 #### Environment File Structure
 
@@ -237,31 +247,81 @@ NODE_ENV=production
 
 ```bash
 # Method 1: Touch restart file (recommended)
-ssh -p 6022 arturszwagrzak@arturszwagrzak.atthost24.pl "cd ~/websites/server && touch tmp/restart.txt"
+ssh -p 22 dm77338@dm77338.domenomania.eu "cd /home/dm77338/server.szwagrzak.pl && touch tmp/restart.txt"
 
 # Method 2: Manual process management
-ssh -p 6022 arturszwagrzak@arturszwagrzak.atthost24.pl "pkill -f 'node app.js'"
-ssh -p 6022 arturszwagrzak@arturszwagrzak.atthost24.pl "cd ~/websites/server && nohup node app.js > app.log 2>&1 &"
+ssh -p 22 dm77338@dm77338.domenomania.eu "pkill -f 'node app.js'"
+ssh -p 22 dm77338@dm77338.domenomania.eu "cd /home/dm77338/server.szwagrzak.pl && nohup node app.js > app.log 2>&1 &"
 ```
 
 #### Status Monitoring
 
 ```bash
 # Check application health
-ssh -p 6022 arturszwagrzak@arturszwagrzak.atthost24.pl "curl -k -I https://server.szwagrzak.pl/api/health"
+ssh -p 22 dm77338@dm77338.domenomania.eu "curl -k -I https://server.szwagrzak.pl/api/health"
 
 # Check application logs
-ssh -p 6022 arturszwagrzak@arturszwagrzak.atthost24.pl "tail -f ~/websites/server/app.log"
+ssh -p 22 dm77338@dm77338.domenomania.eu "tail -f /home/dm77338/server.szwagrzak.pl/app.log"
 
 # Check running processes
-ssh -p 6022 arturszwagrzak@arturszwagrzak.atthost24.pl "ps aux | grep node"
+ssh -p 22 dm77338@dm77338.domenomania.eu "ps aux | grep node"
 ```
 
 ### Troubleshooting
 
 #### Common Issues
 
-**1. CORS Errors**
+**1. SSH Authentication Errors (GitHub Actions)**
+
+```
+Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password)
+```
+
+**Solution:**
+
+This is the most common issue with automated deployments. Follow these steps:
+
+**Step 1: Generate New SSH Keys**
+
+```bash
+# Generate new SSH key pair
+ssh-keygen -t rsa -b 4096 -f ~/.ssh/github_actions_deploy -C "github-actions-deploy" -N ""
+```
+
+**Step 2: Add Public Key to Server**
+
+- Copy the public key from `~/.ssh/github_actions_deploy.pub`
+- Add it to your hosting provider's SSH key management (e.g., Domenomania panel)
+- Ensure the key is authorized
+
+**Step 3: Update GitHub Secrets**
+
+- Copy the private key from `~/.ssh/github_actions_deploy`
+- Go to GitHub → Settings → Secrets and variables → Actions
+- Update `SSH_PRIVATE_KEY` secret with the private key content
+
+**Step 4: Fix File Permissions (if needed)**
+
+```bash
+# On the server, check and fix permissions
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
+```
+
+**2. NPM Installation Errors**
+
+```
+npm error code E403
+npm error 403 403 Forbidden - GET https://registry.npmjs.org/yn/-/yn-3.1.1.tgz
+```
+
+**Solution:**
+
+- Clear npm cache: `npm cache clean --force`
+- Use official registry: Add `registry-url: 'https://registry.npmjs.org'` to GitHub Actions
+- Fallback to npm install: Use `npm ci --no-audit || npm install --no-audit`
+
+**3. CORS Errors**
 
 ```
 Access to fetch at 'https://server.szwagrzak.pl/api/sections' has been blocked by CORS policy
@@ -273,7 +333,7 @@ Access to fetch at 'https://server.szwagrzak.pl/api/sections' has been blocked b
 - Verify CORS configuration in `backend/app.js`
 - Restart application: `touch tmp/restart.txt`
 
-**2. Database Connection Issues**
+**4. Database Connection Issues**
 
 ```
 Database connection failed, using fallback data
@@ -285,7 +345,7 @@ Database connection failed, using fallback data
 - Verify database server is running
 - Check network connectivity
 
-**3. Passenger Application Errors**
+**5. Passenger Application Errors**
 
 ```
 Web application could not be started by the Phusion Passenger(R) application server
@@ -297,19 +357,19 @@ Web application could not be started by the Phusion Passenger(R) application ser
 - Check Node.js version compatibility
 - Review application logs: `tail -f ~/websites/server/app.log`
 
-**4. Deployment Failures**
+**6. Deployment Failures**
 
 **Check deployment status:**
 
 ```bash
 # Verify files were uploaded
-ssh -p 6022 arturszwagrzak@arturszwagrzak.atthost24.pl "ls -la ~/websites/server/"
+ssh -p 22 dm77338@dm77338.domenomania.eu "ls -la /home/dm77338/server.szwagrzak.pl/"
 
 # Check if .htaccess exists
-ssh -p 6022 arturszwagrzak@arturszwagrzak.atthost24.pl "cat ~/websites/server/.htaccess"
+ssh -p 22 dm77338@dm77338.domenomania.eu "cat /home/dm77338/server.szwagrzak.pl/.htaccess"
 
 # Verify environment file
-ssh -p 6022 arturszwagrzak@arturszwagrzak.atthost24.pl "ls -la ~/websites/server/.env"
+ssh -p 22 dm77338@dm77338.domenomania.eu "ls -la /home/dm77338/server.szwagrzak.pl/.env"
 ```
 
 #### Debug Commands
@@ -322,11 +382,47 @@ curl -k -I https://server.szwagrzak.pl/api/health
 curl -H 'Origin: https://szwagrzak.pl' -H 'Access-Control-Request-Method: GET' -X OPTIONS https://server.szwagrzak.pl/api/sections -v
 
 # Check application locally on server
-ssh -p 6022 arturszwagrzak@arturszwagrzak.atthost24.pl "curl -s http://localhost:3002/api/health"
+ssh -p 22 dm77338@dm77338.domenomania.eu "curl -s http://localhost:3002/api/health"
 
 # View recent logs
-ssh -p 6022 arturszwagrzak@arturszwagrzak.atthost24.pl "tail -n 50 ~/websites/server/app.log"
+ssh -p 22 dm77338@dm77338.domenomania.eu "tail -n 50 /home/dm77338/server.szwagrzak.pl/app.log"
+
+# Test SSH connection
+ssh -v -o ConnectTimeout=10 user@your-server.com "echo 'SSH connection successful'"
+
+# Check SSH key fingerprint
+ssh-keygen -lf ~/.ssh/id_rsa
 ```
+
+#### Best Practices for Deployment
+
+**1. SSH Key Management**
+
+- Use dedicated deployment keys (not personal SSH keys)
+- Rotate keys regularly for security
+- Store private keys securely in GitHub Secrets
+- Use descriptive comments for key identification
+
+**2. Environment Configuration**
+
+- Use separate environment files for different projects
+- Never commit sensitive data to version control
+- Use strong encryption keys for production
+- Validate environment variables during startup
+
+**3. Deployment Process**
+
+- Always run tests before deployment
+- Use blue-green deployment when possible
+- Implement health checks after deployment
+- Monitor application logs for errors
+
+**4. Security Considerations**
+
+- Use HTTPS for all production traffic
+- Implement rate limiting on API endpoints
+- Validate and sanitize all user inputs
+- Keep dependencies updated regularly
 
 ### Configuration Files
 
@@ -334,10 +430,10 @@ ssh -p 6022 arturszwagrzak@arturszwagrzak.atthost24.pl "tail -n 50 ~/websites/se
 
 ```apache
 PassengerNodejs /usr/bin/node
-PassengerAppRoot /home/arturszwagrzak/websites/server
+PassengerAppRoot /home/dm77338/server.szwagrzak.pl
 PassengerAppType node
 PassengerStartupFile app.js
-PassengerAppEnv development
+PassengerAppEnv production
 PassengerFriendlyErrorPages on
 ```
 
@@ -366,7 +462,7 @@ This project uses GitHub Actions for automated testing and deployment:
 
 - **Trigger**: Push to `release_build` branch
 - **Pipeline**: Test → Build → Deploy to production
-- **Security**: SSH key authentication for deployment
+- **Security**: SSH key authentication for deployment (Domenomania)
 - **Environment**: Production build with optimized settings
 
 ### **Branch Protection**
@@ -379,7 +475,7 @@ This project uses GitHub Actions for automated testing and deployment:
 
 1. **Testing**: All tests must pass before deployment
 2. **Building**: Production build with Tailwind CSS compilation
-3. **Deployment**: Automatic deployment to atthost.pl via SSH
+3. **Deployment**: Automatic deployment to Domenomania via SSH
 4. **Verification**: Health checks and monitoring
 
 ## Support
