@@ -1,0 +1,25 @@
+RewriteEngine On
+RewriteBase /
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ / [R=301,L]
+
+# Handle React Router routes for valid paths
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  
+  # Allow direct access to index.html
+  RewriteRule ^index\.html$ - [L]
+  
+  # For valid React routes, serve index.html
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(contact|interests|projects|about)$ index.html [L]
+  
+  # For any other non-existent paths, redirect to homepage
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^.*$ / [R=301,L]
+</IfModule>
