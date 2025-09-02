@@ -1,4 +1,10 @@
-
+# DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION BEGIN
+PassengerAppRoot "/home/dm77338/server.szwagrzak.pl"
+PassengerBaseURI "/"
+PassengerNodejs "/home/dm77338/nodevenv/server.szwagrzak.pl/16/bin/node"
+PassengerAppType node
+PassengerStartupFile app.js
+# DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION END
 <IfModule mod_headers.c>
     Header always set Access-Control-Allow-Origin "https://szwagrzak.pl"
     Header always set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
@@ -12,10 +18,3 @@
     RewriteCond %{REQUEST_METHOD} OPTIONS
     RewriteRule ^(.*)$ $1 [R=200,L]
 </IfModule>
-
-PassengerNodejs /usr/bin/node
-PassengerAppRoot /home/dm77338/server.szwagrzak.pl
-PassengerAppType node
-PassengerStartupFile app.js
-PassengerAppEnv production
-PassengerFriendlyErrorPages off
