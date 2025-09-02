@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styles from '../styles/contact.module.scss';
 import stylesForm from '../styles/form.module.scss';
-import stylesSections from '../styles/section.module.scss';
 import Header from './Header';
 import Footer from './Footer';
 import {
@@ -72,8 +71,8 @@ const Contact: React.FC = () => {
       <main
         className={`flex-grow flex items-center justify-center py-6 ${styles.container}`}
       >
-        <section className={`w-full max-w-4xl ${stylesSections.section}`}>
-          <div className={stylesSections['section-inner']}>
+        <div className="w-full max-w-4xl">
+          <div className="text-center">
             <h2 className="text-4xl font-bold text-center mb-4">Kontakt</h2>
             <p className={styles.contactIntro}>
               Masz pytania? Skontaktuj się ze mną:
@@ -93,8 +92,8 @@ const Contact: React.FC = () => {
               </p>
             </div>
 
-            <div className="flex justify-center">
-              <div className={stylesSections['paragraph-body']}>
+            <div className="flex justify-center container">
+              <div className="container">
                 <form
                   data-testid="contact-form"
                   className={stylesForm.form}
@@ -144,7 +143,7 @@ const Contact: React.FC = () => {
               </div>
             </div>
           </div>
-        </section>
+        </div>
       </main>
       <Footer />
     </div>

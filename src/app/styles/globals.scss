@@ -34,6 +34,23 @@ html {
     color: $color-text-white;
     overflow-x: hidden;
   }
+
+  // Nadpisanie Tailwind reset dla formularzy
+  input,
+  textarea,
+  button,
+  select {
+    padding: 1rem;
+    color: $color-text-white;
+  }
+
+  input[type='text'],
+  input[type='email'],
+  textarea {
+    padding: 1rem;
+    color: $color-text-white;
+    -webkit-text-fill-color: $color-text-white;
+  }
 }
 
 @layer components {

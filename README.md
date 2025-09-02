@@ -15,6 +15,7 @@ Portfolio website built with React, Node.js, and MySQL. Features a contact form 
 ## Features
 
 - **Responsive Design**: Modern UI with Tailwind CSS and SCSS modules
+- **Universal Section Component**: Reusable content component with 20% image + 80% content layout
 - **Contact Form**: Secure form with email notifications and data encryption
 - **Database Integration**: MySQL database with Sequelize ORM
 - **Security**: Rate limiting, data encryption, and GDPR compliance
@@ -99,6 +100,10 @@ portfolio-react/
 ├── src/
 │   └── app/
 │       ├── components/     # React components
+│       │   ├── Section.tsx # Universal content component (20% image + 80% content)
+│       │   ├── Home.tsx    # Main page using Section components
+│       │   ├── Contact.tsx # Contact form (custom HTML structure)
+│       │   └── Interests.tsx # Interests page using Section components
 │       ├── services/       # API services
 │       └── styles/         # SCSS modules
 ├── docker-compose.dev.yml  # Development environment
