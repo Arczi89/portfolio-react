@@ -2,7 +2,7 @@
 -- This script is safe to run on production database
 -- It will only create the table if it doesn't exist
 
-USE 17390_portfolio;
+USE dm77338_portfolio;
 
 -- Check if table exists and create if not
 CREATE TABLE IF NOT EXISTS contact_messages (

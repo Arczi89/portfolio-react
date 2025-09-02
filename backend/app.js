@@ -2,7 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const cors = require('cors');
-// const rateLimit = require('express-rate-limit'); // Usunięte dla kompatybilności
 const sequelize = require('./dbConnection');
 const MainPageSection = require('./mainPageSection');
 const ContactMessage = require('./contactMessage');
@@ -288,6 +287,28 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
+// CORS error handling middleware
+app.use((error, req, res, next) => {
+  if (error.message === 'Not allowed by CORS') {
+    console.log(`🚫 CORS Error: ${error.message}`);
+    console.log(`🌐 Blocked origin: ${req.get('origin') || 'NO_ORIGIN'}`);
+    console.log(`📡 Method: ${req.method}`);
+    console.log(`🔗 URL: ${req.url}`);
+
+    return res.status(403).json({
+      success: false,
+      message: 'CORS policy violation - origin not allowed',
+      error: 'CORS_ERROR',
+      blockedOrigin: req.get('origin'),
+      allowedOrigins: corsOptions.origin.toString().includes('function')
+        ? 'Dynamic validation'
+        : corsOptions.origin,
+      timestamp: new Date().toISOString(),
+    });
+  }
+  next(error);
+});
+
 app.use(bodyParser.json({ limit: '10mb' }));
 
 app.use((req, res, next) => {
@@ -393,6 +414,14 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
 
     const contactMessage = await ContactMessage.create(encryptedData);
 
+    console.log('📝 Przetwarzanie wiadomości kontaktowej...');
+    console.log('👤 Dane użytkownika:', {
+      name: name.trim(),
+      email: email.trim(),
+      ip: ipAddress,
+      userAgent: userAgent?.substring(0, 100) + '...',
+    });
+
     const emailResult = await sendContactEmail({
       name: name.trim(),
       email: email.trim(),
@@ -405,11 +434,19 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
       message: message.trim(),
     });
 
-    console.log(`New contact message from: ${name} (${email})`);
-    console.log(`Email to you: ${emailResult.success ? 'sent' : 'error'}`);
+    console.log('📊 Podsumowanie wysyłania emaili:');
     console.log(
-      `Confirmation email: ${confirmationResult.success ? 'sent' : 'error'}`
+      `  📧 Email do Ciebie: ${emailResult.success ? '✅ Wysłany' : '❌ Błąd'}`
     );
+    if (!emailResult.success) {
+      console.log(`    🔍 Błąd: ${emailResult.error}`);
+    }
+    console.log(
+      `  📬 Email potwierdzający: ${confirmationResult.success ? '✅ Wysłany' : '❌ Błąd'}`
+    );
+    if (!confirmationResult.success) {
+      console.log(`    🔍 Błąd: ${confirmationResult.error}`);
+    }
 
     res.json({
       success: true,
@@ -491,6 +528,48 @@ app.use((req, res, next) => {
     originalSend.call(this, data);
   };
   next();
+});
+
+// Global error handling middleware
+app.use((error, req, res, next) => {
+  console.error('🚨 Global Error Handler:', error);
+  console.error('📊 Request details:', {
+    method: req.method,
+    url: req.url,
+    origin: req.get('origin'),
+    userAgent: req.get('user-agent'),
+    ip: req.ip || req.connection.remoteAddress,
+  });
+
+  // Handle different types of errors
+  if (error.name === 'SequelizeValidationError') {
+    return res.status(400).json({
+      success: false,
+      message: 'Validation error',
+      error: 'VALIDATION_ERROR',
+      details: error.errors.map(e => ({
+        field: e.path,
+        message: e.message,
+      })),
+    });
+  }
+
+  if (error.name === 'SequelizeConnectionError') {
+    return res.status(503).json({
+      success: false,
+      message: 'Database connection error',
+      error: 'DB_CONNECTION_ERROR',
+      timestamp: new Date().toISOString(),
+    });
+  }
+
+  // Default error response
+  res.status(500).json({
+    success: false,
+    message: 'Internal server error',
+    error: 'INTERNAL_ERROR',
+    timestamp: new Date().toISOString(),
+  });
 });
 
 app.listen(PORT, async () => {

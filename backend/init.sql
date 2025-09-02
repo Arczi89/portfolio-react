@@ -1,5 +1,5 @@
 -- Portfolio database initialization
-USE 17390_portfolio;
+USE dm77338_portfolio;
 
 -- UTF-8 encoding setup
 SET NAMES utf8mb4;
