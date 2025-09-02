@@ -19,8 +19,8 @@ const contactAttempts = new Map();
 const contactLimiter = (req, res, next) => {
   const ip = req.ip || req.connection.remoteAddress;
   const now = Date.now();
-  const windowMs = 15 * 60 * 1000; // 15 minutes
-  const maxAttempts = 5;
+  const windowMs = 10 * 60 * 1000; // 10 minutes
+  const maxAttempts = 10;
 
   if (!contactAttempts.has(ip)) {
     contactAttempts.set(ip, { count: 0, resetTime: now + windowMs });

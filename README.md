@@ -195,7 +195,10 @@ npm run build
 scp -P 22 -r build/* dm77338@dm77338.domenomania.eu:/home/dm77338/szwagrzak.pl/
 scp -P 22 -r backend/* dm77338@dm77338.domenomania.eu:/home/dm77338/server.szwagrzak.pl/
 
-# 3. Restart application
+# 3. Upload environment file (if changed)
+scp -P 22 .env-portfolio-react dm77338@dm77338.domenomania.eu:/home/dm77338/.env-portfolio-react
+
+# 4. Restart application
 ssh -p 22 dm77338@dm77338.domenomania.eu "cd /home/dm77338/server.szwagrzak.pl && touch tmp/restart.txt"
 ```
 
@@ -207,6 +210,8 @@ Each project has its own environment file:
 
 - **`.env-portfolio-react`** - Environment variables for portfolio-react project
 - **`.env-[project-name]`** - Future projects will have their own files
+
+**⚠️ Important**: After making changes to `.env-portfolio-react`, you must manually upload the updated file to the hosting server. The automated deployment process does not sync environment files for security reasons.
 
 #### Domenomania Configuration
 
