@@ -51,6 +51,12 @@ html {
     color: $color-text-white;
     -webkit-text-fill-color: $color-text-white;
   }
+
+  .footer,
+  .footer p {
+    color: $color-text-white;
+    text-align: center;
+  }
 }
 
 @layer components {
