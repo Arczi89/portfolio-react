@@ -43,7 +43,7 @@ const Interests: React.FC = () => {
       </main>
       <footer className={styles.footer}>
         <p>
-          &copy; 2024 Szwagrzak Artur. Wszelkie prawa zastrzeżone. Kontakt:
+          &copy; 2025 Szwagrzak Artur. Wszelkie prawa zastrzeżone. Kontakt:
           artur@szwagrzak.pl
         </p>
       </footer>
