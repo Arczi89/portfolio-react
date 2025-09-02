@@ -23,7 +23,15 @@ const createTransporter = () => {
 
 const sendContactEmail = async contactData => {
   try {
+    console.log('🚀 Rozpoczynam wysyłanie emaila kontaktowego...');
+    console.log('📧 Dane emaila:', {
+      from: process.env.EMAIL_USER || 'artur@szwagrzak.pl',
+      to: 'artur@szwagrzak.pl',
+      subject: `Nowa wiadomość kontaktowa od ${contactData.name}`,
+    });
+
     const transporter = createTransporter();
+    console.log('✅ Transporter utworzony pomyślnie');
 
     const mailOptions = {
       from: process.env.EMAIL_USER || 'artur@szwagrzak.pl',
@@ -54,18 +62,40 @@ const sendContactEmail = async contactData => {
       `,
     };
 
+    console.log('📤 Wysyłam email...');
     const result = await transporter.sendMail(mailOptions);
-    console.log('Email wysłany pomyślnie:', result.messageId);
+    console.log('✅ Email wysłany pomyślnie:', result.messageId);
+    console.log('📊 Szczegóły wysłania:', {
+      messageId: result.messageId,
+      accepted: result.accepted,
+      rejected: result.rejected,
+      response: result.response,
+    });
     return { success: true, messageId: result.messageId };
   } catch (error) {
-    console.error('Błąd podczas wysyłania emaila:', error);
+    console.error('❌ Błąd podczas wysyłania emaila:', error);
+    console.error('🔍 Szczegóły błędu:', {
+      message: error.message,
+      code: error.code,
+      command: error.command,
+      responseCode: error.responseCode,
+      response: error.response,
+    });
     return { success: false, error: error.message };
   }
 };
 
 const sendConfirmationEmail = async contactData => {
   try {
+    console.log('🚀 Rozpoczynam wysyłanie emaila potwierdzającego...');
+    console.log('📧 Dane emaila potwierdzającego:', {
+      from: process.env.EMAIL_USER || 'artur@szwagrzak.pl',
+      to: contactData.email,
+      subject: 'Potwierdzenie wysłania wiadomości - Artur Szwagrzak',
+    });
+
     const transporter = createTransporter();
+    console.log('✅ Transporter utworzony pomyślnie');
 
     const mailOptions = {
       from: process.env.EMAIL_USER || 'artur@szwagrzak.pl',
@@ -96,11 +126,25 @@ const sendConfirmationEmail = async contactData => {
       `,
     };
 
+    console.log('📤 Wysyłam email potwierdzający...');
     const result = await transporter.sendMail(mailOptions);
-    console.log('Email potwierdzający wysłany pomyślnie:', result.messageId);
+    console.log('✅ Email potwierdzający wysłany pomyślnie:', result.messageId);
+    console.log('📊 Szczegóły wysłania potwierdzenia:', {
+      messageId: result.messageId,
+      accepted: result.accepted,
+      rejected: result.rejected,
+      response: result.response,
+    });
     return { success: true, messageId: result.messageId };
   } catch (error) {
-    console.error('Błąd podczas wysyłania emaila potwierdzającego:', error);
+    console.error('❌ Błąd podczas wysyłania emaila potwierdzającego:', error);
+    console.error('🔍 Szczegóły błędu potwierdzenia:', {
+      message: error.message,
+      code: error.code,
+      command: error.command,
+      responseCode: error.responseCode,
+      response: error.response,
+    });
     return { success: false, error: error.message };
   }
 };

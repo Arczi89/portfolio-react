@@ -68,10 +68,12 @@ const Contact: React.FC = () => {
       className={`min-h-screen flex flex-col bg-background ${styles.contact}`}
     >
       <Header />
-      <main className={`flex-grow mx-auto py-6 ${styles.container}`}>
-        <section className={`mb-8 ${stylesSections.section}`}>
+      <main
+        className={`flex-grow flex items-center justify-center py-6 ${styles.container}`}
+      >
+        <section className={`w-full max-w-4xl ${stylesSections.section}`}>
           <div className={stylesSections['section-inner']}>
-            <h2 className="text-4xl font-bold">Kontakt</h2>
+            <h2 className="text-4xl font-bold text-center mb-4">Kontakt</h2>
             <p className={styles.contactIntro}>
               Masz pytania? Skontaktuj się ze mną:
             </p>
@@ -89,7 +91,8 @@ const Contact: React.FC = () => {
                 Więcej informacji: artur@szwagrzak.pl
               </p>
             </div>
-            <div>
+
+            <div className="flex justify-center">
               <div className={stylesSections['paragraph-body']}>
                 <form className={stylesForm.form} onSubmit={handleSubmit}>
                   <label htmlFor="name">Imię</label>

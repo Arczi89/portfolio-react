@@ -60,10 +60,13 @@
   @include glass-effect-dark;
   border-radius: $border-radius-large;
   padding: 1.5rem;
-  margin: 1rem 0;
+  margin: 2rem auto;
+  max-width: 800px;
+  width: 100%;
   box-shadow: $shadow-lg;
   border: 1px solid $color-primary-transparent-20;
   transition: all $transition-medium;
+  text-align: center;
 
   &:hover {
     border-color: $color-primary-transparent-40;
@@ -73,6 +76,8 @@
   p {
     color: $color-text-white;
     margin: 0.5rem 0;
+    line-height: 1.6;
+    font-size: 0.95rem;
 
     &:first-child {
       margin-top: 0;
