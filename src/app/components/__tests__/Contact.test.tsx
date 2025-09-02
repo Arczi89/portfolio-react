@@ -129,8 +129,12 @@ describe('Contact Component', () => {
 
   it('shows loading state during submission', async () => {
     // Create a promise that we can resolve later
-    let resolvePromise: (value: any) => void;
-    const promise = new Promise(resolve => {
+    let resolvePromise: (
+      value: import('../../services/contactService').ContactResponse
+    ) => void;
+    const promise = new Promise<
+      import('../../services/contactService').ContactResponse
+    >(resolve => {
       resolvePromise = resolve;
     });
 
