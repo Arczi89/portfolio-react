@@ -7,6 +7,7 @@ const config: Config = {
       fontFamily: {
         poppins: ['Poppins', 'sans-serif'],
         roboto: ['Roboto', 'sans-serif'],
+        'space-mono': ['Space Mono', 'monospace'],
       },
       colors: {
         // Fioletowa kolorystyka - kreatywna i nowoczesna

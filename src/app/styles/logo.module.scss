@@ -3,9 +3,11 @@
 @keyframes typing {
   from {
     width: 0;
+    margin-left: 50%;
   }
   to {
     width: 100%;
+    margin-left: 0;
   }
 }
 @keyframes blink-caret {
@@ -18,7 +20,7 @@
 }
 
 h1.logo {
-  font-family: sakuna;
+  font-family: 'Space Mono', monospace;
   font-size: 4rem;
   color: $color-text-white;
   padding: 0 1rem;
