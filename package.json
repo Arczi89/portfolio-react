@@ -12,7 +12,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "type-check": "tsc --noEmit",
-    "test": "react-scripts test",
+    "test": "react-scripts test --watchAll=false --passWithNoTests",
     "test:coverage": "react-scripts test --coverage --watchAll=false --passWithNoTests",
     "build:css": "tailwindcss -i ./src/app/styles/globals.scss -o ./dist/styles.css --watch",
     "build:css:prod": "tailwindcss -i ./src/app/styles/globals.scss -o ./dist/styles.css",

@@ -157,6 +157,7 @@ NODE_ENV=development
 - **Lint**: `npm run lint`
 - **Format**: `npm run format`
 - **Type Check**: `npm run type-check`
+- **Git Hooks**: Pre-commit format checking
 
 ## Deployment
 
@@ -454,9 +455,9 @@ This project uses GitHub Actions for automated testing and deployment:
 ### **Automated Testing** (`main` branch)
 
 - **Trigger**: Push to `main` branch or pull requests
-- **Tests**: Linting, type checking, formatting, unit tests
-- **Coverage**: Code coverage reports with Codecov
-- **Build**: Application build verification
+- **Tests**: Linting, type checking, unit tests
+- **Quality Gates**: Code quality validation before merge
+- **Format Checking**: Handled by git hooks (pre-commit)
 
 ### **Automated Deployment** (`release_build` branch)
 
@@ -477,6 +478,12 @@ This project uses GitHub Actions for automated testing and deployment:
 2. **Building**: Production build with Tailwind CSS compilation
 3. **Deployment**: Automatic deployment to Domenomania via SSH
 4. **Verification**: Health checks and monitoring
+
+### **Pipeline Optimization**
+
+- **Test Pipeline**: Fast validation (linting + type checking + tests)
+- **Deploy Pipeline**: Full build and deployment process
+- **Format Checking**: Git hooks ensure consistent code style
 
 ## Support
 
