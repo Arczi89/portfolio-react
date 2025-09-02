@@ -7,6 +7,7 @@ import {
 import { SectionModel } from '../models/SectionModel';
 import Section from './Section';
 import Header from './Header';
+import Footer from './Footer';
 import { TAGS } from '../constants/tags';
 
 const Interests: React.FC = () => {
@@ -41,12 +42,7 @@ const Interests: React.FC = () => {
           <Section group={hobbiesGroup} tag={TAGS.HOBBIES} />
         )}
       </main>
-      <footer className={styles.footer}>
-        <p>
-          &copy; 2025 Szwagrzak Artur. Wszelkie prawa zastrzeżone. Kontakt:
-          artur@szwagrzak.pl
-        </p>
-      </footer>
+      <Footer />
     </div>
   );
 };

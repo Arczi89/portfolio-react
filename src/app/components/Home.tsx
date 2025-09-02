@@ -4,6 +4,7 @@ import { getSections, groupSectionsByTag } from '../services/sectionService';
 import { SectionModel } from '../models/SectionModel';
 import Section from './Section';
 import Header from './Header';
+import Footer from './Footer';
 import { MAIN_PAGE_TAGS } from '../constants/tags';
 
 const Home: React.FC = () => {
@@ -42,12 +43,7 @@ const Home: React.FC = () => {
             return <Section group={group} tag={tag} key={tag} />;
           })}
       </main>
-      <footer className={styles.footer}>
-        <p>
-          &copy; 2025 Szwagrzak Artur. Wszelkie prawa zastrzeżone. Kontakt:
-          artur@szwagrzak.pl
-        </p>
-      </footer>
+      <Footer />
     </div>
   );
 };

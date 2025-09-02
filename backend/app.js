@@ -13,13 +13,12 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3002;
 
-// Simple rate limiting for contact form
 const contactAttempts = new Map();
 
 const contactLimiter = (req, res, next) => {
   const ip = req.ip || req.connection.remoteAddress;
   const now = Date.now();
-  const windowMs = 10 * 60 * 1000; // 10 minutes
+  const windowMs = 10 * 60 * 1000;
   const maxAttempts = 10;
 
   if (!contactAttempts.has(ip)) {
@@ -44,7 +43,6 @@ const contactLimiter = (req, res, next) => {
   next();
 };
 
-// Fallback data for when database is unavailable
 const fallbackSections = [
   {
     id: 1,
@@ -191,23 +189,17 @@ app.use((req, res, next) => {
   next();
 });
 
-// CORS configuration with logging
 const corsOptions = {
   origin: function (origin, callback) {
     const allowedOrigins = [
-      // Produkcja - główna domena
       'https://szwagrzak.pl',
       'http://szwagrzak.pl',
       'https://www.szwagrzak.pl',
       'http://www.szwagrzak.pl',
-
-      // Produkcja - serwer API
       'https://server.szwagrzak.pl',
       'http://server.szwagrzak.pl',
       'https://www.server.szwagrzak.pl',
       'http://www.server.szwagrzak.pl',
-
-      // Lokalne środowisko deweloperskie
       'http://localhost:3000',
       'https://localhost:3000',
       'http://localhost:3002',
@@ -216,8 +208,6 @@ const corsOptions = {
       'https://127.0.0.1:3000',
       'http://127.0.0.1:3002',
       'https://127.0.0.1:3002',
-
-      // Z portami (na wypadek)
       'https://szwagrzak.pl:80',
       'http://szwagrzak.pl:80',
       'https://szwagrzak.pl:443',
@@ -234,8 +224,6 @@ const corsOptions = {
       'http://www.szwagrzak.pl:3000',
       'https://www.szwagrzak.pl:3002',
       'http://www.szwagrzak.pl:3002',
-
-      // Serwer API z portami
       'https://server.szwagrzak.pl:80',
       'http://server.szwagrzak.pl:80',
       'https://server.szwagrzak.pl:443',
@@ -287,7 +275,6 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-// CORS error handling middleware
 app.use((error, req, res, next) => {
   if (error.message === 'Not allowed by CORS') {
     console.log(`🚫 CORS Error: ${error.message}`);
@@ -316,7 +303,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// CORS logging middleware
 app.use((req, res, next) => {
   const origin = req.get('origin');
   const method = req.method;
@@ -403,7 +389,6 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
       req.ip || req.connection.remoteAddress || req.headers['x-forwarded-for'];
     const userAgent = req.headers['user-agent'];
 
-    // Encrypt sensitive data before database storage
     const encryptedData = encryptContactData({
       name: name.trim(),
       email: email.trim().toLowerCase(),
@@ -533,7 +518,6 @@ app.delete('/api/contact/:id', async (req, res) => {
   }
 });
 
-// Response logging middleware
 app.use((req, res, next) => {
   const originalSend = res.send;
   res.send = function (data) {
@@ -556,7 +540,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// Global error handling middleware
 app.use((error, req, res, next) => {
   console.error('🚨 Global Error Handler:', error);
   console.error('📊 Request details:', {
@@ -567,7 +550,6 @@ app.use((error, req, res, next) => {
     ip: req.ip || req.connection.remoteAddress,
   });
 
-  // Handle different types of errors
   if (error.name === 'SequelizeValidationError') {
     return res.status(400).json({
       success: false,
@@ -589,7 +571,6 @@ app.use((error, req, res, next) => {
     });
   }
 
-  // Default error response
   res.status(500).json({
     success: false,
     message: 'Internal server error',

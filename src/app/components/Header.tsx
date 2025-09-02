@@ -12,7 +12,7 @@ const Header: React.FC = () => {
   ];
 
   return (
-    <header className={`${styles.header}`}>
+    <header data-testid="header" className={`${styles.header}`}>
       <Logo />
       <nav>
         {locationPaths.map(path => {

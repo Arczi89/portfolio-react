@@ -3,6 +3,7 @@ import styles from '../styles/contact.module.scss';
 import stylesForm from '../styles/form.module.scss';
 import stylesSections from '../styles/section.module.scss';
 import Header from './Header';
+import Footer from './Footer';
 import {
   sendContactMessage,
   ContactFormData,
@@ -94,7 +95,11 @@ const Contact: React.FC = () => {
 
             <div className="flex justify-center">
               <div className={stylesSections['paragraph-body']}>
-                <form className={stylesForm.form} onSubmit={handleSubmit}>
+                <form
+                  data-testid="contact-form"
+                  className={stylesForm.form}
+                  onSubmit={handleSubmit}
+                >
                   <label htmlFor="name">Imię</label>
                   <input
                     type="text"
@@ -141,12 +146,7 @@ const Contact: React.FC = () => {
           </div>
         </section>
       </main>
-      <footer className={styles.footer}>
-        <p>
-          &copy; 2025 Szwagrzak Artur. Wszelkie prawa zastrzeżone. Kontakt:
-          artur@szwagrzak.pl
-        </p>
-      </footer>
+      <Footer />
     </div>
   );
 };
