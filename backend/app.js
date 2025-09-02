@@ -448,11 +448,37 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
       console.log(`    🔍 Błąd: ${confirmationResult.error}`);
     }
 
-    res.json({
-      success: true,
-      message: 'Message sent successfully! Check your email.',
-      id: contactMessage.id,
-    });
+    const allEmailsSent = emailResult.success && confirmationResult.success;
+
+    if (allEmailsSent) {
+      res.json({
+        success: true,
+        message: 'Message sent successfully! Check your email.',
+        id: contactMessage.id,
+      });
+    } else {
+      const emailErrors = [];
+      if (!emailResult.success) {
+        emailErrors.push(`Main email: ${emailResult.error}`);
+      }
+      if (!confirmationResult.success) {
+        emailErrors.push(`Confirmation email: ${confirmationResult.error}`);
+      }
+
+      res.json({
+        success: false,
+        message:
+          'Message saved but email delivery failed. Please contact support.',
+        id: contactMessage.id,
+        emailErrors: emailErrors,
+        logs: {
+          mainEmail: emailResult.success ? 'Sent' : emailResult.error,
+          confirmationEmail: confirmationResult.success
+            ? 'Sent'
+            : confirmationResult.error,
+        },
+      });
+    }
   } catch (error) {
     console.error('Error processing contact message:', error);
     res.status(500).json({

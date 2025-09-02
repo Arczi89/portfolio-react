@@ -6,7 +6,7 @@ dotenv.config();
 const createTransporter = () => {
   // SMTP configuration for atthost hosting
   const smtpConfig = {
-    host: 'arturszwagrzak.atthost24.pl',
+    host: process.env.EMAIL_HOST || 'mail.szwagrzak.pl',
     port: 587, // TLS port
     secure: false, // false for 587, true for 465
     auth: {
@@ -18,7 +18,7 @@ const createTransporter = () => {
     },
   };
 
-  return nodemailer.createTransporter(smtpConfig);
+  return nodemailer.createTransport(smtpConfig);
 };
 
 const sendContactEmail = async contactData => {

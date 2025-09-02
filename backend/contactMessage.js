@@ -17,9 +17,6 @@ ContactMessage.init(
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        isEmail: true,
-      },
     },
     message: {
       type: DataTypes.TEXT,
