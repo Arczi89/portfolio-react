@@ -31,7 +31,7 @@ const sendContactEmail = async contactData => {
     });
 
     const transporter = createTransporter();
-    console.log('✅ Transporter utworzony pomyślnie');
+    console.log('Transporter utworzony pomyślnie');
 
     const mailOptions = {
       from: process.env.EMAIL_USER || 'artur@szwagrzak.pl',
@@ -64,7 +64,7 @@ const sendContactEmail = async contactData => {
 
     console.log('📤 Wysyłam email...');
     const result = await transporter.sendMail(mailOptions);
-    console.log('✅ Email wysłany pomyślnie:', result.messageId);
+    console.log('Email wysłany pomyślnie:', result.messageId);
     console.log('📊 Szczegóły wysłania:', {
       messageId: result.messageId,
       accepted: result.accepted,
@@ -73,7 +73,7 @@ const sendContactEmail = async contactData => {
     });
     return { success: true, messageId: result.messageId };
   } catch (error) {
-    console.error('❌ Błąd podczas wysyłania emaila:', error);
+    console.error('Błąd podczas wysyłania emaila:', error);
     console.error('🔍 Szczegóły błędu:', {
       message: error.message,
       code: error.code,
@@ -95,7 +95,7 @@ const sendConfirmationEmail = async contactData => {
     });
 
     const transporter = createTransporter();
-    console.log('✅ Transporter utworzony pomyślnie');
+    console.log('Transporter utworzony pomyślnie');
 
     const mailOptions = {
       from: process.env.EMAIL_USER || 'artur@szwagrzak.pl',
@@ -128,7 +128,7 @@ const sendConfirmationEmail = async contactData => {
 
     console.log('📤 Wysyłam email potwierdzający...');
     const result = await transporter.sendMail(mailOptions);
-    console.log('✅ Email potwierdzający wysłany pomyślnie:', result.messageId);
+    console.log('Email potwierdzający wysłany pomyślnie:', result.messageId);
     console.log('📊 Szczegóły wysłania potwierdzenia:', {
       messageId: result.messageId,
       accepted: result.accepted,
@@ -137,7 +137,7 @@ const sendConfirmationEmail = async contactData => {
     });
     return { success: true, messageId: result.messageId };
   } catch (error) {
-    console.error('❌ Błąd podczas wysyłania emaila potwierdzającego:', error);
+    console.error('Błąd podczas wysyłania emaila potwierdzającego:', error);
     console.error('🔍 Szczegóły błędu potwierdzenia:', {
       message: error.message,
       code: error.code,

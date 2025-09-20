@@ -6,8 +6,8 @@ This project is licensed under a custom license. See [LICENSE.md](LICENSE.md) fo
 
 **Key points:**
 
-- ✅ **Allowed**: Code review, analysis, educational use
-- ❌ **Prohibited**: Copying, redistribution, commercial use
+- **Allowed**: Code review, analysis, educational use
+- **Prohibited**: Copying, redistribution, commercial use
 - 👔 **For recruiters**: Full permission to review and assess skills
 
 Portfolio website built with React, Node.js, and MySQL. Features a contact form with email notifications and GDPR-compliant data handling.

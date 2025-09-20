@@ -243,15 +243,15 @@ const corsOptions = {
     ];
 
     if (!origin) {
-      console.log('✅ Allowing request with no origin');
+      console.log('Allowing request with no origin');
       return callback(null, true);
     }
 
     if (allowedOrigins.indexOf(origin) !== -1) {
-      console.log(`✅ Origin ${origin} is allowed`);
+      console.log(`Origin ${origin} is allowed`);
       callback(null, true);
     } else {
-      console.log(`❌ Origin ${origin} is NOT allowed`);
+      console.log(`Origin ${origin} is NOT allowed`);
       console.log(`📋 Allowed origins:`, allowedOrigins);
       callback(new Error('Not allowed by CORS'));
     }
@@ -421,13 +421,13 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
 
     console.log('📊 Podsumowanie wysyłania emaili:');
     console.log(
-      `  📧 Email do Ciebie: ${emailResult.success ? '✅ Wysłany' : '❌ Błąd'}`
+      `  📧 Email do Ciebie: ${emailResult.success ? 'Wysłany' : 'Błąd'}`
     );
     if (!emailResult.success) {
       console.log(`    🔍 Błąd: ${emailResult.error}`);
     }
     console.log(
-      `  📬 Email potwierdzający: ${confirmationResult.success ? '✅ Wysłany' : '❌ Błąd'}`
+      `  📬 Email potwierdzający: ${confirmationResult.success ? 'Wysłany' : 'Błąd'}`
     );
     if (!confirmationResult.success) {
       console.log(`    🔍 Błąd: ${confirmationResult.error}`);
@@ -584,10 +584,10 @@ app.listen(PORT, async () => {
     await sequelize.authenticate();
     console.log(`🚀 Server is running on port ${PORT}`);
     console.log(`📊 Health check: http://localhost:${PORT}/api/health`);
-    console.log(`✅ Database connected successfully`);
+    console.log(`Database connected successfully`);
     console.log(`🔍 CORS logging enabled - check console for detailed logs`);
   } catch (error) {
-    console.error('❌ Unable to connect to the database:', error.message);
+    console.error('Unable to connect to the database:', error.message);
     console.log(`🔄 Server will run with fallback data`);
     console.log(`🚀 Server is running on port ${PORT}`);
     console.log(`📊 Health check: http://localhost:${PORT}/api/health`);

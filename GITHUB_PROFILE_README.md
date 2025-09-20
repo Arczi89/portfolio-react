@@ -13,14 +13,14 @@
 - **Tech Stack:** React 18, Node.js, MySQL, Docker, TypeScript
 - **Features:** Secure contact form, email notifications, GDPR compliance
 - **Highlights:** Data encryption, rate limiting, responsive design
-- **Status:** ✅ Production ready
+- **Status:** Production ready
 
 ### [Relaksownia - Massage Website](https://github.com/Arczi89/relaksownia)
 
 - **Tech Stack:** Django, Python, HTML/CSS, SCSS, MySQL
 - **Features:** Multi-page website, blog system, contact forms, admin panel
 - **Highlights:** Client testimonials, newsletter, promotional content
-- **Status:** ✅ Live at https://relaksownia.org.pl
+- **Status:** Live at https://relaksownia.org.pl
 
 ### [Angular Base - Component Library](https://github.com/Arczi89/angular-base)
 
@@ -52,7 +52,7 @@
 
 ## 📈 Project Status Overview
 
-- **✅ Production Ready:** Portfolio React, Relaksownia
+- **Production Ready:** Portfolio React, Relaksownia
 - **🔄 In Development:** Angular Base (10% progress)
 - **📚 Learning Projects:** Various experimental repositories
 

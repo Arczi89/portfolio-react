@@ -51,11 +51,11 @@ npm install --save-dev prettier
 
 ## Korzyści
 
-- ✅ Formatuje tylko pliki, które chcesz commitować
-- ✅ Nie zmienia stanu stagingu
-- ✅ Automatyczne formatowanie przed każdym commitem
-- ✅ Spójny styl kodu w całym projekcie
-- ✅ Nie wpływa na pliki, które nie są w stagingu
+- Formatuje tylko pliki, które chcesz commitować
+- Nie zmienia stanu stagingu
+- Automatyczne formatowanie przed każdym commitem
+- Spójny styl kodu w całym projekcie
+- Nie wpływa na pliki, które nie są w stagingu
 
 ## Rozwiązywanie problemów
 
