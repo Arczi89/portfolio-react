@@ -13,7 +13,7 @@
 - **Tech Stack:** React 18, Node.js, MySQL, Docker, TypeScript
 - **Features:** Secure contact form, email notifications, GDPR compliance
 - **Highlights:** Data encryption, rate limiting, responsive design
-- **Status:** Production ready
+- **Status:** [Production ready](https://szwagrzak.pl)
 
 ### [Relaksownia - Massage Website](https://github.com/Arczi89/relaksownia)
 
@@ -27,7 +27,15 @@
 - **Tech Stack:** Angular, TypeScript, SCSS, HTML
 - **Features:** Reusable component library, base template for new projects
 - **Highlights:** Latest Angular techniques, modular architecture
-- **Status:** 🔄 In development (10% progress)
+- **Status:** 🔄 In development (20% progress)
+- **Demo:** [https://szwagrzak.pl/demo](https://szwagrzak.pl/demo)
+
+### [bgpack](https://github.com/Arczi89/bgpack)
+
+- **Tech Stack:** React, TypeScript, Webpack, Node.js
+- **Features:** Modern build tool for React applications, optimized bundling
+- **Highlights:** Fast development server, hot module replacement, production optimization
+- **Status:** 🔄 In development (70% progress)
 
 ## 🛠️ Skills
 
@@ -52,8 +60,8 @@
 
 ## 📈 Project Status Overview
 
-- **Production Ready:** Portfolio React, Relaksownia
-- **🔄 In Development:** Angular Base (10% progress)
+- **Production Ready:** [Portfolio React](https://szwagrzak.pl), Relaksownia
+- **🔄 In Development:** Angular Base (20% progress), bgpack (70% progress)
 - **📚 Learning Projects:** Various experimental repositories
 
 **Note:** All repositories are open for code review by recruiters and potential employers. See individual repository licenses for details.
