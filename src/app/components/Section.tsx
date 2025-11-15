@@ -33,46 +33,47 @@ const Section: React.FC<SectionProps> = ({ group, tag }) => {
         <h2 className="text-4xl font-bold">
           {firstSection && firstSection.title}
         </h2>
-        <div className={styles[tag]}>
-          {group?.map(sectionElement => {
-            const textContent = woLink(sectionElement.body).trim();
-            const hasLink = link(sectionElement.body);
-            const hasImage =
-              sectionElement.image &&
-              firstSection?.image !== sectionElement.image;
+        {group?.map(sectionElement => {
+          const text = woLink(sectionElement.body).trim();
+          const textContent = text
+            .split('\n')
+            .map(line => <p key={line}>{line}</p>);
+          const hasLink = link(sectionElement.body);
+          const hasImage =
+            sectionElement.image &&
+            firstSection?.image !== sectionElement.image;
 
-            if (!hasImage && !textContent && !hasLink) {
-              return null;
-            }
+          if (!hasImage && !text && !hasLink) {
+            return null;
+          }
 
-            return (
-              <div key={sectionElement.id} className={styles.paragraph}>
-                {hasImage && (
-                  <div className={styles['paragraph-image']}>
-                    <img
-                      className={styles.me}
-                      src={sectionElement.image}
-                      alt={sectionElement.title}
-                    />
-                  </div>
-                )}
-                <div className={styles['paragraph-body']}>
-                  {hasLink && (
-                    <a className="bold" href={hasLink}>
-                      {hasLink}
-                    </a>
-                  )}
-                  {textContent && (
-                    <>
-                      {hasLink && ' '}
-                      {textContent}
-                    </>
-                  )}
+          return (
+            <div key={sectionElement.id} className={styles.paragraph}>
+              {hasImage && (
+                <div className={styles['paragraph-image']}>
+                  <img
+                    className={styles.me}
+                    src={sectionElement.image}
+                    alt={sectionElement.title}
+                  />
                 </div>
+              )}
+              <div className={styles['paragraph-body']}>
+                {hasLink && (
+                  <a className="bold" href={hasLink}>
+                    {hasLink}
+                  </a>
+                )}
+                {textContent && (
+                  <>
+                    {hasLink && ' '}
+                    {textContent}
+                  </>
+                )}
               </div>
-            );
-          })}
-        </div>
+            </div>
+          );
+        })}
       </div>
     </section>
   );

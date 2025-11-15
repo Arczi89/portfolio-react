@@ -70,7 +70,6 @@ $shadow-red: 0 10px 25px -5px $color-primary-transparent-30;
 
 @mixin page-container-gradient {
   background-size: 400% 400%;
-  animation: gradientShift $gradient-animation-duration ease infinite;
 }
 
 @mixin scroll-container {

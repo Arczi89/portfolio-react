@@ -1,23 +1,15 @@
 @import 'variables';
 
 .section {
+  @include glass-effect-dark;
   display: flex;
   flex-direction: row;
   min-height: calc(100vh - 12.5rem);
   max-width: 100%;
-  border-radius: $border-radius-xl;
   margin: 2rem 4.5rem;
   padding: 2rem;
-  @include glass-effect-dark;
   box-shadow: $shadow-xl;
   border: 1px solid $color-primary-transparent-10;
-  transition: all $transition-medium;
-
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow: $shadow-red;
-    border-color: $color-primary-transparent-30;
-  }
 
   .section-inner {
     display: flex;
@@ -25,105 +17,34 @@
     align-items: flex-start;
     width: 80%;
     margin: 0 1.5rem;
+    width: 100%;
 
     h2 {
       color: $color-text-white;
-      margin-bottom: 1.5rem;
-      font-size: 2.5rem;
+      margin-bottom: 1rem;
       font-weight: 700;
-      text-shadow: 0 2px 4px $color-black-transparent-03;
       position: relative;
-
-      &::after {
-        content: '';
-        position: absolute;
-        bottom: -0.5rem;
-        left: 0;
-        width: 3rem;
-        height: 3px;
-        background: $gradient-primary;
-        border-radius: 2px;
-      }
-    }
-
-    .abilities {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      gap: 1rem;
-      width: 100%;
-
-      .paragraph {
-        flex: 0 0 calc(25% - 0.75rem);
-        min-width: 200px;
-        max-width: 250px;
-
-        .paragraph-image {
-          margin-right: 0;
-          margin-bottom: 1rem;
-
-          img {
-            width: 100%;
-            height: auto;
-            max-width: 100%;
-            max-height: 120px;
-            object-fit: contain;
-          }
-        }
-
-        .paragraph-body {
-          font-size: 0.9rem;
-          text-align: center;
-        }
-      }
+      padding-bottom: 0.5rem;
+      border-bottom: 3px solid $color-primary;
     }
 
     .paragraph {
-      display: flex;
-      flex-direction: row;
       margin-top: 1.5rem;
       padding: 1.5rem;
       background: $color-white-transparent-05;
-      border-radius: $border-radius-medium;
       border: 1px solid $color-white-transparent-10;
-      transition: all $transition-medium;
       width: 100%;
 
-      &:hover {
-        background: $color-white-transparent-10;
-        border-color: $color-primary-transparent-30;
-        transform: translateX(4px);
-      }
-
-      &:first-of-type {
-        width: 100%;
-      }
-
       .paragraph-image {
+        max-width: 20rem;
         margin-right: 1.5rem;
-        color: $color-text-white;
-        border-radius: $border-radius-medium;
-        display: flex;
-        overflow: hidden;
-        box-shadow: $shadow-md;
-
-        img {
-          width: 100%;
-          height: auto;
-          border-radius: $border-radius-small;
-          transition: all $transition-medium;
-
-          &:hover {
-            transform: scale(1.05);
-          }
-        }
+        margin-bottom: 1.5rem;
       }
 
       .paragraph-body {
-        font-size: 1.1rem;
         font-weight: 400;
         color: $color-text-white;
-        line-height: 1.6;
+        line-height: 1.7;
 
         a {
           color: $color-primary-light;
@@ -140,14 +61,6 @@
             height: 2px;
             background: $gradient-primary;
             transition: width $transition-medium;
-          }
-
-          &:hover {
-            color: $color-primary;
-
-            &::after {
-              width: 100%;
-            }
           }
         }
       }
@@ -171,12 +84,6 @@
       border-radius: $border-radius-large;
       box-shadow: $shadow-lg;
       transition: all $transition-medium;
-
-      &:hover {
-        transform: scale(1.02);
-        box-shadow: $shadow-red;
-        border-color: $color-primary-light;
-      }
     }
   }
 }
@@ -215,14 +122,6 @@
       }
     }
 
-    .abilities {
-      justify-content: center;
-      .paragraph {
-        flex: 0 0 calc(50% - 0.5rem);
-        min-width: 150px;
-      }
-    }
-
     .paragraph-body {
       font-size: 1rem;
     }
@@ -255,14 +154,6 @@
       }
     }
 
-    .abilities {
-      justify-content: center;
-      .paragraph {
-        flex: 0 0 calc(50% - 0.5rem);
-        min-width: 120px;
-      }
-    }
-
     .paragraph {
       padding: 1rem;
       margin-top: 1rem;
@@ -289,15 +180,6 @@
 
       .me {
         width: 12rem;
-      }
-    }
-
-    .abilities {
-      justify-content: center;
-      .paragraph {
-        flex: 0 0 100%;
-        min-width: 100px;
-        max-width: 200px;
       }
     }
 

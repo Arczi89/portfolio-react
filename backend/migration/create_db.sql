@@ -19,16 +19,27 @@ INSERT INTO `main_page_sections` (`id`, `tag`, `item_order`, `title`, `body`, `c
 (5, 'projects', 1, 'Projekty', '', '2024-09-12 16:03:37', '2024-09-12 16:03:37', '/images/projects.webp'),
 (6, 'projects', 2, 'Projekty', 'https://relaksownia.org.pl/\r\nStrona internetowa Justyny która prowadzi mobilne centrum masażu. Strona składa się z kilku podstron oraz ma panel do zarządzania zawartością. Projekt jest napisany z użyciem frameworka Django w pythonie.', '2024-09-12 16:03:37', '2024-09-12 16:03:37', '/images/relaksownia.webp'),
 (7, 'projects', 3, 'Projekty', 'Moja własna strona internetowa napisana w React.js.', '2024-09-12 16:03:37', '2024-09-12 16:03:37', '/images/szwagrzak_pl.webp'),
-(50, 'abilities', 1, 'Umiejętności', 'Podczas mojej kariery programistycznej zdobyłem parę umiejętności, są to:', '2024-09-12 18:48:49', '2024-09-12 18:48:49', '/images/abilities.webp'),
-(51, 'abilities', 2, 'Angular', ' ', '2024-09-12 18:51:48', '2024-09-12 18:51:48', '/images/angular2.webp'),
-(52, 'abilities', 3, 'HTML', ' ', '2024-09-12 18:58:43', '2024-09-12 18:58:43', '/images/html.webp'),
-(53, 'abilities', 4, 'Git', ' ', '2024-09-12 18:58:43', '2024-09-12 18:58:43', '/images/git.webp'),
-(54, 'abilities', 5, 'CSS', ' ', '2024-09-12 18:58:43', '2024-09-12 18:58:43', '/images/css.webp'),
-(55, 'abilities', 6, 'Java', ' ', '2024-09-12 18:58:43', '2024-09-12 18:58:43', '/images/java.webp'),
-(66, 'abilities', 8, 'Kotlin', ' ', '2024-09-12 18:58:43', '2024-09-12 18:58:43', '/images/kotlin.webp'),
-(67, 'abilities', 9, 'django', ' ', '2024-09-12 18:58:43', '2024-09-12 18:58:43', '/images/django.webp'),
-(68, 'abilities', 10, 'Symfony2', ' ', '2024-09-12 18:58:43', '2024-09-12 18:58:43', '/images/symfony2.webp'),
-(69, 'abilities', 11, 'Unit tests', ' ', '2024-09-12 18:58:43', '2024-09-12 18:58:43', '/images/unit_tests.webp'),
-(70, 'abilities', 12, 'Angielski', ' ', '2024-09-12 18:58:43', '2024-09-12 18:58:43', '/images/english.webp'),
-(71, 'abilities', 13, 'React.js', ' ', '2024-10-23 00:24:04', '2024-10-23 00:24:04', '/images/react.webp'),
+(50, 'abilities', 1, 'Umiejętności', 'Podczas mojej kariery programistycznej zdobyłem parę umiejętności, są to:\n
+- Angular 20\n
+- React.js\n
+- Typescript & JavaScript\n
+- HTML, CSS (SASS, BEM), RxJS\n
+- JAVA (Struts, JSP, Spring Boot)\n
+- API REST\n
+- Docker\n
+- Unit testing\n
+- Karma, Jasmine, Jest, Cypress, TDD\n
+- CI/CD - GitHub Actions, GitLab CI, Jenkins pipelines\n
+- Angular Material, Bootstrap, Tailwind\n
+- Git\n
+- ESlint, Prettier\n
+- Cursor AI\n
+- Clean Code principles, OOP Patterns, SOLID\n
+- experience with MongoDB, MySql, Oracle DB, PostgreSQL\n
+- Android & Kotlin (2021)\n
+- Django - podstawy\n
+- webpack - podstawy\n
+- Monorepo
+
+', '2024-09-12 18:48:49', '2024-09-12 18:48:49', '/images/abilities.webp'),
 (100, 'hobbies', 1, 'Planszówki', 'Jednym z moich największych hobby są planszówki. Mam kolekcję kilkudziesięciu gier które też często ogrywam ze znajomymi. Spotykam się regularnie na różnych wydarzeniach związanych z tym tematem. Uczestniczę aktywnie w życiu stowarzyszenia SGP Gambit w Gliwicach.', '2024-09-12 18:28:57', '2024-09-12 18:28:57', '/images/board_games.webp');
