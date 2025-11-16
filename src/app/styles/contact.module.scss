@@ -38,7 +38,6 @@
   @include error;
   background: $color-primary-transparent-10;
   padding: 1rem;
-  border-radius: $border-radius-medium;
   border: 1px solid $color-primary-transparent-30;
   color: $color-primary-light;
 }
@@ -58,20 +57,14 @@
 
 .privacyNotice {
   @include glass-effect-dark;
-  border-radius: $border-radius-large;
+  @include glass-red-border-hover;
   padding: 1.5rem;
   margin: 2rem auto;
   max-width: 800px;
   width: 100%;
   box-shadow: $shadow-lg;
   border: 1px solid $color-primary-transparent-20;
-  transition: all $transition-medium;
   text-align: center;
-
-  &:hover {
-    border-color: $color-primary-transparent-40;
-    box-shadow: $shadow-red;
-  }
 
   p {
     color: $color-text-white;

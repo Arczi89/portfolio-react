@@ -2,11 +2,12 @@
 
 .section {
   @include glass-effect-dark;
+  @include glass-red-border-hover;
   display: flex;
   flex-direction: row;
   min-height: calc(100vh - 12.5rem);
   max-width: 100%;
-  margin: 2rem 4.5rem;
+  margin: 1rem 5rem;
   padding: 2rem;
   box-shadow: $shadow-xl;
   border: 1px solid $color-primary-transparent-10;

@@ -130,7 +130,7 @@ const Contact: React.FC = () => {
 
                   {submitStatus.type && (
                     <div
-                      className={`alert ${submitStatus.type === 'success' ? 'alert-success' : 'alert-error'}`}
+                      className={`${stylesForm.alert} ${submitStatus.type === 'success' ? 'success' : 'error'}`}
                     >
                       {submitStatus.message}
                     </div>

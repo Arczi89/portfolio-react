@@ -9,7 +9,6 @@ form {
   margin: 0 auto;
   padding: 2rem;
   background: rgba(255, 255, 255, 0.05);
-  border-radius: $border-radius-large;
   backdrop-filter: blur(20px);
   border: 1px solid $color-primary-transparent-20;
   box-shadow: $shadow-lg;
@@ -27,7 +26,6 @@ input,
 textarea {
   padding: 1rem;
   border: 2px solid $color-white-transparent-10;
-  border-radius: $border-radius-medium;
   background: $color-white-transparent-10;
   color: $color-text-white;
   font-size: 1rem;
@@ -69,71 +67,20 @@ textarea {
 }
 
 button {
+  border: 1px solid $color-primary;
   margin-top: 1rem;
-  padding: 1rem 2rem;
-  background: $gradient-primary;
-  background-size: 200% 200%;
   color: $color-text-white;
-  border: none;
-  border-radius: $border-radius-medium;
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 1rem;
+  font-weight: 500;
   cursor: pointer;
-  transition: all $transition-medium;
   position: relative;
-  overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      $color-white-transparent-20,
-      transparent
-    );
-    transition: left $transition-slow;
-  }
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: $shadow-red;
-    background-position: right center;
-
-    &::before {
-      left: 100%;
-    }
-  }
-
-  &:active {
-    transform: translateY(0);
-  }
 }
 
 .alert {
   padding: 1rem;
-  border-radius: $border-radius-medium;
   margin-top: 1rem;
-  backdrop-filter: blur(10px);
   border: 1px solid transparent;
-
-  &.success {
-    background: $color-success-transparent-10;
-    color: $color-success;
-    border-color: $color-success-transparent-30;
-    box-shadow: 0 4px 15px $color-success-transparent-20;
-  }
-
-  &.error {
-    background: $color-primary-transparent-10;
-    color: $color-error;
-    border-color: $color-primary-transparent-30;
-    box-shadow: 0 4px 15px $color-primary-transparent-20;
-  }
+  color: $color-text-white;
 }
 
 @media (max-width: 768px) {

@@ -98,3 +98,12 @@ $shadow-red: 0 10px 25px -5px $color-primary-transparent-30;
   backdrop-filter: blur(20px);
   border: 1px solid $color-primary-transparent-20;
 }
+
+@mixin glass-red-border-hover {
+  transition: all $transition-medium;
+
+  &:hover {
+    border-color: $color-primary-transparent-40;
+    box-shadow: $shadow-red;
+  }
+}

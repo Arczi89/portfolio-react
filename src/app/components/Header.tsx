@@ -18,14 +18,13 @@ const Header: React.FC = () => {
         {locationPaths.map(path => {
           const isActive = location.pathname === path.url;
           return (
-            <button
+            <Link
               key={path.url}
-              className={`btn btn--nav ${isActive ? 'active' : ''}`}
+              to={path.url}
+              className={`${styles.navLink} ${isActive ? styles.active : ''}`}
             >
-              <Link to={path.url} className={styles.navLink}>
-                {path.text}
-              </Link>
-            </button>
+              {path.text}
+            </Link>
           );
         })}
       </nav>

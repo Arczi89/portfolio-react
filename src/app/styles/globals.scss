@@ -96,6 +96,14 @@ body {
   text-align: center;
 }
 
+.success {
+  color: $color-success;
+}
+
+.error {
+  color: $color-error;
+}
+
 .btn {
   background-color: transparent;
   color: $color-text-white;
