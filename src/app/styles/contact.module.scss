@@ -34,18 +34,19 @@
   padding: 2rem 0;
 }
 
-.error {
-  @include error;
-  background: $color-primary-transparent-10;
-  padding: 1rem;
-  border: 1px solid $color-primary-transparent-30;
-  color: $color-primary-light;
+.contentWrapper {
+  width: 100%;
+  max-width: 56rem;
+  margin: 0 auto;
 }
 
-.footer {
-  @include page-footer;
-  position: relative;
-  z-index: 1;
+.contentInner {
+  text-align: center;
+}
+
+.formWrapper {
+  display: flex;
+  justify-content: center;
 }
 
 .contactIntro {

@@ -4,7 +4,6 @@
   flex-direction: row;
   background: $color-dark-transparent-95;
   backdrop-filter: blur(20px);
-  position: static;
   z-index: 1000;
   height: 6.5rem;
   margin: 1rem 5rem;
@@ -42,7 +41,6 @@
       &.active {
         color: $color-primary-light;
         font-weight: 700;
-        position: relative;
 
         &::after {
           content: '';

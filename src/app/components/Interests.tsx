@@ -33,10 +33,10 @@ const Interests: React.FC = () => {
 
   return (
     <div
-      className={`min-h-screen flex flex-col bg-background ${styles.interests}`}
+      className={`flex flex-col min-h-screen bg-background ${styles.interests}`}
     >
       <Header />
-      <main className={`mx-auto py-6 flex-grow ${styles.container}`}>
+      <main className={`flex-grow ${styles.container}`}>
         {error && <div className={styles.error}>{error}</div>}
         {hobbiesGroup.length > 0 && (
           <Section group={hobbiesGroup} tag={TAGS.HOBBIES} />

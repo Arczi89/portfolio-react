@@ -65,14 +65,12 @@ const Contact: React.FC = () => {
 
   return (
     <div
-      className={`min-h-screen flex flex-col bg-background ${styles.contact}`}
+      className={`flex flex-col min-h-screen bg-background ${styles.contact}`}
     >
       <Header />
-      <main
-        className={`flex-grow flex items-center justify-center py-6 ${styles.container}`}
-      >
-        <div className="w-full max-w-4xl">
-          <div className="text-center">
+      <main className={`flex-grow ${styles.container}`}>
+        <div className={styles.contentWrapper}>
+          <div className={styles.contentInner}>
             <h2 className="text-4xl font-bold text-center mb-4">Kontakt</h2>
             <p className={styles.contactIntro}>
               Masz pytania? Skontaktuj się ze mną:
@@ -92,55 +90,53 @@ const Contact: React.FC = () => {
               </p>
             </div>
 
-            <div className="flex justify-center container">
-              <div className="container">
-                <form
-                  data-testid="contact-form"
-                  className={stylesForm.form}
-                  onSubmit={handleSubmit}
-                >
-                  <label htmlFor="name">Imię</label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    required
-                  />
+            <div className={styles.formWrapper}>
+              <form
+                data-testid="contact-form"
+                className={stylesForm.form}
+                onSubmit={handleSubmit}
+              >
+                <label htmlFor="name">Imię</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  required
+                />
 
-                  <label htmlFor="email">Email</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                  />
+                <label htmlFor="email">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  required
+                />
 
-                  <label htmlFor="message">Wiadomość</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    required
-                  ></textarea>
+                <label htmlFor="message">Wiadomość</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  required
+                ></textarea>
 
-                  {submitStatus.type && (
-                    <div
-                      className={`${stylesForm.alert} ${submitStatus.type === 'success' ? 'success' : 'error'}`}
-                    >
-                      {submitStatus.message}
-                    </div>
-                  )}
+                {submitStatus.type && (
+                  <div
+                    className={`${stylesForm.alert} ${submitStatus.type === 'success' ? 'success' : 'error'}`}
+                  >
+                    {submitStatus.message}
+                  </div>
+                )}
 
-                  <button className="btn" type="submit" disabled={isSubmitting}>
-                    {isSubmitting ? 'Wysyłanie...' : 'Wyślij'}
-                  </button>
-                </form>
-              </div>
+                <button className="btn" type="submit" disabled={isSubmitting}>
+                  {isSubmitting ? 'Wysyłanie...' : 'Wyślij'}
+                </button>
+              </form>
             </div>
           </div>
         </div>

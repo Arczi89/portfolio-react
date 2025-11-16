@@ -42,12 +42,6 @@
   color: $color-primary-light;
 }
 
-.footer {
-  @include page-footer;
-  position: relative;
-  z-index: 1;
-}
-
 @media (max-width: 768px) {
   .container {
     padding: 1rem 0;

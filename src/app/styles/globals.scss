@@ -28,6 +28,10 @@ html {
 }
 
 @layer base {
+  * {
+    color: $color-text-white;
+  }
+
   body {
     @apply font-roboto text-text;
     background: $gradient-dark;
