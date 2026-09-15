@@ -71,9 +71,16 @@ const Contact: React.FC = () => {
       <main className={`flex-grow ${styles.container}`}>
         <div className={styles.contentWrapper}>
           <div className={styles.contentInner}>
-            <h2 className="text-4xl font-bold text-center mb-4">Kontakt</h2>
+            <div className={styles.contactHeader}>
+              <p className={styles.eyebrow}>Kontakt</p>
+              <h2>Opowiedz, nad czym pracujesz</h2>
+            </div>
             <p className={styles.contactIntro}>
               Masz pytania? Skontaktuj się ze mną:
+            </p>
+            <p className={styles.contactDetails}>
+              Napisz w sprawie strony dla firmy, konsultingu lub współpracy
+              rekrutacyjnej.
             </p>
 
             <div className={styles.privacyNotice}>
