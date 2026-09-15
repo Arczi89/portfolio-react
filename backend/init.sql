@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS services (
   name VARCHAR(255) NOT NULL,
   summary TEXT NOT NULL,
   starting_price DECIMAL(10, 2),
+  delivery_hours INT,
   delivery_days INT,
   display_order INT NOT NULL DEFAULT 0,
   is_active BOOLEAN NOT NULL DEFAULT TRUE,
