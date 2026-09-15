@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS services (
   summary TEXT NOT NULL,
   starting_price DECIMAL(10, 2),
   delivery_days INT,
-  delivery_hours INT,
+  delivery_hours BOOLEAN NOT NULL DEFAULT FALSE,
   display_order INT NOT NULL DEFAULT 0,
   is_active BOOLEAN NOT NULL DEFAULT TRUE,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

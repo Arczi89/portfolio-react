@@ -78,16 +78,16 @@ const Home: React.FC = () => {
                           </dd>
                         </div>
                       )}
-                      {service.delivery_hours && (
-                        <div>
-                          <dt>już za </dt>
-                          <dd>{service.delivery_hours} za godzinę</dd>
-                        </div>
-                      )}
                       {service.delivery_days && (
                         <div>
                           <dt>Czas realizacji</dt>
                           <dd>{service.delivery_days} dni</dd>
+                        </div>
+                      )}
+                      {service.delivery_hours && (
+                        <div>
+                          <dt>Rozliczenie</dt>
+                          <dd>godzinowo</dd>
                         </div>
                       )}
                     </dl>

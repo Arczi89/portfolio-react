@@ -11,10 +11,30 @@ Service.init(
     summary: { type: DataTypes.TEXT, allowNull: false },
     starting_price: DataTypes.DECIMAL(10, 2),
     delivery_days: DataTypes.INTEGER,
-    display_order: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 0 },
-    is_active: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: true },
+    delivery_hours: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+    },
+    display_order: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 0,
+    },
+    is_active: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
+    },
   },
-  { sequelize, modelName: 'Service', tableName: 'services', timestamps: true, createdAt: 'created_at', updatedAt: 'updated_at' }
+  {
+    sequelize,
+    modelName: 'Service',
+    tableName: 'services',
+    timestamps: true,
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
+  }
 );
 
 module.exports = Service;

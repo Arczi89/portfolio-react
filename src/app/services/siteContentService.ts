@@ -22,7 +22,7 @@ export interface Service {
   summary: string;
   starting_price?: string;
   delivery_days?: number;
-  delivery_hours?: number;
+  delivery_hours?: boolean;
 }
 
 export interface Project {
@@ -79,7 +79,7 @@ const localSiteContent: SiteContent = {
       summary:
         'Czytelna strona dla firmy, która ułatwia klientom kontakt i prezentuje ofertę.',
       starting_price: '3000.00',
-      delivery_hours: 14,
+      delivery_hours: true,
     },
     {
       id: 2,
@@ -87,7 +87,7 @@ const localSiteContent: SiteContent = {
       name: 'Konsulting frontendowy',
       summary:
         'Wsparcie zespołu w React, Angular, jakości kodu, dostępności i wydajności.',
-      delivery_hours: 5,
+      delivery_hours: true,
     },
     {
       id: 3,
@@ -96,7 +96,7 @@ const localSiteContent: SiteContent = {
       summary:
         'Audyt jakości, dostępności, wydajności i architektury aplikacji wraz z listą praktycznych rekomendacji.',
       starting_price: '1800.00',
-      delivery_hours: 5,
+      delivery_hours: true,
     },
   ],
   projects: [

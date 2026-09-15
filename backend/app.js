@@ -190,7 +190,8 @@ const fallbackSections = [
 const fallbackSiteContent = {
   profile: {
     full_name: 'Artur Szwagrzak',
-    headline: 'Buduję strony dla firm i wspieram zespoły jako full-stack consultant.',
+    headline:
+      'Buduję strony dla firm i wspieram zespoły jako full-stack consultant.',
     introduction:
       'Mam ponad 10 lat doświadczenia w komercyjnym tworzeniu oprogramowania. Specjalizuję się w frontendzie, szczególnie Angularze, React i TypeScript, a doświadczenie backendowe w Java, Spring Boot, Django i Node.js pozwala mi patrzeć na produkt całościowo.',
     photo_url: '/images/me.webp',
@@ -204,24 +205,30 @@ const fallbackSiteContent = {
       id: 1,
       slug: 'strony-wizytowki',
       name: 'Strony wizytówki',
-      summary: 'Czytelna strona dla firmy, która ułatwia klientom kontakt i prezentuje ofertę.',
+      summary:
+        'Czytelna strona dla firmy, która ułatwia klientom kontakt i prezentuje ofertę.',
       starting_price: '3000.00',
       delivery_days: 14,
+      delivery_hours: true,
     },
     {
       id: 2,
       slug: 'frontend-consulting',
       name: 'Konsulting frontendowy',
-      summary: 'Wsparcie zespołu w React, Angular, jakości kodu, dostępności i wydajności.',
+      summary:
+        'Wsparcie zespołu w React, Angular, jakości kodu, dostępności i wydajności.',
       delivery_days: 5,
+      delivery_hours: true,
     },
     {
       id: 3,
       slug: 'audyt-frontend',
       name: 'Audyt frontendowy',
-      summary: 'Audyt jakości, dostępności, wydajności i architektury aplikacji wraz z listą praktycznych rekomendacji.',
+      summary:
+        'Audyt jakości, dostępności, wydajności i architektury aplikacji wraz z listą praktycznych rekomendacji.',
       starting_price: '1800.00',
       delivery_days: 5,
+      delivery_hours: true,
     },
   ],
   projects: [
@@ -231,7 +238,8 @@ const fallbackSiteContent = {
       title: 'Relaksownia',
       client_name: 'Mobilne centrum masażu',
       industry: 'Usługi',
-      summary: 'Strona z ofertą, treściami zarządzanymi przez klientkę i prostą drogą do kontaktu.',
+      summary:
+        'Strona z ofertą, treściami zarządzanymi przez klientkę i prostą drogą do kontaktu.',
       project_url: 'https://relaksownia.org.pl/',
       cover_image_url: '/images/relaksownia.webp',
     },
@@ -241,7 +249,8 @@ const fallbackSiteContent = {
       title: 'Portfolio Artura',
       client_name: 'Projekt własny',
       industry: 'Technologia',
-      summary: 'Strona oparta na React z własnym API oraz obsługą formularza kontaktowego.',
+      summary:
+        'Strona oparta na React z własnym API oraz obsługą formularza kontaktowego.',
       cover_image_url: '/images/szwagrzak_pl.webp',
     },
     {
@@ -250,7 +259,8 @@ const fallbackSiteContent = {
       title: 'Angular Base',
       client_name: 'Projekt własny',
       industry: 'Component library',
-      summary: 'Rozwijana biblioteka komponentów i szablon dla nowych aplikacji Angular.',
+      summary:
+        'Rozwijana biblioteka komponentów i szablon dla nowych aplikacji Angular.',
       project_url: 'https://demo.szwagrzak.pl/',
     },
     {
@@ -259,7 +269,8 @@ const fallbackSiteContent = {
       title: 'bgpack',
       client_name: 'Projekt własny',
       industry: 'Aplikacja webowa',
-      summary: 'Agregator kolekcji gier planszowych BoardGameGeek z sortowaniem, filtrowaniem i zapisywaniem list.',
+      summary:
+        'Agregator kolekcji gier planszowych BoardGameGeek z sortowaniem, filtrowaniem i zapisywaniem list.',
     },
   ],
   skills: [
@@ -451,7 +462,10 @@ app.get('/api/site-content', async (req, res) => {
           order: [['display_order', 'ASC']],
         }),
         Project.findAll({
-          order: [['is_featured', 'DESC'], ['display_order', 'ASC']],
+          order: [
+            ['is_featured', 'DESC'],
+            ['display_order', 'ASC'],
+          ],
         }),
         Skill.findAll({ order: [['display_order', 'ASC']] }),
         Testimonial.findAll({
@@ -468,7 +482,10 @@ app.get('/api/site-content', async (req, res) => {
       testimonials,
     });
   } catch (error) {
-    console.error('Database error, using site-content fallback:', error.message);
+    console.error(
+      'Database error, using site-content fallback:',
+      error.message
+    );
     res.json(fallbackSiteContent);
   }
 });

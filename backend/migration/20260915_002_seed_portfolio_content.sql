@@ -10,7 +10,7 @@ SET
 WHERE full_name = 'Artur Szwagrzak';
 
 INSERT INTO services (slug, name, summary, starting_price, delivery_days, delivery_hours, display_order)
-SELECT 'audyt-frontend', 'Audyt frontendowy', 'Audyt jakości, dostępności, wydajności i architektury aplikacji wraz z listą praktycznych rekomendacji.', 1800.00, null, 5, 3
+SELECT 'audyt-frontend', 'Audyt frontendowy', 'Audyt jakości, dostępności, wydajności i architektury aplikacji wraz z listą praktycznych rekomendacji.', 1800.00, null, TRUE, 3
 WHERE NOT EXISTS (SELECT 1 FROM services WHERE slug = 'audyt-frontend');
 
 INSERT INTO service_features (service_id, feature, display_order)
