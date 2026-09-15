@@ -207,6 +207,16 @@ scp -P 22 .env-portfolio-react dm77338@dm77338.domenomania.eu:/home/dm77338/.env
 ssh -p 22 dm77338@dm77338.domenomania.eu "cd /home/dm77338/server.szwagrzak.pl && touch tmp/restart.txt"
 ```
 
+#### Database Migration
+
+After the first deployment containing a new migration, run it once on the hosting account. The runner reads `backend/migration/` in version order and records each completed migration in `schema_migrations`, so it does not delete existing content or repeat an applied migration.
+
+```bash
+ssh -p 22 dm77338@dm77338.domenomania.eu "cd /home/dm77338/server.szwagrzak.pl && node runMigrations.js"
+```
+
+For the current redesign, run this command after deploying `20260915_001_create_service_site_content.sql`. Then restart Passenger using the existing deployment flow.
+
 ### Environment Configuration
 
 #### Project-Specific Environment Files

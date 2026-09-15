@@ -5,6 +5,11 @@ const cors = require('cors');
 const sequelize = require('./dbConnection');
 const MainPageSection = require('./mainPageSection');
 const ContactMessage = require('./contactMessage');
+const ConsultantProfile = require('./consultantProfile');
+const Service = require('./service');
+const Project = require('./project');
+const Skill = require('./skill');
+const Testimonial = require('./testimonial');
 const { sendContactEmail, sendConfirmationEmail } = require('./emailService');
 const { encryptContactData, decryptData } = require('./encryptionService');
 
@@ -182,6 +187,96 @@ const fallbackSections = [
   },
 ];
 
+const fallbackSiteContent = {
+  profile: {
+    full_name: 'Artur Szwagrzak',
+    headline: 'Buduję strony dla firm i wspieram zespoły jako full-stack consultant.',
+    introduction:
+      'Mam ponad 10 lat doświadczenia w komercyjnym tworzeniu oprogramowania. Specjalizuję się w frontendzie, szczególnie Angularze, React i TypeScript, a doświadczenie backendowe w Java, Spring Boot, Django i Node.js pozwala mi patrzeć na produkt całościowo.',
+    photo_url: '/images/me.webp',
+    email: 'artur@szwagrzak.pl',
+    location: 'Gliwice / zdalnie',
+    linkedin_url: 'https://www.linkedin.com/in/artur-szwagrzak-744431102/',
+    github_url: 'https://github.com/Arczi89',
+  },
+  services: [
+    {
+      id: 1,
+      slug: 'strony-wizytowki',
+      name: 'Strony wizytówki',
+      summary: 'Czytelna strona dla firmy, która ułatwia klientom kontakt i prezentuje ofertę.',
+      starting_price: '3000.00',
+      delivery_days: 14,
+    },
+    {
+      id: 2,
+      slug: 'frontend-consulting',
+      name: 'Konsulting frontendowy',
+      summary: 'Wsparcie zespołu w React, Angular, jakości kodu, dostępności i wydajności.',
+      delivery_days: 5,
+    },
+    {
+      id: 3,
+      slug: 'audyt-frontend',
+      name: 'Audyt frontendowy',
+      summary: 'Audyt jakości, dostępności, wydajności i architektury aplikacji wraz z listą praktycznych rekomendacji.',
+      starting_price: '1800.00',
+      delivery_days: 5,
+    },
+  ],
+  projects: [
+    {
+      id: 1,
+      slug: 'relaksownia',
+      title: 'Relaksownia',
+      client_name: 'Mobilne centrum masażu',
+      industry: 'Usługi',
+      summary: 'Strona z ofertą, treściami zarządzanymi przez klientkę i prostą drogą do kontaktu.',
+      project_url: 'https://relaksownia.org.pl/',
+      cover_image_url: '/images/relaksownia.webp',
+    },
+    {
+      id: 2,
+      slug: 'portfolio-artura',
+      title: 'Portfolio Artura',
+      client_name: 'Projekt własny',
+      industry: 'Technologia',
+      summary: 'Strona oparta na React z własnym API oraz obsługą formularza kontaktowego.',
+      cover_image_url: '/images/szwagrzak_pl.webp',
+    },
+    {
+      id: 3,
+      slug: 'angular-base',
+      title: 'Angular Base',
+      client_name: 'Projekt własny',
+      industry: 'Component library',
+      summary: 'Rozwijana biblioteka komponentów i szablon dla nowych aplikacji Angular.',
+      project_url: 'https://demo.szwagrzak.pl/',
+    },
+    {
+      id: 4,
+      slug: 'bgpack',
+      title: 'bgpack',
+      client_name: 'Projekt własny',
+      industry: 'Aplikacja webowa',
+      summary: 'Agregator kolekcji gier planszowych BoardGameGeek z sortowaniem, filtrowaniem i zapisywaniem list.',
+    },
+  ],
+  skills: [
+    { id: 1, name: 'React', category: 'Frontend' },
+    { id: 2, name: 'Angular', category: 'Frontend' },
+    { id: 3, name: 'TypeScript', category: 'Frontend' },
+    { id: 4, name: 'JavaScript', category: 'Frontend' },
+    { id: 5, name: 'Java', category: 'Backend' },
+    { id: 6, name: 'Testy jednostkowe', category: 'Jakość' },
+    { id: 7, name: 'Spring Boot', category: 'Backend' },
+    { id: 8, name: 'Django', category: 'Backend' },
+    { id: 9, name: 'MySQL i PostgreSQL', category: 'Bazy danych' },
+    { id: 10, name: 'Docker i CI/CD', category: 'DevOps' },
+  ],
+  testimonials: [],
+};
+
 app.use((req, res, next) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('X-Frame-Options', 'DENY');
@@ -343,6 +438,38 @@ app.get('/api/sections', async (req, res) => {
     console.error('Database error, using fallback data:', error.message);
     res.setHeader('Content-Type', 'application/json; charset=utf-8');
     res.json(fallbackSections);
+  }
+});
+
+app.get('/api/site-content', async (req, res) => {
+  try {
+    const [profile, services, projects, skills, testimonials] =
+      await Promise.all([
+        ConsultantProfile.findOne({ order: [['id', 'ASC']] }),
+        Service.findAll({
+          where: { is_active: true },
+          order: [['display_order', 'ASC']],
+        }),
+        Project.findAll({
+          order: [['is_featured', 'DESC'], ['display_order', 'ASC']],
+        }),
+        Skill.findAll({ order: [['display_order', 'ASC']] }),
+        Testimonial.findAll({
+          where: { is_published: true },
+          order: [['display_order', 'ASC']],
+        }),
+      ]);
+
+    res.json({
+      profile: profile || fallbackSiteContent.profile,
+      services: services.length ? services : fallbackSiteContent.services,
+      projects: projects.length ? projects : fallbackSiteContent.projects,
+      skills: skills.length ? skills : fallbackSiteContent.skills,
+      testimonials,
+    });
+  } catch (error) {
+    console.error('Database error, using site-content fallback:', error.message);
+    res.json(fallbackSiteContent);
   }
 });
 

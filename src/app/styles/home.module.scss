@@ -1,55 +1,34 @@
 @import 'variables';
 
-.home {
-  @include page-container;
-  @include page-container-gradient;
-  background: $gradient-dark;
-  position: relative;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(
-        circle at 30% 70%,
-        $color-primary-transparent-15 0%,
-        transparent 50%
-      ),
-      radial-gradient(
-        circle at 70% 30%,
-        $color-primary-transparent-10 0%,
-        transparent 50%
-      );
-    pointer-events: none;
-  }
-}
-
-.container {
-  @include scroll-container;
-  position: relative;
-  z-index: 1;
-  padding: 2rem 0;
-}
-
-.error {
-  @include error;
-  background: $color-primary-transparent-10;
-  padding: 1rem;
-  border: 1px solid $color-primary-transparent-30;
-  color: $color-primary-light;
-}
-
-@media (max-width: 768px) {
-  .container {
-    padding: 1rem 0;
-  }
-}
-
-@media (max-width: 599px) {
-  .container {
-    padding: 0.5rem 0;
-  }
-}
+.home { min-height: 100vh; color: $color-text; }
+.hero, .section { margin: 0 auto; width: min(75rem, calc(100% - 2rem)); }
+.hero { align-items: center; display: grid; gap: 5rem; grid-template-columns: minmax(0, 1.45fr) minmax(17rem, 0.55fr); min-height: 42rem; padding: 5rem 0 6rem; }
+.eyebrow { color: #0a7a70; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; margin: 0 0 1rem; }
+.hero h2, .section h2 { font-size: clamp(2.4rem, 5vw, 4.8rem); line-height: 1.04; margin: 0; max-width: 14ch; }
+.lead, .consultingLead { font-size: 1.2rem; line-height: 1.65; margin: 1.5rem 0 0; max-width: 42rem; }
+.heroActions { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
+.primaryAction, .secondaryAction { align-items: center; display: inline-flex; justify-content: center; min-height: 3rem; padding: 0.75rem 1.25rem; text-decoration: none; transition: transform $transition-medium, background-color $transition-medium; }
+.primaryAction { background: $color-primary; color: $color-text-white; font-weight: 700; &:hover { background: #c94535; transform: translateY(-2px); } }
+.secondaryAction { border: 1px solid rgba(23, 43, 58, 0.25); color: $color-text; }
+.profilePanel { border-top: 6px solid #0a7a70; padding-top: 1rem; img { aspect-ratio: 4 / 5; display: block; object-fit: cover; width: 100%; } p { font-family: 'Fraunces', serif; font-size: 1.4rem; margin: 1rem 0 0.25rem; } span { color: #55707a; } }
+.section { padding: 6rem 0; }
+.section h2 { font-size: clamp(2rem, 3.5vw, 3.3rem); max-width: 20ch; }
+.serviceGrid, .projectGrid { display: grid; gap: 1.25rem; margin-top: 2.5rem; }
+.serviceGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.projectGrid { grid-template-columns: 1fr; }
+.service, .project { background: $color-text-white; border: 1px solid rgba(23, 43, 58, 0.12); padding: 1.75rem; }
+.service h3, .project h3 { font-family: 'Fraunces', serif; font-size: 1.6rem; margin: 0; }
+.service p, .project p { line-height: 1.6; }
+.service dl { border-top: 1px solid rgba(23, 43, 58, 0.12); display: flex; gap: 2rem; margin: 1.5rem 0 0; padding-top: 1rem; }
+.service dt { color: #55707a; font-size: 0.8rem; } .service dd { font-weight: 700; margin: 0.25rem 0 0; }
+.projects { background: #dcebe8; max-width: none; padding-left: max(1rem, calc((100% - 75rem) / 2)); padding-right: max(1rem, calc((100% - 75rem) / 2)); width: 100%; }
+.project { align-items: stretch; display: flex; min-height: 17rem; padding: 0; }
+.projectPreview { align-items: flex-start; background: #eef4f2; border-right: 1px solid rgba(23, 43, 58, 0.12); display: flex; flex: 0 0 42%; justify-content: center; overflow: hidden; padding: 1rem; width: 42%; }
+.projectPreview img { display: block; height: 100%; max-height: 20rem; object-fit: contain; object-position: center top; width: 100%; }
+.project div { align-content: center; padding: 2rem; }
+.project div > p:first-child { color: #0a7a70; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; margin: 0 0 0.75rem; text-transform: uppercase; }
+.project a { color: $color-primary; font-weight: 700; }
+.skills { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; } .skills span { background: #dcebe8; color: #0b5f58; font-weight: 700; padding: 0.65rem 0.85rem; }
+.contactSection { align-items: end; border-top: 1px solid rgba(23, 43, 58, 0.18); display: flex; justify-content: space-between; margin-bottom: 4rem; } .contactSection h2 { max-width: 13ch; }
+.error { background: #fff0ec; color: $color-error; margin: 1rem auto; padding: 1rem; width: min(75rem, calc(100% - 2rem)); }
+@media (max-width: 768px) { .hero { gap: 2.5rem; grid-template-columns: 1fr; min-height: auto; padding: 4rem 0; } .profilePanel { max-width: 20rem; } .section { padding: 4rem 0; } .serviceGrid { grid-template-columns: 1fr; } .project { flex-direction: column; } .projectPreview { border-bottom: 1px solid rgba(23, 43, 58, 0.12); border-right: 0; flex-basis: auto; height: 14rem; width: 100%; } .projectPreview img { max-height: none; } .project div { padding: 1.5rem; } .contactSection { align-items: start; flex-direction: column; gap: 1.5rem; } }

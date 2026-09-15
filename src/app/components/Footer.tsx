@@ -2,8 +2,8 @@ import React from 'react';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="footer" style={{ color: 'white', textAlign: 'center' }}>
-      <p style={{ color: 'white', textAlign: 'center' }}>
+    <footer className="footer">
+      <p>
         © 2025 Szwagrzak Artur. Wszelkie prawa zastrzeżone. Kontakt:
         kontakt@szwagrzak.pl
       </p>

@@ -3,39 +3,24 @@
 @tailwind utilities;
 
 @import 'variables';
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap');
 
 html {
   font-size: 16px;
+  scroll-behavior: smooth;
 }
 
 :root {
-  --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 17, 24, 39;
-  --background-end-rgb: 15, 23, 42;
-}
-
-.bold {
-  font-weight: 900;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 17, 24, 39;
-    --background-end-rgb: 15, 23, 42;
-  }
+  --foreground-rgb: 23, 43, 58;
+  --background-start-rgb: 246, 251, 250;
 }
 
 @layer base {
-  * {
-    color: $color-text-white;
-  }
-
   body {
-    @apply font-roboto text-text;
-    background: $gradient-dark;
-    color: $color-text-white;
+    font-family: 'DM Sans', sans-serif;
+    background: rgb(var(--background-start-rgb));
+    color: $color-text;
+    min-height: 100vh;
     overflow-x: hidden;
   }
 
@@ -44,20 +29,19 @@ html {
   button,
   select {
     padding: 1rem;
-    color: $color-text-white;
+    color: $color-text;
   }
 
   input[type='text'],
   input[type='email'],
   textarea {
-    padding: 1rem;
-    color: $color-text-white;
-    -webkit-text-fill-color: $color-text-white;
+    color: $color-text;
+    -webkit-text-fill-color: $color-text;
   }
 
   .footer,
   .footer p {
-    color: $color-text-white;
+    color: $color-text;
     text-align: center;
   }
 }
@@ -69,24 +53,9 @@ html {
   h4,
   h5,
   h6 {
-    @apply font-poppins text-heading;
-    color: $color-text-white;
+    font-family: 'Fraunces', serif;
+    color: $color-text;
   }
-
-  .font-space-mono {
-    font-family: 'Space Mono', monospace;
-  }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-  min-height: 100vh;
 }
 
 @layer utilities {
@@ -98,38 +67,4 @@ body {
 .social {
   display: inline-block;
   text-align: center;
-}
-
-.success {
-  color: $color-success;
-}
-
-.error {
-  color: $color-error;
-}
-
-.btn {
-  background-color: transparent;
-  color: $color-text-white;
-  @apply text-2xl font-bold;
-  transition: all $transition-medium;
-
-  &--nav {
-    padding: 1rem 1.5rem;
-    border-radius: $border-radius-medium;
-    position: relative;
-    overflow: hidden;
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: $gradient-primary;
-      transition: left $transition-medium;
-      z-index: -1;
-    }
-  }
 }

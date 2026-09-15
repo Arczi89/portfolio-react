@@ -1,15 +1,3 @@
--- Personal site database initialization
--- Docker Compose selects the database through MYSQL_DATABASE.
-
--- UTF-8 encoding setup
-SET NAMES utf8mb4;
-SET CHARACTER SET utf8mb4;
-SET collation_connection = 'utf8mb4_unicode_ci';
-SET character_set_client = utf8mb4;
-SET character_set_connection = utf8mb4;
-SET character_set_results = utf8mb4;
-
--- Public consultant profile shown in the introduction section.
 CREATE TABLE IF NOT EXISTS consultant_profiles (
   id INT AUTO_INCREMENT PRIMARY KEY,
   full_name VARCHAR(255) NOT NULL,
@@ -87,23 +75,53 @@ CREATE TABLE IF NOT EXISTS testimonials (
   FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE SET NULL
 );
 
--- Contact messages table
 CREATE TABLE IF NOT EXISTS contact_messages (
   id INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
-  phone VARCHAR(255),
-  company VARCHAR(255),
-  inquiry_type ENUM('website', 'consulting', 'recruitment', 'other') NOT NULL DEFAULT 'other',
-  budget_range VARCHAR(100),
-  contact_status ENUM('new', 'contacted', 'qualified', 'archived') NOT NULL DEFAULT 'new',
   message TEXT NOT NULL,
-  consent_at TIMESTAMP NULL,
-  consent_version VARCHAR(50),
   ip_address VARCHAR(45),
   user_agent TEXT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  INDEX idx_email (email),
-  INDEX idx_created_at (created_at)
-); 
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+ALTER TABLE contact_messages
+  ADD COLUMN phone VARCHAR(255) NULL AFTER email,
+  ADD COLUMN company VARCHAR(255) NULL AFTER phone,
+  ADD COLUMN inquiry_type ENUM('website', 'consulting', 'recruitment', 'other') NOT NULL DEFAULT 'other' AFTER company,
+  ADD COLUMN budget_range VARCHAR(100) NULL AFTER inquiry_type,
+  ADD COLUMN contact_status ENUM('new', 'contacted', 'qualified', 'archived') NOT NULL DEFAULT 'new' AFTER budget_range,
+  ADD COLUMN consent_at TIMESTAMP NULL AFTER message,
+  ADD COLUMN consent_version VARCHAR(50) NULL AFTER consent_at;
+
+INSERT INTO consultant_profiles (full_name, headline, introduction, photo_url, email, location)
+SELECT
+  'Artur Szwagrzak',
+  'Tworzę strony, które budują zaufanie. Wspieram zespoły jako frontend consultant.',
+  'Łączę ponad 10 lat doświadczenia w tworzeniu produktów cyfrowych z praktycznym podejściem do potrzeb małych firm i zespołów technologicznych.',
+  '/images/me.webp',
+  'artur@szwagrzak.pl',
+  'Gliwice / zdalnie'
+WHERE NOT EXISTS (SELECT 1 FROM consultant_profiles);
+
+INSERT INTO services (slug, name, summary, starting_price, delivery_days, display_order)
+SELECT 'strony-wizytowki', 'Strony wizytówki', 'Czytelna strona dla firmy, która ułatwia klientom kontakt i prezentuje ofertę.', 3000.00, 14, 1
+WHERE NOT EXISTS (SELECT 1 FROM services WHERE slug = 'strony-wizytowki');
+
+INSERT INTO services (slug, name, summary, delivery_days, display_order)
+SELECT 'frontend-consulting', 'Konsulting frontendowy', 'Wsparcie zespołu w React, Angular, jakości kodu, dostępności i wydajności.', 5, 2
+WHERE NOT EXISTS (SELECT 1 FROM services WHERE slug = 'frontend-consulting');
+
+INSERT INTO projects (slug, title, client_name, industry, summary, project_url, cover_image_url, is_featured, display_order, published_at)
+SELECT 'relaksownia', 'Relaksownia', 'Mobilne centrum masażu', 'Usługi', 'Strona z ofertą, treściami zarządzanymi przez klientkę i prostą drogą do kontaktu.', 'https://relaksownia.org.pl/', '/images/relaksownia.webp', TRUE, 1, CURRENT_TIMESTAMP
+WHERE NOT EXISTS (SELECT 1 FROM projects WHERE slug = 'relaksownia');
+
+INSERT INTO skills (name, category, display_order)
+SELECT 'React', 'Frontend', 1 WHERE NOT EXISTS (SELECT 1 FROM skills WHERE name = 'React');
+INSERT INTO skills (name, category, display_order)
+SELECT 'Angular', 'Frontend', 2 WHERE NOT EXISTS (SELECT 1 FROM skills WHERE name = 'Angular');
+INSERT INTO skills (name, category, display_order)
+SELECT 'TypeScript', 'Frontend', 3 WHERE NOT EXISTS (SELECT 1 FROM skills WHERE name = 'TypeScript');
+INSERT INTO skills (name, category, display_order)
+SELECT 'Testy jednostkowe', 'Jakość', 4 WHERE NOT EXISTS (SELECT 1 FROM skills WHERE name = 'Testy jednostkowe');
