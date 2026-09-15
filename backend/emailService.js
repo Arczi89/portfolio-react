@@ -10,7 +10,7 @@ const createTransporter = () => {
     port: 587, // TLS port
     secure: false, // false for 587, true for 465
     auth: {
-      user: process.env.EMAIL_USER || 'artur@szwagrzak.pl',
+      user: process.env.EMAIL_USER || 'kontakt@szwagrzak.pl',
       pass: process.env.EMAIL_PASS,
     },
     tls: {
@@ -25,8 +25,8 @@ const sendContactEmail = async contactData => {
   try {
     console.log('🚀 Rozpoczynam wysyłanie emaila kontaktowego...');
     console.log('📧 Dane emaila:', {
-      from: process.env.EMAIL_USER || 'artur@szwagrzak.pl',
-      to: 'artur@szwagrzak.pl',
+      from: process.env.EMAIL_USER || 'kontakt@szwagrzak.pl',
+      to: 'kontakt@szwagrzak.pl',
       subject: `Nowa wiadomość kontaktowa od ${contactData.name}`,
     });
 
@@ -34,8 +34,8 @@ const sendContactEmail = async contactData => {
     console.log('Transporter utworzony pomyślnie');
 
     const mailOptions = {
-      from: process.env.EMAIL_USER || 'artur@szwagrzak.pl',
-      to: 'artur@szwagrzak.pl',
+      from: process.env.EMAIL_USER || 'kontakt@szwagrzak.pl',
+      to: 'kontakt@szwagrzak.pl',
       subject: `Nowa wiadomość kontaktowa od ${contactData.name}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -89,7 +89,7 @@ const sendConfirmationEmail = async contactData => {
   try {
     console.log('🚀 Rozpoczynam wysyłanie emaila potwierdzającego...');
     console.log('📧 Dane emaila potwierdzającego:', {
-      from: process.env.EMAIL_USER || 'artur@szwagrzak.pl',
+      from: process.env.EMAIL_USER || 'kontakt@szwagrzak.pl',
       to: contactData.email,
       subject: 'Potwierdzenie wysłania wiadomości - Artur Szwagrzak',
     });
@@ -98,7 +98,7 @@ const sendConfirmationEmail = async contactData => {
     console.log('Transporter utworzony pomyślnie');
 
     const mailOptions = {
-      from: process.env.EMAIL_USER || 'artur@szwagrzak.pl',
+      from: process.env.EMAIL_USER || 'kontakt@szwagrzak.pl',
       to: contactData.email,
       subject: 'Potwierdzenie wysłania wiadomości - Artur Szwagrzak',
       html: `

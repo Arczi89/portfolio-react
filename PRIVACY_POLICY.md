@@ -5,7 +5,7 @@
 Administratorem Twoich danych osobowych jest:
 
 - **Artur Szwagrzak**
-- Email: artur@szwagrzak.pl
+- Email: kontakt@szwagrzak.pl
 - Strona: https://szwagrzak.pl
 
 ## 2. Cel przetwarzania danych
@@ -64,7 +64,7 @@ Zgodnie z RODO masz prawo do:
 
 W sprawach związanych z przetwarzaniem danych możesz kontaktować się:
 
-- **Email**: artur@szwagrzak.pl
+- **Email**: kontakt@szwagrzak.pl
 - **Temat**: "RODO - Dane osobowe"
 
 ## 9. Skargi

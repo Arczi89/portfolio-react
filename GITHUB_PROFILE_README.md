@@ -48,7 +48,7 @@
 
 ## 📫 Contact
 
-- **Email:** artur@szwagrzak.pl
+- **Email:** kontakt@szwagrzak.pl
 - **Website:** https://szwagrzak.pl
 - **LinkedIn:** https://www.linkedin.com/in/artur-szwagrzak-744431102/
 

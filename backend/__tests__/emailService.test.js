@@ -41,7 +41,7 @@ describe('Email Service', () => {
         port: 587,
         secure: false,
         auth: {
-          user: process.env.EMAIL_USER || 'artur@szwagrzak.pl',
+          user: process.env.EMAIL_USER || 'kontakt@szwagrzak.pl',
           pass: process.env.EMAIL_PASS,
         },
         tls: {
@@ -50,8 +50,8 @@ describe('Email Service', () => {
       });
 
       expect(mockSendMail).toHaveBeenCalledWith({
-        from: process.env.EMAIL_USER || 'artur@szwagrzak.pl',
-        to: 'artur@szwagrzak.pl',
+        from: process.env.EMAIL_USER || 'kontakt@szwagrzak.pl',
+        to: 'kontakt@szwagrzak.pl',
         subject: `Nowa wiadomość kontaktowa od ${mockContactData.name}`,
         html: expect.stringContaining(mockContactData.name),
       });
@@ -131,7 +131,7 @@ describe('Email Service', () => {
       const result = await sendConfirmationEmail(mockContactData);
 
       expect(mockSendMail).toHaveBeenCalledWith({
-        from: process.env.EMAIL_USER || 'artur@szwagrzak.pl',
+        from: process.env.EMAIL_USER || 'kontakt@szwagrzak.pl',
         to: mockContactData.email,
         subject: 'Potwierdzenie wysłania wiadomości - Artur Szwagrzak',
         html: expect.stringContaining(mockContactData.name),

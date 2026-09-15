@@ -86,7 +86,7 @@ const Contact: React.FC = () => {
                 będą przechowywane przez okres niezbędny do udzielenia
                 odpowiedzi, a następnie przez 3 lata w celach archiwalnych. Masz
                 prawo do wglądu, poprawiania, usuwania i przenoszenia danych.
-                Więcej informacji: artur@szwagrzak.pl
+                Więcej informacji: kontakt@szwagrzak.pl
               </p>
             </div>
 

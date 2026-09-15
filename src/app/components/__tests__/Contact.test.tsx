@@ -47,7 +47,7 @@ describe('Contact Component', () => {
         /Administratorem Twoich danych osobowych jest Artur Szwagrzak/
       )
     ).toBeInTheDocument();
-    expect(screen.getAllByText(/artur@szwagrzak.pl/)).toHaveLength(2); // W privacy notice i footer
+    expect(screen.getAllByText(/kontakt@szwagrzak.pl/)).toHaveLength(2); // W privacy notice i footer
   });
 
   it('handles form input changes', () => {

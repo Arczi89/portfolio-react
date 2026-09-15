@@ -35,7 +35,7 @@ This repository is intended to demonstrate my programming skills and project man
 
 For questions about this license or to request special permissions, contact:
 
-- Email: artur@szwagrzak.pl
+- Email: kontakt@szwagrzak.pl
 - Website: https://szwagrzak.pl
 
 ## Legal Notice

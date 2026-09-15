@@ -5,7 +5,7 @@ export const Footer: React.FC = () => {
     <footer className="footer" style={{ color: 'white', textAlign: 'center' }}>
       <p style={{ color: 'white', textAlign: 'center' }}>
         © 2025 Szwagrzak Artur. Wszelkie prawa zastrzeżone. Kontakt:
-        artur@szwagrzak.pl
+        kontakt@szwagrzak.pl
       </p>
     </footer>
   );
